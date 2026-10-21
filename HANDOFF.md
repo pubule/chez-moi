@@ -31,7 +31,7 @@ Access, deploy a comando da Actions.
 - Design D (mockup "Chez moi — mockup cucina" su claude.ai): solo scuro, accento rame `#d08a5a`, quadrante del roner nella Sfida, mise en place da spuntare, modalità cucina un passaggio alla volta con timer e schermo acceso (Wake Lock).
 - Le ricette restano testo libero: un ingrediente per riga ("320 g riso") e un passaggio per riga; `public/logic.js` ricava dosi e minuti del timer. Nessuna colonna strutturata.
 - Spunte della mise en place solo in memoria: si azzerano chiudendo l'app.
-- Seed ricette: `worker/seed/ricette.mjs` (dosi per 4, completate dall'autore con fonti web dove servivano), `genera-sql.mjs` con id ricavato dal titolo (rilanciabile senza doppioni). Foto: `foto-query.json` → scelte a mano su Openverse (licenze CC senza ND) → `foto.json` con autore e licenza, mostrati sotto la foto (`foto_credito`).
+- Seed ricette: `worker/seed/ricette.mjs` (dosi per 4, completate dall'autore con fonti web dove servivano), `genera-sql.mjs` con id ricavato dal titolo (rilanciabile senza doppioni). Foto: `foto-query.json` → scelte a mano su Openverse (licenze CC senza ND) → `foto.json` con autore, licenza e pagina d'origine, mostrati sotto la foto (`foto_credito`). I JPEG (ritagliati 4:3, max 1600 px) stanno solo in R2, non nel repo. "Seppioline gratinate" è senza foto: Openverse aveva solo seppie vive.
 - Icone della Home ancora verdi della prima palette: da rifare in rame se serve.
 
 ## Checklist primo deploy

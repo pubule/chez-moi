@@ -91,3 +91,15 @@ test('le ricette del seed si leggono: dosi, passaggi e timer sensati', async () 
     }
   }
 });
+
+test('ogni foto del seed corrisponde a una ricetta e ha un credito', async () => {
+  const { default: ricette } = await import('../worker/seed/ricette.mjs');
+  const { readFileSync } = await import('node:fs');
+  const foto = JSON.parse(readFileSync(new URL('../worker/seed/foto.json', import.meta.url), 'utf8'));
+  const titoli = new Set(ricette.map(r => r.t));
+  for (const [t, f] of Object.entries(foto)) {
+    assert.ok(titoli.has(t), t);
+    assert.match(f.foto, /^foto\/[0-9a-f-]{36}$/);
+    assert.ok(f.credito.includes('Openverse'), t);
+  }
+});
