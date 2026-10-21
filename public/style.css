@@ -133,31 +133,39 @@ legend { font-weight: 600; margin-bottom: 4px; }
 .video { position: relative; aspect-ratio: 16 / 9; margin-bottom: 12px; }
 .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 10px; }
 
-/* barra delle schede: unico livello traslucido, sopra i contenuti */
+/* barra delle schede: pillola traslucida sospesa, come in radar-eventi */
 nav {
   position: fixed;
-  left: 0; right: 0; bottom: 0;
+  left: calc(env(safe-area-inset-left) + 18px);
+  right: calc(env(safe-area-inset-right) + 18px);
+  bottom: calc(env(safe-area-inset-bottom) + 12px);
+  height: 62px;
+  border-radius: 31px;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   background: var(--barra);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
-  border-top: .5px solid var(--separatore);
-  padding-bottom: env(safe-area-inset-bottom);
+  border: .5px solid var(--separatore);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .12);
 }
 @media (prefers-reduced-transparency: reduce) { nav { background: var(--carta); backdrop-filter: none; -webkit-backdrop-filter: none; } }
 nav button {
-  flex: 1;
   flex-direction: column;
   gap: 2px;
+  min-width: 44px;
+  min-height: 44px;
   margin: 0;
-  padding: 6px 0 4px;
+  padding: 0 10px;
   border-radius: 0;
   background: none;
   color: var(--secondario);
-  font-size: .65rem;
+  font-size: 10px;
   font-weight: 500;
 }
-nav svg { width: 26px; height: 26px; fill: currentColor; }
+@media (max-width: 420px) { nav button { padding: 0 6px; } }
+nav svg { width: 24px; height: 24px; fill: currentColor; }
 nav button[aria-current=true] { color: var(--accento); }
 
 /* moduli come fogli iOS: salgono dal basso, Annulla a sinistra e Salva a destra */
