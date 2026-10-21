@@ -8,7 +8,7 @@
     "directory": "public"
   },
   "d1_databases": [
-    { "binding": "DB", "database_name": "chez-moi-db", "database_id": "DA-CREARE", "migrations_dir": "worker/migrations" }
+    { "binding": "DB", "database_name": "chez-moi-db", "database_id": "0fe5ae31-f049-4e6d-a3f6-d2c014943677", "migrations_dir": "worker/migrations" }
   ],
   "r2_buckets": [
     { "binding": "FOTO", "bucket_name": "chez-moi-foto" }
