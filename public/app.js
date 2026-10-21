@@ -346,5 +346,13 @@ async function chiediAlloChef(form) {
 
 // ---------- avvio ----------
 
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+if ('serviceWorker' in navigator) {
+  // iOS tiene viva la pagina tra un cambio d'app e l'altro: a ogni ritorno cerca un deploy nuovo (come radar-eventi)
+  const had = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.register('sw.js').then((reg) => {
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
+  }).catch(() => {});
+  // sw.js nuovo attivato (skipWaiting + claim): ricarica una volta per usare il codice nuovo; non alla prima installazione
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (had) location.reload(); });
+}
 disegna();
