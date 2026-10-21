@@ -1,0 +1,25 @@
+name: CI
+
+# Test del worker a ogni push e pull request. Il deploy resta un comando a parte (deploy.yml).
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: worker
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+      - run: npm ci
+      - run: npx vitest run
+      - name: Test della logica del frontend
+        working-directory: .
+        run: node --test test/*.test.mjs

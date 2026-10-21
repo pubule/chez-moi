@@ -1,26 +1,38 @@
 # Chez moi
 
-App personale di cucina gourmet per iPhone: una web app installabile sulla schermata home (PWA), senza App Store.
+PWA per iPhone, per uso personale, che deve far tornare la voglia di cucinare: una sfida di tecnica a settimana, il diario dei piatti con foto, un ricettario e uno Chef (Claude) che propone ricette gourmet da quello che c'è in frigo.
 
-- **Sfida**: una tecnica da provare ogni settimana, scelta tra quelle adatte agli attrezzi che hai (roner, biberon, sifone…).
-- **Diario**: foto dei piatti, voto e note su cosa migliorare.
-- **Ricette**: il tuo ricettario, con video YouTube incorporati.
-- **Chef**: ricette proposte da Claude a partire da cosa hai in frigo. Serve una chiave API Anthropic, che resta sul telefono.
+## Architettura
 
-I dati restano sul telefono (IndexedDB): da **Opzioni** puoi esportare un backup.
+- Un solo Cloudflare Worker (Hono, TypeScript) serve API e frontend statico (`public/`, JS vanilla, nessuna build).
+- D1 `chez-moi-db` per diario e ricette (migrazioni in `worker/migrations/`), R2 `chez-moi-foto` per le foto.
+- Chef: `POST /api/chef` chiama l'API Anthropic con la chiave nel secret `ANTHROPIC_API_KEY`, al massimo 20 ricette al giorno (`LIMITE_GIORNO`).
+- Cloudflare Access (team `smartcores`) protegge `chezmoi.smartcores.org`; il Worker verifica il JWT e la mail in `ALLOWED_EMAIL`.
 
-## Installarla su iPhone
+## Sviluppo locale
 
-1. Apri l'indirizzo dell'app in Safari.
-2. Tocca Condividi → **Aggiungi alla schermata Home**.
-
-## Sviluppo
-
-Niente build e niente dipendenze: sono file statici.
-
-```sh
-python3 -m http.server   # poi apri http://localhost:8000
-node --test test.mjs     # test della logica
+```
+cd worker && npm ci && npx vitest run
+node --test test/*.test.mjs        # logica del frontend, dalla root
 ```
 
-Il service worker (`sw.js`) mostra la versione in cache e la aggiorna in background: dopo una modifica, l'app aggiornata compare alla seconda apertura.
+App completa in locale, dalla root:
+
+```
+W=worker/node_modules/wrangler/bin/wrangler.js
+node $W d1 migrations apply chez-moi-db --local --persist-to .wrangler/state -c wrangler.jsonc
+node $W dev -c wrangler.jsonc --persist-to .wrangler/state --var ALLOWED_EMAIL:test@test.local --var DEV_EMAIL:test@test.local
+```
+
+## Deploy
+
+**Da GitHub:** Actions → Deploy → Run workflow. Esegue test, migrazioni D1 di produzione e deploy
+del Worker. Richiede il secret di repository `CLOUDFLARE_API_TOKEN` (modello "Edit Cloudflare
+Workers" più il permesso D1: Edit). Ogni push lancia solo i test (workflow CI).
+
+### Secrets del Worker
+
+Impostati con `npx wrangler@4 secret put <NOME>`:
+
+- `ALLOWED_EMAIL`: mail ammesse, separate da virgola (vanno messe anche nella policy di Access).
+- `ANTHROPIC_API_KEY`: chiave da console.anthropic.com.

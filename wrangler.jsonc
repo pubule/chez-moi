@@ -1,0 +1,24 @@
+{
+  "$schema": "worker/node_modules/wrangler/config-schema.json",
+  "name": "chez-moi",
+  "main": "worker/src/index.ts",
+  "compatibility_date": "2026-08-31",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "public"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "chez-moi-db", "database_id": "DA-CREARE", "migrations_dir": "worker/migrations" }
+  ],
+  "r2_buckets": [
+    { "binding": "FOTO", "bucket_name": "chez-moi-foto" }
+  ],
+  "vars": {
+    "ACCESS_TEAM": "smartcores",
+    "ACCESS_AUD": "DA-CREARE"
+  },
+  "routes": [
+    { "pattern": "chezmoi.smartcores.org", "custom_domain": true }
+  ],
+  "workers_dev": false
+}

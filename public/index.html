@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chez moi</title>
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <!-- dietro Cloudflare Access: senza il cookie il manifest sarebbe la pagina di login -->
+  <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Chez moi">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="vista"></main>
+  <nav>
+    <button data-vista="sfida"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5 5.5 5.5 5.5 11a5.5 5.5 0 0 1-11 0c0-2.3 1-4 2.3-5.2 0 2.2 1 3.4 2.2 3.4C11 8 11 5 12 2z"/></svg>Sfida</button>
+    <button data-vista="diario"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M4 7h3l2-2.5h6L17 7h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zm8 3a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6z"/></svg>Diario</button>
+    <button data-vista="ricette"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 4.8c2.8-1.2 5.8-1.1 7.8.5v15c-2-1.5-5-1.6-7.8-.5zm17 0c-2.8-1.2-5.8-1.1-7.8.5v15c2-1.5 5-1.6 7.8-.5z"/></svg>Ricette</button>
+    <button data-vista="chef"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17h10v3.5H7zm-.5-1.5c-.2-1.4-.9-2.2-1.7-2.9A3.9 3.9 0 0 1 8 5.8a4.6 4.6 0 0 1 8 0 3.9 3.9 0 0 1 3.2 6.8c-.8.7-1.5 1.5-1.7 2.9z"/></svg>Chef</button>
+    <button data-vista="impostazioni"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/><circle cx="8" cy="7" r="2.6"/><circle cx="16" cy="12" r="2.6"/><circle cx="10" cy="17" r="2.6"/></svg>Opzioni</button>
+  </nav>
+  <dialog id="modulo"></dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

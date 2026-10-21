@@ -1,0 +1,36 @@
+name: Deploy
+
+# Solo a comando (Actions -> Deploy -> Run workflow), come per radar-eventi: il deploy resta una
+# decisione, non un effetto collaterale del merge. Ordine: test, schema D1, Worker.
+# wrangler a versione esatta: gira con il token Cloudflare, niente aggiornamenti automatici.
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      # non è un segreto: è lo stesso id in chiaro negli altri progetti (radar-eventi)
+      CLOUDFLARE_ACCOUNT_ID: 3f078eb974edf09669ceca41a0264a1f
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+      - name: Installa dipendenze
+        working-directory: worker
+        run: npm ci
+      - name: Test
+        working-directory: worker
+        run: npx vitest run
+      - name: Migrazioni D1 di produzione
+        run: npx -y wrangler@4.149.0 d1 migrations apply chez-moi-db --remote
+      - name: Deploy Worker
+        run: npx -y wrangler@4.149.0 deploy

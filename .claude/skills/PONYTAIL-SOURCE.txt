@@ -1,0 +1,2 @@
+# Skill copiate da https://github.com/DietrichGebert/ponytail (commit 09c434a, licenza MIT: PONYTAIL-LICENSE).
+# Il plugin non si installa nelle sessioni cloud: le skill sì.

@@ -1,0 +1,11 @@
+{
+  // Solo per i test: vitest-pool-workers (worker/vitest.config.ts) prende da qui i binding locali.
+  // La produzione usa il wrangler.jsonc della radice (Worker + file statici di public/).
+  "name": "chez-moi-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-31",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [{ "binding": "DB", "database_name": "chez-moi-db", "database_id": "test" }],
+  "r2_buckets": [{ "binding": "FOTO", "bucket_name": "chez-moi-foto" }],
+  "vars": { "ACCESS_TEAM": "smartcores", "ACCESS_AUD": "test-aud" }
+}
