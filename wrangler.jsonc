@@ -15,7 +15,7 @@
   ],
   "vars": {
     "ACCESS_TEAM": "smartcores",
-    "ACCESS_AUD": "DA-CREARE"
+    "ACCESS_AUD": "38c4ee6c6c6adaa2fb2caa6d9aabc303ac1a822efee25f8fdb8f09b1b5f75778"
   },
   "routes": [
     { "pattern": "chezmoi.smartcores.org", "custom_domain": true }
