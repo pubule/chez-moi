@@ -35,12 +35,14 @@ export const validaRicetta: Valida = (b) => {
   if (!titolo) return 'Scrivi il titolo della ricetta.';
   const ingredienti = testo(b.ingredienti ?? '', 10000);
   const procedimento = testo(b.procedimento ?? '', 20000);
-  if (ingredienti == null || procedimento == null) return 'Testo troppo lungo.';
+  const categoria = testo(b.categoria ?? '', 60);
+  const foto_credito = testo(b.foto_credito ?? '', 300);
+  if (ingredienti == null || procedimento == null || categoria == null || foto_credito == null) return 'Testo troppo lungo.';
   const video = testo(b.video ?? '', 500);
   if (video == null || (video && !/^https:\/\//.test(video))) return 'Il link del video deve iniziare con https://';
   const foto = fotoValida(b.foto);
   if (foto === undefined) return 'Foto non valida.';
-  return { titolo, ingredienti, procedimento, video, foto };
+  return { titolo, categoria, ingredienti, procedimento, video, foto, foto_credito: foto ? foto_credito : '' };
 };
 
 export function raccolta(tabella: 'diario' | 'ricette', valida: Valida, ordine: string) {

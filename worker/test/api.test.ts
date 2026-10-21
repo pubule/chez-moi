@@ -60,6 +60,26 @@ describe('ricette e foto', () => {
     expect(await env.FOTO.get(b)).toBeNull();
   });
 
+  it('salva la categoria, vuota se manca', async () => {
+    const k = id();
+    await call(`/api/ricette/${k}`, json('PUT', { titolo: 'Gazpacho', categoria: 'Antipasti' }));
+    const j = id();
+    await call(`/api/ricette/${j}`, json('PUT', { titolo: 'Senza' }));
+    const lista = await (await call('/api/ricette')).json<any[]>();
+    expect(lista.find((r) => r.id === k).categoria).toBe('Antipasti');
+    expect(lista.find((r) => r.id === j).categoria).toBe('');
+    expect((await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x', categoria: 'x'.repeat(61) }))).status).toBe(400);
+  });
+
+  it('il credito della foto sparisce insieme alla foto', async () => {
+    const { foto } = await (await call('/api/foto', { method: 'POST', body: JPEG })).json<{ foto: string }>();
+    const k = id();
+    const con = await (await call(`/api/ricette/${k}`, json('PUT', { titolo: 'x', foto, foto_credito: 'Mario, CC BY 2.0' }))).json<any>();
+    expect(con.foto_credito).toBe('Mario, CC BY 2.0');
+    const senza = await (await call(`/api/ricette/${k}`, json('PUT', { titolo: 'x', foto: null, foto_credito: 'Mario, CC BY 2.0' }))).json<any>();
+    expect(senza.foto_credito).toBe('');
+  });
+
   it('il video deve essere un link https', async () => {
     const r = await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x', video: 'javascript:alert(1)' }));
     expect(r.status).toBe(400);

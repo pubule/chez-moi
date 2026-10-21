@@ -1,32 +1,19 @@
-/* Colori di sistema iOS; l'unica nota propria è il nastro carta delle etichette di cucina.
-   Contrasti (testo normale): secondario 5.2:1 su bianco, 5.9:1 su #1c1c1e; accento 5.1:1 / 8.8:1. */
+/* Direzione D, solo scura: il piatto in primo piano, accento rame come le pentole.
+   Contrasti (testo normale): testo #f5f5f5 su #121212 17:1; secondario #a8a8a8 su #1e1e1e 7:1;
+   rame #d08a5a su #121212 6.7:1 e su #1e1e1e 5.9:1; #121212 su rame 6.7:1; pericolo #ff6961 su #1e1e1e 5.9:1. */
 :root {
-  --sfondo: #f2f2f7;
-  --carta: #ffffff;
-  --testo: #000000;
-  --secondario: #6c6c70;
-  --separatore: #c6c6c8;
-  --riempimento: #e9e9ee;
-  --accento: #2e7d32;
-  --su-accento: #ffffff;
-  --pericolo: #c62828;
-  --nastro: #f1dd9b;
-  --barra: rgb(249 249 249 / .8);
-  color-scheme: light dark;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sfondo: #000000;
-    --carta: #1c1c1e;
-    --testo: #ffffff;
-    --secondario: #98989f;
-    --separatore: #38383a;
-    --riempimento: #2c2c2e;
-    --accento: #6fcf73;
-    --su-accento: #000000;
-    --pericolo: #ff6961;
-    --barra: rgb(22 22 23 / .8);
-  }
+  --sfondo: #121212;
+  --carta: #1e1e1e;
+  --riempimento: #2a2a2a;
+  --testo: #f5f5f5;
+  --secondario: #a8a8a8;
+  --separatore: #38383a;
+  --accento: #d08a5a;
+  --su-accento: #121212;
+  --accento-tenue: #2a211b;
+  --pericolo: #ff6961;
+  --barra: rgb(36 36 36 / .82);
+  color-scheme: dark;
 }
 
 /* segue la dimensione del testo scelta in Impostazioni > Schermo su iPhone */
@@ -48,44 +35,130 @@ main {
   margin: 0 auto;
   padding: calc(12px + env(safe-area-inset-top)) 16px calc(6rem + env(safe-area-inset-bottom));
 }
-h1 { font-size: 2rem; font-weight: 700; letter-spacing: -.02em; margin: 12px 0 16px; }
-h2 { font-size: 1.3rem; font-weight: 700; margin: 0 0 8px; }
+h1 { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin: 12px 0 8px; }
+h2 { font-size: 1.2rem; font-weight: 700; margin: 24px 0 10px; }
 h3 { font-size: 1rem; font-weight: 600; margin: 16px 0 4px; }
 a { color: var(--accento); }
-img { display: block; width: 100%; border-radius: 10px; margin-bottom: 12px; }
+img { display: block; width: 100%; border-radius: 16px; }
+.ico { width: 1.2em; height: 1.2em; flex: none; }
 
-.card {
-  background: var(--carta);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 16px 0;
-}
+.riquadro { display: block; background: var(--carta); border-radius: 20px; padding: 14px 16px; margin: 14px 0; }
+.titolo-riga { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.titolo-riga h1, .titolo-riga h2 { margin-bottom: 0; }
+.titolo-riga:has(h2) { align-items: baseline; margin-bottom: 10px; }
 .meta, .nota { color: var(--secondario); font-size: .9rem; }
-.testo { white-space: pre-wrap; }
+.occhiello { margin: 0 0 4px; color: var(--accento); font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.accento { color: var(--accento); font-weight: 600; }
+.sezione { font-size: 1.2rem; }
+.sezione::first-letter { text-transform: uppercase; }
 .stelle { color: var(--accento); letter-spacing: 1px; }
 .fatta { color: var(--accento); font-weight: 600; }
 .errore { color: var(--pericolo); }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chips span { background: var(--riempimento); border-radius: 99px; padding: 2px 10px; font-size: .85rem; }
+.link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600; text-decoration: none; }
 
-/* firma: il titolo della sfida scritto a pennarello su nastro carta */
-.nastro {
-  display: inline-block;
-  background: var(--nastro);
-  color: #1c1c1e;
-  font-family: 'Marker Felt', 'Chalkboard SE', -apple-system, sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  padding: 6px 18px;
-  margin: 0 0 12px -4px;
-  transform: rotate(-1.5deg);
-  clip-path: polygon(0 4%, 3% 0, 97% 6%, 100% 0, 99% 96%, 96% 100%, 4% 94%, 1% 100%);
+/* sfida: titolo e quadrante del roner, sopra la foto del piatto quando c'è */
+.hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 150px;
+  margin: 0 0 16px;
+  padding: 20px 16px 16px;
+  border-radius: 24px;
+  background: var(--carta) center / cover;
 }
+.hero.con-foto { min-height: 320px; }
+.hero h1 { margin: 0; font-size: 2.2rem; }
+.hero .meta { margin: 6px 0 0; }
+.quadrante { position: relative; flex: none; width: 92px; height: 92px; display: grid; place-content: center; text-align: center; }
+.quadrante svg { position: absolute; inset: 0; }
+.quadrante circle { fill: none; stroke-width: 8; }
+.quadrante .traccia { stroke: var(--separatore); fill: rgb(18 18 18 / .6); }
+.quadrante .arco { stroke: var(--accento); stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transform-box: fill-box; }
+.quadrante b { position: relative; font-size: 1.4rem; font-variant-numeric: tabular-nums; line-height: 1; }
+.quadrante span { position: relative; font-size: .7rem; color: var(--secondario); }
+
+/* liste da spuntare, come le righe di Impostazioni */
+.gruppo { background: var(--carta); border: 0; border-radius: 20px; padding: 0; margin: 16px 0; overflow: hidden; }
+.gruppo legend { float: left; width: 100%; padding: 14px 16px 6px; font-size: 1.2rem; font-weight: 700; }
+.gruppo label { clear: both; display: flex; align-items: center; gap: 12px; min-height: 50px; margin: 0; padding: 0 16px; border-top: .5px solid var(--separatore); font-weight: 400; }
+
+/* mise en place della ricetta: un tocco = ingrediente pronto */
+.mise { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
+.ingrediente {
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2px;
+  margin: 0;
+  padding: 12px;
+  min-height: 68px;
+  text-align: left;
+  background: var(--carta);
+  border: 1.5px solid var(--separatore);
+  border-radius: 16px;
+  color: var(--testo);
+  font-weight: 400;
+}
+.ingrediente b { color: var(--accento); font-size: 1.15rem; }
+.ingrediente span { font-size: .85rem; color: var(--secondario); }
+.ingrediente[aria-pressed=true] { background: var(--accento-tenue); border-color: var(--accento); }
+.ingrediente[aria-pressed=true]::after {
+  content: '✓';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--accento);
+  color: var(--su-accento);
+  font-size: .75rem;
+  font-weight: 700;
+  display: grid;
+  place-content: center;
+}
+.passaggi { padding-left: 1.4em; }
+.passaggi li { margin: 0 0 10px; }
+.passaggi li::marker { color: var(--accento); font-weight: 700; }
+.foto-testa { margin: 8px 0 12px; aspect-ratio: 4 / 3; object-fit: cover; }
+.credito { margin: -6px 0 0; font-size: .7rem; color: var(--secondario); }
+
+/* modalità cucina: un passaggio alla volta, testo grande, niente barra delle schede */
+body.in-cucina nav { display: none; }
+.cucina { min-height: calc(100dvh - 12px - env(safe-area-inset-top) - 6rem); display: flex; flex-direction: column; gap: 14px; }
+.pillola { margin: 0; border-radius: 22px; background: var(--riempimento); color: var(--testo); }
+.progresso { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; }
+.progresso span { height: 4px; border-radius: 2px; background: var(--separatore); }
+.progresso .fatto { background: var(--accento); }
+.passo { margin: 8px 0; font-size: 1.75rem; font-weight: 700; line-height: 1.25; letter-spacing: -.01em; }
+.timer { display: flex; align-items: center; gap: 16px; margin: 0; }
+.timer .quadrante { width: 96px; height: 96px; }
+.timer .quadrante b { font-size: 1.25rem; }
+.timer .secondario { flex: 1; margin: 0; }
+.piede { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.piede button { min-height: 64px; margin: 0; font-size: 1.1rem; }
+
+/* diario: l'anno delle sfide, il migliore del mese, il muro delle foto */
+.anno { display: grid; grid-template-columns: repeat(13, 1fr); gap: 4px; margin-top: 10px; }
+.anno span { aspect-ratio: 1; border-radius: 4px; background: var(--riempimento); }
+.anno .fatta { background: var(--accento); }
+.migliore { display: flex; width: 100%; text-align: left; flex-direction: column; align-items: stretch; gap: 2px; padding: 0 0 14px; overflow: hidden; color: var(--testo); font-weight: 400; }
+.migliore img { border-radius: 0; aspect-ratio: 16 / 10; object-fit: cover; margin-bottom: 10px; }
+.migliore > :not(img) { padding: 0 16px; }
+.migliore b { font-size: 1.1rem; }
+.muro { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 0 -16px; }
+.tessera { position: relative; aspect-ratio: 1; margin: 0; padding: 6px; border-radius: 0; overflow: hidden; align-items: flex-end; justify-content: flex-start; background: var(--carta); color: var(--testo); font-size: .75rem; font-weight: 500; text-align: left; }
+.tessera img { position: absolute; inset: 0; height: 100%; object-fit: cover; border-radius: 0; }
+.tessera span { position: relative; text-shadow: 0 1px 3px rgb(0 0 0 / .8); }
 
 button, .bottone {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   font: inherit;
   min-height: 44px;
   padding: 8px 16px;
@@ -97,17 +170,17 @@ button, .bottone {
   font-weight: 600;
   cursor: pointer;
 }
-.primario { display: flex; width: 100%; background: var(--accento); color: var(--su-accento); margin: 12px 0 4px; }
-.secondario { display: flex; width: 100%; }
+.primario { display: flex; width: 100%; min-height: 54px; border-radius: 27px; background: var(--accento); color: var(--su-accento); font-weight: 700; margin: 12px 0 4px; }
+.secondario { display: flex; width: 100%; min-height: 50px; border-radius: 25px; background: var(--carta); border: 1px solid var(--separatore); color: var(--testo); }
+.tondo { width: 44px; height: 44px; padding: 0; margin: 0; border-radius: 22px; background: var(--accento); color: var(--su-accento); }
 .testuale { background: none; padding: 8px; min-width: 44px; }
+.indietro { padding-left: 0; font-weight: 400; }
 .pericolo { color: var(--pericolo); }
-button:disabled { opacity: .5; }
+button:disabled { opacity: .4; }
 .azioni-riga { display: flex; gap: 8px; margin-top: 8px; }
 
 label { display: block; margin: 12px 0; font-weight: 600; }
-label.riga { display: flex; align-items: center; gap: 12px; font-weight: 400; min-height: 44px; margin: 0; border-bottom: 1px solid var(--separatore); }
-label.riga:last-child { border-bottom: 0; }
-input[type=checkbox] { width: 22px; height: 22px; accent-color: var(--accento); }
+input[type=checkbox] { flex: none; width: 24px; height: 24px; accent-color: var(--accento); }
 input:not([type=checkbox]), textarea, select {
   display: block;
   width: 100%;
@@ -120,18 +193,17 @@ input:not([type=checkbox]), textarea, select {
   border: 0;
   border-radius: 10px;
 }
+#cerca { margin: 12px 0 0; }
 :focus-visible { outline: 3px solid var(--accento); outline-offset: 2px; }
 fieldset { border: 0; padding: 0; margin: 0; }
-legend { font-weight: 600; margin-bottom: 4px; }
 
-.lista { list-style: none; padding: 0; background: var(--carta); border-radius: 12px; overflow: hidden; }
-.lista:empty { display: none; }
-.lista li + li { border-top: 1px solid var(--separatore); }
+.lista { list-style: none; margin: 0; padding: 0; background: var(--carta); border-radius: 16px; overflow: hidden; }
+.lista li + li { border-top: .5px solid var(--separatore); }
 .lista button { width: 100%; justify-content: space-between; margin: 0; border-radius: 0; background: none; color: var(--testo); font-weight: 400; text-align: left; }
 .lista button::after { content: '›'; color: var(--secondario); font-size: 1.4rem; }
 
-.video { position: relative; aspect-ratio: 16 / 9; margin-bottom: 12px; }
-.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 10px; }
+.video { position: relative; aspect-ratio: 16 / 9; margin: 12px 0; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 16px; }
 
 /* barra delle schede: pillola traslucida sospesa, come in radar-eventi */
 nav {
@@ -148,7 +220,7 @@ nav {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
   border: .5px solid var(--separatore);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, .12);
+  box-shadow: 0 6px 20px rgb(0 0 0 / .4);
 }
 @media (prefers-reduced-transparency: reduce) { nav { background: var(--carta); backdrop-filter: none; -webkit-backdrop-filter: none; } }
 nav button {
@@ -180,7 +252,8 @@ dialog {
   color: var(--testo);
   padding: 0 16px calc(16px + env(safe-area-inset-bottom));
 }
-dialog::backdrop { background: rgb(0 0 0 / .4); }
+dialog::backdrop { background: rgb(0 0 0 / .6); }
+dialog input:not([type=checkbox]), dialog textarea, dialog select { background: var(--riempimento); }
 .testata {
   position: sticky;
   top: 0;

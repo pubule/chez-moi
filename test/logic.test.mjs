@@ -1,7 +1,7 @@
 // node --test
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { settimana, sfidaDellaSettimana, youtubeId } from '../public/logic.js';
+import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, passaggi, minuti, perCategoria, sfideAnno } from '../public/logic.js';
 import { SFIDE, ATTREZZI } from '../public/sfide.js';
 
 test('settimana ISO', () => {
@@ -32,4 +32,62 @@ test('youtubeId', () => {
   assert.equal(youtubeId('https://youtube.com/shorts/dQw4w9WgXcQ'), 'dQw4w9WgXcQ');
   assert.equal(youtubeId('https://example.com'), null);
   assert.equal(youtubeId(undefined), null);
+});
+
+test('ingredienti: dose e nome', () => {
+  assert.deepEqual(ingredienti('320 g riso Carnaroli\n\n1,2 l brodo\n250 ml di albume\n2 limoni\n1 cucchiaio olio\nSale e pepe'), [
+    { dose: '320 g', nome: 'riso Carnaroli' },
+    { dose: '1,2 l', nome: 'brodo' },
+    { dose: '250 ml', nome: 'albume' },
+    { dose: '2', nome: 'limoni' },
+    { dose: '1 cucchiaio', nome: 'olio' },
+    { dose: '', nome: 'Sale e pepe' },
+  ]);
+  assert.deepEqual(ingredienti(''), []);
+});
+
+test('passaggi: uno per riga, senza numerazione', () => {
+  assert.deepEqual(passaggi('1. Tosta il riso\n\n2) Sfuma\nManteca'), ['Tosta il riso', 'Sfuma', 'Manteca']);
+});
+
+test('minuti del timer', () => {
+  assert.equal(minuti('Cuoci 3m con il coperchio'), 3);
+  assert.equal(minuti('brodo per 16–18 minuti'), 16);
+  assert.equal(minuti('2min per lato a fiamma altissima'), 2);
+  assert.equal(minuti('riposa 2 ore sotto un panno'), 120);
+  assert.equal(minuti('forno a 190° per 30 min'), 30);
+  assert.equal(minuti('fiamma 8, poi gira'), null);
+  assert.equal(minuti('1 h e mezza'), 60);
+});
+
+test('ogni sfida ha mise en place e una temperatura valida', () => {
+  for (const s of SFIDE) {
+    assert.ok(s.mise.length >= 3, s.titolo);
+    assert.ok(s.temp === null || (s.temp > 20 && s.temp < 100), s.titolo);
+    assert.ok(s.tempo, s.titolo);
+  }
+});
+
+test('ricette per categoria in ordine di menu', () => {
+  const g = perCategoria([{ titolo: 'a', categoria: 'Dolci' }, { titolo: 'b', categoria: '' }, { titolo: 'c', categoria: 'Antipasti' }, { titolo: 'd', categoria: 'Zuppe' }, { titolo: 'e', categoria: 'Antipasti' }]);
+  assert.deepEqual(g.map(([c, xs]) => [c, xs.length]), [['Antipasti', 2], ['Dolci', 1], ['Zuppe', 1], ['Altre', 1]]);
+});
+
+test('sfide dell’anno', () => {
+  const d = [{ sfida: 'x', settimana: '2026-2' }, { sfida: 'y', settimana: '2025-3' }, { sfida: null, settimana: '2026-1' }];
+  assert.deepEqual(sfideAnno(d, '2026-4'), [false, true, false, false]);
+});
+
+test('le ricette del seed si leggono: dosi, passaggi e timer sensati', async () => {
+  const { default: ricette } = await import('../worker/seed/ricette.mjs');
+  const titoli = new Set();
+  for (const r of ricette) {
+    assert.ok(!titoli.has(r.t), `doppione: ${r.t}`);
+    titoli.add(r.t);
+    assert.ok(r.i.length && r.p.length, r.t);
+    for (const p of r.p) {
+      const m = minuti(p);
+      assert.ok(m === null || (m > 0 && m <= 300), `${r.t}: ${p}`);
+    }
+  }
 });

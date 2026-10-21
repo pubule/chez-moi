@@ -15,7 +15,8 @@ Access, deploy a comando da Actions.
 
 | Cosa | Stato |
 |---|---|
-| Frontend, design HIG, test logica | fatto |
+| Frontend, design HIG, test logica | fatto; dal 2026-10-21 direzione D dei mockup, solo tema scuro |
+| Ricette di Fabio (61) con foto Openverse | caricate in produzione il 2026-10-21 (`worker/seed/`) |
 | Worker (diario, ricette, foto, chef) e test Vitest | fatto, provato in locale con `wrangler dev` |
 | Risorse Cloudflare, Access, primo deploy | fatto il 2026-10-21 (deploy da locale con wrangler) |
 | Secret `ANTHROPIC_API_KEY` | **da fare con Fabio** (checklist sotto) |
@@ -27,6 +28,11 @@ Access, deploy a comando da Actions.
 - Lo Chef usa `claude-opus-5-5` con output JSON strutturato e il ripiego automatico (`fallbacks: "default"`) in caso di rifiuto; tetto di 20 richieste al giorno.
 - Niente export/import: i dati sono su D1 (che ha Time Travel) e R2.
 - Le temperature del sottovuoto in `sfide.js` sono valori classici, non verificati su una fonte.
+- Design D (mockup "Chez moi — mockup cucina" su claude.ai): solo scuro, accento rame `#d08a5a`, quadrante del roner nella Sfida, mise en place da spuntare, modalità cucina un passaggio alla volta con timer e schermo acceso (Wake Lock).
+- Le ricette restano testo libero: un ingrediente per riga ("320 g riso") e un passaggio per riga; `public/logic.js` ricava dosi e minuti del timer. Nessuna colonna strutturata.
+- Spunte della mise en place solo in memoria: si azzerano chiudendo l'app.
+- Seed ricette: `worker/seed/ricette.mjs` (dosi per 4, completate dall'autore con fonti web dove servivano), `genera-sql.mjs` con id ricavato dal titolo (rilanciabile senza doppioni). Foto: `foto-query.json` → scelte a mano su Openverse (licenze CC senza ND) → `foto.json` con autore e licenza, mostrati sotto la foto (`foto_credito`).
+- Icone della Home ancora verdi della prima palette: da rifare in rame se serve.
 
 ## Checklist primo deploy
 
