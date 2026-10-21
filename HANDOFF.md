@@ -17,7 +17,8 @@ Access, deploy a comando da Actions.
 |---|---|
 | Frontend, design HIG, test logica | fatto |
 | Worker (diario, ricette, foto, chef) e test Vitest | fatto, provato in locale con `wrangler dev` |
-| Risorse Cloudflare, Access, secrets, primo deploy | **da fare con Fabio** (checklist sotto) |
+| Risorse Cloudflare, Access, primo deploy | fatto il 2026-10-21 (deploy da locale con wrangler) |
+| Secret `CLOUDFLARE_API_TOKEN` e `ANTHROPIC_API_KEY` | **da fare con Fabio** (checklist sotto) |
 | Prova su iPhone | da fare |
 
 ## Scelte
@@ -29,10 +30,11 @@ Access, deploy a comando da Actions.
 
 ## Checklist primo deploy
 
-- [ ] D1: `npx wrangler@4 d1 create chez-moi-db`, id in `wrangler.jsonc` al posto di `DA-CREARE`.
-- [ ] R2: `npx wrangler@4 r2 bucket create chez-moi-foto`.
-- [ ] Access: applicazione self-hosted su `chezmoi.smartcores.org` con la policy "Solo Fabio"; AUD in `wrangler.jsonc` (`ACCESS_AUD`).
-- [ ] Secret di repository `CLOUDFLARE_API_TOKEN` (come radar-eventi).
-- [ ] Actions → Deploy → Run workflow.
-- [ ] Secrets del Worker: `ALLOWED_EMAIL`, `ANTHROPIC_API_KEY`.
+- [x] D1: `npx wrangler@4 d1 create chez-moi-db`, id in `wrangler.jsonc`.
+- [x] R2: `npx wrangler@4 r2 bucket create chez-moi-foto`.
+- [x] Access: applicazione self-hosted su `chezmoi.smartcores.org` con la policy riutilizzabile "Solo Fabio"; AUD in `wrangler.jsonc` (`ACCESS_AUD`).
+- [x] Primo deploy, fatto da locale con wrangler; i successivi da Actions → Deploy → Run workflow.
+- [x] Secret del Worker `ALLOWED_EMAIL`.
+- [ ] Secret di repository `CLOUDFLARE_API_TOKEN` (come radar-eventi), serve al workflow Deploy.
+- [ ] Secret del Worker `ANTHROPIC_API_KEY`.
 - [ ] iPhone: aggiungi a Home, sfida fatta con foto, ricetta con video, Chef, testo grande.
