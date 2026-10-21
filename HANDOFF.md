@@ -18,7 +18,7 @@ Access, deploy a comando da Actions.
 | Frontend, design HIG, test logica | fatto |
 | Worker (diario, ricette, foto, chef) e test Vitest | fatto, provato in locale con `wrangler dev` |
 | Risorse Cloudflare, Access, primo deploy | fatto il 2026-10-21 (deploy da locale con wrangler) |
-| Secret `CLOUDFLARE_API_TOKEN` e `ANTHROPIC_API_KEY` | **da fare con Fabio** (checklist sotto) |
+| Secret `ANTHROPIC_API_KEY` | **da fare con Fabio** (checklist sotto) |
 | Prova su iPhone | da fare |
 
 ## Scelte
@@ -35,6 +35,6 @@ Access, deploy a comando da Actions.
 - [x] Access: applicazione self-hosted su `chezmoi.smartcores.org` con la policy riutilizzabile "Solo Fabio"; AUD in `wrangler.jsonc` (`ACCESS_AUD`).
 - [x] Primo deploy, fatto da locale con wrangler; i successivi da Actions → Deploy → Run workflow.
 - [x] Secret del Worker `ALLOWED_EMAIL`.
-- [ ] Secret di repository `CLOUDFLARE_API_TOKEN` (come radar-eventi), serve al workflow Deploy.
+- [x] Secret di repository `CLOUDFLARE_API_TOKEN` (token "chez-moi"); workflow Deploy provato il 2026-10-21.
 - [ ] Secret del Worker `ANTHROPIC_API_KEY`.
 - [ ] iPhone: aggiungi a Home, sfida fatta con foto, ricetta con video, Chef, testo grande.
