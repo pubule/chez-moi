@@ -47,7 +47,7 @@ export function minuti(passo) {
 
 const righe = t => String(t || '').split('\n').map(r => r.trim()).filter(Boolean);
 
-export const CATEGORIE = ['Cocktail', 'Colazione', 'Antipasti', 'Primi', 'Secondi', 'Pizza', 'Hamburger', 'Dolci'];
+export const CATEGORIE = ['Cocktail', 'Colazione', 'Antipasti', 'Primi', 'Secondi', 'Sottovuoto', 'Pizza', 'Hamburger', 'Dolci'];
 
 // [[categoria, ricette]] nell'ordine di un menu; le categorie nuove in ordine alfabetico, "Altre" in fondo
 export function perCategoria(ricette) {
