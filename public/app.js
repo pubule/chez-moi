@@ -78,9 +78,14 @@ async function riduci(file, lato = 1200) {
 }
 
 // foto generata con Workers AI sul server (tetto giornaliero lì); la descrizione è titolo + ingredienti principali
-const CREDITO_AI = 'immagine generata con AI (FLUX, Workers AI)';
+const CREDITO_AI = 'immagine creata con l’AI';
 const generaFoto = (titolo, ingr) =>
   api('POST', 'foto/genera', { descrizione: `${titolo}. ${ingredienti(ingr).slice(0, 8).map(x => x.nome).join(', ')}`.slice(0, 600) }).then(r => r.foto);
+
+// scelta della foto con anteprima, al posto del pulsante grezzo del browser
+const campoFoto = foto => `
+  <label class="scegli-foto">${foto ? `<img src="${fotoUrl(foto)}" alt="">` : ''}<span>${foto ? 'Cambia foto' : 'Aggiungi foto'}</span>
+    <input name="foto" type="file" accept="image/*" class="nascosto"></label>`;
 
 async function fotoDaForm(form, vecchia) {
   const f = form.foto.files[0];
@@ -118,6 +123,9 @@ async function disegna() {
   if (mio !== giro) return; // nel frattempo è stata aperta un'altra schermata
   $('#vista').innerHTML = html;
   $('#vista').removeAttribute('aria-busy');
+  // la foto della sfida è uno sfondo, senza evento di errore: se non arriva torna il riquadro basso
+  const hero = $('.hero.con-foto');
+  if (hero) { const prova = new Image(); prova.onerror = () => { hero.classList.remove('con-foto'); hero.style.backgroundImage = ''; }; prova.src = hero.dataset.foto; }
   window.scrollTo(0, 0);
 }
 
@@ -141,7 +149,7 @@ const VISTE = {
     const foto = diario.find(d => d.sfida === s.titolo && d.foto)?.foto ?? s.foto;
     const ricettaSfida = (await tutti('ricette')).find(r => r.titolo === s.titolo);
     return `
-      <section class="hero${foto ? ' con-foto' : ''}"${foto ? ` style="background-image: linear-gradient(rgb(18 18 18 / .05), rgb(18 18 18 / .9)), url('${fotoUrl(foto)}')"` : ''}>
+      <section class="hero${foto ? ' con-foto' : ''}"${foto ? ` data-foto="${fotoUrl(foto)}" style="background-image: linear-gradient(rgb(18 18 18 / .05), rgb(18 18 18 / .9)), url('${fotoUrl(foto)}')"` : ''}>
         <div>
           <p class="occhiello">Sfida della settimana</p>
           <h1>${esc(s.titolo)}</h1>
@@ -191,7 +199,7 @@ const VISTE = {
         <h2 class="sezione">${esc(nomeMese(ym))}</h2>
         <div class="muro">${xs.map(d => `
           <button class="tessera" data-az="diario-modifica" data-id="${d.id}" aria-label="${esc(d.piatto)}, ${d.voto} su 5">
-            ${d.foto ? `<img src="${fotoUrl(d.foto, true)}" alt="" loading="lazy">` : ''}
+            ${d.foto ? `<img src="${fotoUrl(d.foto, true)}" alt="" loading="lazy">` : `<i aria-hidden="true">${esc(d.piatto.trim()[0]?.toUpperCase() ?? '')}</i>`}
             <span>${esc(d.piatto)}</span>
           </button>`).join('')}</div>`).join('')}`;
   },
@@ -249,6 +257,7 @@ const VISTE = {
   async chef() {
     return `
       <h1>Chef</h1>
+      <p class="nota">Le ricette le propone un’AI (Claude): controlla dosi, tempi e temperature prima di cucinare.</p>
       <form id="chef-form" class="riquadro">
         <label>Cosa hai a disposizione?<textarea name="ingredienti" rows="3" placeholder="es. petto d’anatra, arance, sedano rapa…"></textarea></label>
         <label>Cosa ti va?<input name="richiesta" placeholder="es. secondo per 2, max 2 ore"></label>
@@ -262,11 +271,10 @@ const VISTE = {
     return `
       <h1>Opzioni</h1>
       <form id="imp-form">
-        <fieldset class="gruppo"><legend>Attrezzi</legend>
-          ${Object.entries(ATTREZZI).map(([k, v]) => `<label><input type="checkbox" name="attrezzi" value="${k}" ${imp.attrezzi.includes(k) ? 'checked' : ''}><span>${esc(v)}</span></label>`).join('')}
+        <fieldset class="gruppo interruttori"><legend>Attrezzi</legend>
+          ${Object.entries(ATTREZZI).map(([k, v]) => `<label><span>${esc(v)}</span><input type="checkbox" switch name="attrezzi" value="${k}" ${imp.attrezzi.includes(k) ? 'checked' : ''}></label>`).join('')}
         </fieldset>
-        <button class="primario">Salva</button>
-        <p class="nota" id="imp-stato" role="status"></p>
+        <p class="nota">Lo Chef e la sfida della settimana usano solo gli attrezzi attivi.</p>
       </form>`;
   },
 };
@@ -297,9 +305,9 @@ function dettaglioRicetta(r) {
     <div class="azioni-riga">
       <button class="testuale" data-az="ricetta-modifica" data-id="${r.id}">Modifica</button>
       <button class="testuale" data-az="ricetta-foto-ai" data-id="${r.id}">${r.foto ? 'Nuova foto AI' : 'Genera foto AI'}</button>
-      <button class="testuale pericolo" data-az="ricetta-elimina" data-id="${r.id}">Elimina</button>
     </div>
-    <p class="nota" id="foto-ai-stato" role="status"></p>`;
+    <p class="nota" id="foto-ai-stato" role="status"></p>
+    <button class="testuale pericolo elimina" data-az="ricetta-elimina" data-id="${r.id}">Elimina ricetta</button>`;
 }
 
 // ---------- modalità cucina: timer e schermo acceso ----------
@@ -359,10 +367,25 @@ function esciDaCucina() {
 
 // ---------- moduli (dialog) ----------
 
+// il foglio si chiude anche trascinandolo giù dalla testata, come su iOS
+{
+  const dlg = $('#modulo');
+  let inizio = null;
+  dlg.addEventListener('touchstart', e => { inizio = e.target.closest('.testata') ? e.touches[0].clientY : null; }, { passive: true });
+  dlg.addEventListener('touchmove', e => { if (inizio != null) dlg.style.transform = `translateY(${Math.max(0, e.touches[0].clientY - inizio)}px)`; }, { passive: true });
+  dlg.addEventListener('touchend', e => {
+    if (inizio == null) return;
+    const giu = e.changedTouches[0].clientY - inizio;
+    inizio = null;
+    dlg.style.transform = '';
+    if (giu > 100) dlg.close();
+  });
+}
+
 function apriModulo(titolo, campi, alSalvataggio) {
   const dlg = $('#modulo');
   dlg.innerHTML = `<form method="dialog">
-    <div class="testata"><button value="annulla" formnovalidate>Annulla</button><h2>${esc(titolo)}</h2><button value="ok">Salva</button></div>
+    <div class="testata"><button value="annulla" formnovalidate>Annulla</button><h2 tabindex="-1" autofocus>${esc(titolo)}</h2><button value="ok">Salva</button></div>
     ${campi}</form>`;
   const form = dlg.querySelector('form');
   form.onsubmit = async e => {
@@ -383,10 +406,9 @@ function apriModulo(titolo, campi, alSalvataggio) {
 
 function moduloDiario(d = {}) {
   apriModulo(d.id ? 'Modifica piatto' : 'Nuovo piatto', `
-    ${d.foto ? `<img class="foto-testa" src="${fotoUrl(d.foto)}" alt="">` : ''}
     <label>Piatto<input name="piatto" required value="${esc(d.piatto)}"></label>
     <label>Data<input name="data" type="date" required value="${esc(d.data || oggi())}"></label>
-    <label>Foto<input name="foto" type="file" accept="image/*"></label>
+    ${campoFoto(d.foto)}
     <label>Voto<select name="voto">${[5, 4, 3, 2, 1].map(n => `<option value="${n}" ${n === (d.voto || 3) ? 'selected' : ''}>${stelle(n)}</option>`).join('')}</select></label>
     <label>Note (cosa è venuto bene, cosa migliorare)<textarea name="note" rows="4">${esc(d.note)}</textarea></label>
     ${d.id ? `<button type="button" class="testuale pericolo" data-az="diario-elimina" data-id="${d.id}">Elimina piatto</button>` : ''}`,
@@ -408,7 +430,7 @@ function moduloRicetta(r = {}) {
     <label>Ingredienti (uno per riga, es. «320 g riso Carnaroli»)<textarea name="ingredienti" rows="6">${esc(r.ingredienti)}</textarea></label>
     <label>Procedimento (un passaggio per riga: «18 minuti» diventa un timer)<textarea name="procedimento" rows="8">${esc(r.procedimento)}</textarea></label>
     <label>Link video YouTube<input name="video" type="url" value="${esc(r.video)}" placeholder="https://youtu.be/…"></label>
-    <label>Foto<input name="foto" type="file" accept="image/*"></label>`,
+    ${campoFoto(r.foto)}`,
   async f => {
     const id = r.id || nuovoId();
     await salva('ricette', {
@@ -504,6 +526,18 @@ document.addEventListener('click', e => {
 document.addEventListener('change', e => {
   const k = e.target.dataset.spunta;
   if (k) e.target.checked ? spunte.add(k) : spunte.delete(k);
+  // gli interruttori delle opzioni valgono subito, come su iOS
+  if (e.target.name === 'attrezzi') {
+    imp.attrezzi = [...document.querySelectorAll('[name=attrezzi]:checked')].map(c => c.value);
+    salvaImpostazioni();
+  }
+  // anteprima della foto scelta nei moduli
+  if (e.target.name === 'foto' && e.target.files[0]) {
+    const campo = e.target.closest('.scegli-foto');
+    const img = campo.querySelector('img') ?? campo.insertAdjacentElement('afterbegin', Object.assign(document.createElement('img'), { alt: '' }));
+    img.src = URL.createObjectURL(e.target.files[0]);
+    campo.querySelector('span').textContent = 'Cambia foto';
+  }
 });
 
 document.addEventListener('input', e => {
@@ -521,13 +555,6 @@ document.addEventListener('input', e => {
 document.addEventListener('load', e => { if (e.target.tagName === 'IMG') e.target.classList.add('arrivata'); }, true);
 
 document.addEventListener('submit', async e => {
-  if (e.target.id === 'imp-form') {
-    e.preventDefault();
-    const f = e.target;
-    imp.attrezzi = [...f.querySelectorAll('[name=attrezzi]:checked')].map(c => c.value);
-    salvaImpostazioni();
-    $('#imp-stato').textContent = 'Salvato.';
-  }
   if (e.target.id === 'chef-form') {
     e.preventDefault();
     chiediAlloChef(e.target);
