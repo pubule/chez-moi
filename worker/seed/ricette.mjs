@@ -14,7 +14,8 @@ export default [
     'Passa la scorza dell’agrume lungo tutto il bordo del bicchiere per profumarlo.',
     'Metti la sfera di ghiaccio e versa il gin.',
     'Versa la tonica lentamente lungo la sfera o un cucchiaio da bar, per non perdere le bollicine. Rapporto circa 1 a 3.',
-    'Una sola mescolata dal basso e servi.',
+    'Una sola mescolata dal basso.',
+    'Guarnisci con una scorza di limone arrotolata e una d’arancia, spremute sopra il bicchiere.',
   ] },
   // dosi IBA (iba-world.com) per 1 cocktail; i consigli in più sono da bar, non IBA
   { c: 'Cocktail', t: 'Negroni', i: [
@@ -42,7 +43,7 @@ export default [
     'Versa Campari e vermouth, poi una spruzzata di soda.',
     'Mescola delicatamente.',
     'Guarnisci con mezza fetta d’arancia e la scorza di limone.',
-    'Senza soda diventa un Milano-Torino.',
+    'Nota: senza soda diventa un Milano-Torino.',
   ] },
   { c: 'Cocktail', t: 'Negroni sbagliato', i: [
     '30 ml Campari',
@@ -51,11 +52,11 @@ export default [
     '½ fetta d’arancia',
     'ghiaccio',
   ], p: [
-    'Nato al Bar Basso di Milano: lo spumante al posto del gin.',
     'Riempi di ghiaccio un bicchiere old fashioned.',
     'Versa Campari e vermouth e mescola.',
     'Completa con lo spumante versato piano, una sola mescolata dal basso.',
     'Guarnisci con mezza fetta d’arancia.',
+    'Nota: nato al Bar Basso di Milano, con lo spumante al posto del gin.',
   ] },
   { c: 'Cocktail', t: 'Spritz', i: [
     '90 ml Prosecco',
@@ -125,9 +126,11 @@ export default [
     '½ fetta d’arancia',
     '1 ciliegina maraschino',
   ], p: [
-    'Con l’albume: agita tutto nello shaker senza ghiaccio per 10 secondi, per la schiuma.',
-    'Aggiungi il ghiaccio e agita forte per altri 10 secondi.',
-    'Filtra in un bicchiere old fashioned con ghiaccio, o senza ghiaccio in coppetta.',
+    'Raffredda il bicchiere: old fashioned con ghiaccio, o coppetta in freezer.',
+    'Versa nello shaker bourbon, limone, sciroppo e, se lo usi, l’albume.',
+    'Con l’albume agita prima senza ghiaccio per 10 secondi: fa la schiuma.',
+    'Aggiungi il ghiaccio e agita forte per 10 secondi.',
+    'Filtra nell’old fashioned con ghiaccio nuovo, o nella coppetta senza ghiaccio.',
     'Guarnisci con mezza fetta d’arancia e la ciliegina.',
   ] },
   { c: 'Cocktail', t: 'Espresso Martini', i: [
@@ -147,10 +150,11 @@ export default [
     '100 ml Prosecco, freddo',
     '50 ml purea di pesca bianca',
   ], p: [
+    'Metti il flute in freezer.',
     'Purea: frulla pesche bianche mature sbucciate, poi passala al colino.',
     'Metti la purea in un mixing glass con ghiaccio.',
     'Aggiungi il Prosecco e mescola delicatamente.',
-    'Filtra in un flute ben freddo.',
+    'Filtra nel flute freddo. Nessuna guarnizione: il Bellini IBA si serve così.',
   ] },
   { c: 'Cocktail', t: 'Hugo', i: [
     '150 ml Prosecco',
@@ -199,6 +203,7 @@ export default [
     'Raffredda la coppetta; se vuoi il sale, passa il lime su metà bordo e intingilo nel sale.',
     'Agita tutto nello shaker con ghiaccio per 12 secondi.',
     'Filtra nella coppetta fredda.',
+    'Guarnisci con una rondella di lime sul bordo (facoltativa).',
   ] },
   { c: 'Cocktail', t: 'Paloma', i: [
     '50 ml tequila 100% agave',
@@ -230,8 +235,9 @@ export default [
     'un goccio di soda',
     '1 fetta di limone',
   ], p: [
+    'Raffredda il tumbler alto in freezer.',
     'Agita gin, limone e sciroppo nello shaker con ghiaccio.',
-    'Versa in un tumbler alto e sottile, senza ghiaccio.',
+    'Filtra nel tumbler, senza ghiaccio.',
     'Completa con una spruzzata di soda.',
     'Guarnisci con la fetta di limone.',
   ] },
@@ -244,10 +250,10 @@ export default [
     '1 ciliegina',
     'ghiaccio',
   ], p: [
-    'Come un Gin Fizz, ma lungo e con ghiaccio.',
     'Versa gin, limone e sciroppo in un bicchiere collins pieno di ghiaccio.',
     'Completa con la soda e mescola delicatamente.',
     'Guarnisci con la fetta di limone e la ciliegina.',
+    'Nota: è un Gin Fizz lungo e con ghiaccio.',
   ] },
   { c: 'Cocktail', t: 'Penicillin', i: [
     '60 ml blended scotch whisky',
@@ -257,9 +263,10 @@ export default [
     '3 fettine di zenzero fresco',
     'zenzero candito per guarnire',
   ], p: [
+    'Riempi di ghiaccio un old fashioned per raffreddarlo.',
     'Pesta lo zenzero fresco nello shaker.',
     'Aggiungi scotch blended, limone e sciroppo di miele, poi il ghiaccio, e agita.',
-    'Filtra con il colino fine in un old fashioned freddo pieno di ghiaccio.',
+    'Svuota l’old fashioned, mettici ghiaccio nuovo e filtra con il colino fine.',
     'Fai galleggiare il Lagavulin sopra versandolo sul dorso di un cucchiaio.',
     'Guarnisci con lo zenzero candito.',
   ] },
@@ -271,7 +278,7 @@ export default [
   ], p: [
     'Raffredda la coppetta in freezer.',
     'Agita tutto nello shaker con ghiaccio per 12 secondi.',
-    'Filtra nella coppetta fredda.',
+    'Filtra nella coppetta fredda. L’IBA non prevede guarnizione; per tradizione un aeroplanino di carta su una molletta.',
   ] },
   { c: 'Cocktail', t: 'Aperol Sour', i: [
     '50 ml Aperol',
@@ -280,10 +287,11 @@ export default [
     '1 albume (circa 20 ml)',
     '1 scorza d’arancia',
   ], p: [
+    'Metti la coppetta in freezer.',
     'Agita tutto nello shaker senza ghiaccio per 10 secondi: monta l’albume.',
     'Aggiungi il ghiaccio e agita forte per altri 10 secondi.',
-    'Filtra in una coppetta fredda.',
-    'Spremi la scorza d’arancia sopra la schiuma.',
+    'Filtra nella coppetta fredda.',
+    'Spremi la scorza d’arancia sopra la schiuma e appoggiala sul bordo.',
   ] },
   { c: 'Cocktail', t: 'Virgin Mojito (analcolico)', i: [
     '20 ml succo di lime fresco',
@@ -305,12 +313,14 @@ export default [
     '30 g farina (o farina d’avena)',
     '1 pizzico sale',
     'Olio o burro per la padella',
+    'Per servire: yogurt greco, frutti di bosco, miele o sciroppo d’acero',
   ], p: [
     'Monta gli albumi con il sale a neve ben ferma.',
     'Setaccia proteine e farina e incorporale con una spatola, dal basso verso l’alto, senza smontare.',
     'Ungi appena una padella antiaderente e versa il composto in un unico disco.',
     'Cuoci a fiamma 8 con il coperchio per 3 minuti.',
     'Gira il pancake e cuoci senza coperchio altri 3 minuti.',
+    'Servi con un cucchiaio di yogurt greco, frutti di bosco e un filo di miele.',
   ] },
 
   // ---------- Antipasti ----------
@@ -341,6 +351,7 @@ export default [
     '½ cipolla rossa',
     'Olio extravergine, basilico',
   ], p: [
+    'Prepara il gazpacho almeno 2 ore prima (vedi Gazpacho) e tienilo in frigo.',
     'Taglia il pane a cubetti piccoli e tostalo in padella con un filo d’olio finché è dorato.',
     'Taglia cetriolo, peperone e cipolla a dadini da 3 mm (brunoise).',
     'Mescola pane e verdure, condisci con olio e sale.',
@@ -368,7 +379,8 @@ export default [
     'Lavora la robiola con metà dell’erba cipollina tritata, sale e pepe.',
     'Metti un cucchiaino di robiola su ogni fetta di bresaola e arrotola.',
     'Chiudi ogni involtino legandolo con un filo di erba cipollina.',
-    'Riposa in frigo 15 minuti, poi servi con un filo d’olio.',
+    'Riposa in frigo 15 minuti.',
+    'Servi con un filo d’olio, pepe macinato e l’erba cipollina rimasta tagliata fine.',
   ] },
   { c: 'Antipasti', t: 'Bufala su insalata tritata e salsiccia', i: [
     '2 mozzarelle di bufala',
@@ -380,6 +392,7 @@ export default [
     'Cuoci per 8 minuti finché è dorata e croccante.',
     'Trita finemente l’insalata e condiscila con olio e sale.',
     'Fai un letto di insalata, appoggia la bufala a pezzi e finisci con la salsiccia calda.',
+    'Guarnisci con olio a crudo, pepe e qualche foglia di basilico.',
   ] },
   { c: 'Antipasti', t: 'Crostini con pomodorini, cipolla e aceto', i: [
     '8 fette pane',
@@ -425,8 +438,8 @@ export default [
     '8 pomodori secchi sott’olio',
     'Basilico, olio extravergine',
   ], p: [
-    'Tosta il pane.',
     'Taglia a listarelle i pomodori secchi.',
+    'Tosta il pane.',
     'Su ogni bruschettina: stracciatella, una fetta di crudo, pomodori secchi.',
     'Finisci con basilico e olio a crudo.',
   ] },
@@ -441,7 +454,7 @@ export default [
     'Taglia zucchina e carota a julienne e la cipolla a fette sottili.',
     'Salta le verdure in padella con un filo d’olio per 3 minuti: devono restare croccanti.',
     'Tosta il pane e spalmalo di pesto.',
-    'Copri con le verdure e un filo d’olio.',
+    'Copri con le verdure, un filo d’olio e qualche foglia di basilico.',
   ] },
   { c: 'Antipasti', t: 'Focaccia zucchine, stracchino, pomodori secchi e capperi', i: [
     '1 focaccia bassa',
@@ -454,7 +467,8 @@ export default [
     'Affetta la zucchina sottile con la mandolina e grigliala o saltala per 2 minuti.',
     'Apri la focaccia e spalma lo stracchino.',
     'Aggiungi zucchine, pomodori secchi a listarelle e capperi.',
-    'Scalda in forno a 200° per 5 minuti e servi tagliata a quadrotti.',
+    'Scalda in forno a 200° per 5 minuti.',
+    'Taglia a quadrotti e finisci con olio a crudo e origano.',
   ] },
   { c: 'Antipasti', t: 'Salsa per fritto con maionese e capperi', i: [
     '150 g maionese',
@@ -465,7 +479,8 @@ export default [
   ], p: [
     'Trita finemente capperi, cetriolino e prezzemolo.',
     'Mescola con la maionese e qualche goccia di limone.',
-    'Riposa in frigo 30 minuti prima di servire con il fritto.',
+    'Riposa in frigo 30 minuti.',
+    'Servi con il fritto, prezzemolo tritato sopra e spicchi di limone.',
   ] },
   { c: 'Antipasti', t: 'Insalata di mare con sedano, pepe rosa e aneto', i: [
     '300 g calamari',
@@ -518,10 +533,12 @@ export default [
     'Tabasco',
     'Olio extravergine, sale',
   ], p: [
+    'Se il peperone è crudo, arrostiscilo in forno a 200° per 30 minuti, chiudilo in un sacchetto 10 minuti e spellalo.',
     'Frulla peperone e cetriolo con un filo d’olio e sale fino a una salsa liscia.',
     'Trita lo scalogno e mescolalo con la senape: è la seconda salsa.',
     'Batti la carne al coltello e condiscila con olio, sale e qualche goccia di Tabasco.',
     'Impiatta con il coppapasta e completa con le due salse a punti o a cucchiaiate.',
+    'Guarnisci con dadini di cetriolo e un filo d’olio a crudo.',
   ] },
   { c: 'Antipasti', t: 'Tartare di salmone su finocchio a bassa temperatura', i: [
     '300 g salmone abbattuto',
@@ -534,7 +551,8 @@ export default [
     'Affetta i finocchi sottili, mettili sottovuoto con olio, sale e scorza d’arancia.',
     'Cuoci nel roner a 85° per 50 minuti, poi raffredda in acqua e ghiaccio.',
     'Taglia il salmone a cubetti e condiscilo con olio, limone, sale e pepe.',
-    'Fai un letto di finocchio, sopra la tartare con il coppapasta, finisci con aneto.',
+    'Fai un letto di finocchio, sopra la tartare con il coppapasta.',
+    'Finisci con aneto, scorza d’arancia grattugiata e un filo d’olio.',
   ] },
   { c: 'Antipasti', t: 'Tartare di gambero su tartare di mango', i: [
     '400 g gamberi rossi crudi abbattuti',
@@ -547,7 +565,7 @@ export default [
     'Marinali in frigo con olio, limone, sale e lo spicchio d’aglio schiacciato per 15 minuti.',
     'Taglia il mango a cubetti piccoli.',
     'Base di mango nel coppapasta, sopra il gambero sgocciolato (togli l’aglio).',
-    'Olio a crudo per finire.',
+    'Finisci con olio a crudo, scorza di limone grattugiata e qualche germoglio.',
   ] },
   { c: 'Antipasti', t: 'Mini hot dog con ragù', i: [
     '8 panini da hot dog piccoli',
@@ -574,6 +592,7 @@ export default [
     'Mescola pangrattato, aglio e prezzemolo tritati.',
     'Asciuga le seppioline, passale nel pangrattato e tostale in padella calda per 1 minuto.',
     'Crema di piselli nel piatto, seppioline sopra, punti di nero di seppia diluito con poca acqua.',
+    'Finisci con prezzemolo tritato e un filo d’olio a crudo.',
   ] },
   { c: 'Antipasti', t: 'Crostini integrali con zucca e lardo', i: [
     '8 fette pane integrale',
@@ -585,6 +604,7 @@ export default [
     'Frullala fino a una crema densa.',
     'Tosta il pane.',
     'Spalma la zucca sui crostini caldi e appoggia una fetta di lardo: si scioglie con il calore.',
+    'Finisci con pepe macinato e qualche ago di rosmarino.',
   ] },
   { c: 'Antipasti', t: 'Crostini ricotta, pomodori secchi e alici', i: [
     '8 fette pane',
@@ -596,6 +616,7 @@ export default [
     'Lavora la ricotta con pepe e un po’ di scorza di limone.',
     'Tosta il pane e spalma la ricotta.',
     'Aggiungi pomodori secchi a listarelle e un filetto di alice.',
+    'Finisci con scorza di limone grattugiata e un filo d’olio.',
   ] },
   { c: 'Antipasti', t: 'Crostini con diaframma marinato alla senape', i: [
     '300 g diaframma (skirt steak)',
@@ -621,7 +642,7 @@ export default [
     'Taglia pomodoro e cipolla a cubetti da 1 cm.',
     'Schiaccia l’avocado con la forchetta lasciandolo un po’ rustico.',
     'Unisci succo di lime, olio, sale e pepe, poi pomodoro e cipolla.',
-    'Servi subito, o copri a contatto con la pellicola perché non annerisca.',
+    'Finisci con coriandolo tritato e servi subito con tortilla chips; se aspetti, copri a contatto con la pellicola perché non annerisca.',
   ] },
 
   // ---------- Primi ----------
@@ -634,12 +655,13 @@ export default [
     '50 g burro freddo',
     'Olio extravergine, sale',
   ], p: [
+    'Prima di iniziare: taglia 4 capesante a cubetti e tienile in frigo; grattugia la scorza del lime.',
     'Niente cipolla: tosta il riso a secco in casseruola per 3 minuti.',
     'Sfuma con il vino e lascia evaporare.',
     'Aggiungi il brodo caldo un mestolo alla volta per 16 minuti.',
-    'Intanto taglia 4 capesante a cubetti e scotta le altre 4 intere in padella rovente 1 minuto per lato.',
-    'Fuori dal fuoco manteca con burro, scorza di lime e i cubetti di capesante crudi.',
-    'Impiatta, capesante scottate sopra, qualche goccia di succo di lime.',
+    'Fuori dal fuoco manteca con burro, metà scorza di lime e i cubetti di capesante crudi; copri e lascia riposare.',
+    'Intanto scotta le 4 capesante intere in padella rovente, 1 minuto per lato.',
+    'Impiatta, capesante scottate sopra, la scorza di lime rimasta e qualche goccia di succo.',
   ] },
   { c: 'Primi', t: 'Risotto zucca e tartufo', i: [
     '320 g riso Carnaroli',
@@ -668,9 +690,9 @@ export default [
   ], p: [
     'Salta i funghi con aglio e olio a fuoco alto per 5 minuti; tieni da parte.',
     'Rosola lo scalogno, tosta il riso, sfuma con un mestolo di brodo.',
-    'Brodo un mestolo alla volta per 16 minuti; aggiungi i funghi a metà.',
+    'Brodo un mestolo alla volta per 16 minuti; aggiungi i funghi a metà, tenendone da parte qualcuno.',
     'Manteca fuori dal fuoco con mascarpone e Parmigiano.',
-    'Finisci con erba cipollina tagliata fine.',
+    'Finisci con i funghi tenuti da parte ed erba cipollina tagliata fine.',
   ] },
   { c: 'Primi', t: 'Cacio e pepe con pepe rosa e pepe nero', i: [
     '320 g spaghettoni o tonnarelli',
@@ -684,6 +706,7 @@ export default [
     'Quando è pronta spegni la fiamma e versa un poco di acqua di cottura.',
     'Aspetta che si freddi leggermente: la mano deve restare sopra la padella per una decina di secondi.',
     'Aggiungi il pecorino e manteca energicamente fino a una crema.',
+    'Impiatta a nido con una pinza e finisci con una macinata di pepe nero e qualche bacca di pepe rosa.',
   ] },
   { c: 'Primi', t: 'Spaghetti allo scoglio con julienne e pancetta croccante', i: [
     '320 g spaghetti',
@@ -698,9 +721,9 @@ export default [
     'Prezzemolo, olio',
   ], p: [
     'Essicca la pancetta in forno a 120° per 20 minuti tra due fogli di carta forno: deve diventare una chips.',
+    'Intanto taglia zucchina e carota a julienne e metti a bollire l’acqua della pasta.',
     'Apri cozze e vongole in padella con aglio, olio e vino per 4 minuti; filtra il liquido.',
-    'Taglia zucchina e carota a julienne.',
-    'Cuoci la pasta 2 minuti meno del tempo indicato.',
+    'Cuoci la pasta e scolala molto al dente.',
     'Finisci la cottura in padella con il liquido dei molluschi, gamberi e julienne.',
     'Unisci cozze e vongole, prezzemolo, e servi con la pancetta sbriciolata sopra.',
   ] },
@@ -728,10 +751,11 @@ export default [
     '½ cipolla rossa',
     'Olio extravergine, aceto, sale',
   ], p: [
-    'Cuoci il polpo (vedi ricetta del polpo senz’acqua), poi taglialo a pezzi.',
-    'Arrostisci i peperoni, spellali e tagliali a falde.',
-    'Unisci pomodorini a spicchi e cipolla affettata sottile.',
-    'Condisci con olio, aceto e sale e riposa 30 minuti prima di servire.',
+    'Cuoci il polpo (vedi ricetta del polpo senz’acqua) e lascialo raffreddare.',
+    'Intanto arrostisci i peperoni, spellali e tagliali a falde.',
+    'Taglia il polpo a pezzi, unisci peperoni, pomodorini a spicchi e cipolla affettata sottile.',
+    'Condisci con olio, aceto e sale e riposa 30 minuti.',
+    'Finisci con prezzemolo tritato e un filo d’olio a crudo.',
   ] },
   { c: 'Primi', t: 'Risotto crema di zucca, rosmarino e pecorino', i: [
     '320 g riso Carnaroli',
@@ -755,6 +779,7 @@ export default [
     '150 ml latte',
     'Pepe nero',
   ], p: [
+    'Metti a bollire l’acqua della pasta.',
     'Taglia le punte degli asparagi e tieni i gambi.',
     'Lessa i gambi nell’acqua della pasta per 5 minuti e frullali con un mestolo d’acqua.',
     'Sciogli il formaggio a cubetti nel latte caldo, a fuoco basso, fino a una crema.',
@@ -774,6 +799,7 @@ export default [
     'Tosta il riso e sfuma con il vino rosso.',
     'Brodo un mestolo alla volta per 17 minuti.',
     'Manteca fuori dal fuoco con gorgonzola e burro.',
+    'Impiatta con qualche listarella di radicchio crudo e una noce di gorgonzola sopra.',
   ] },
 
   // ---------- Secondi ----------
@@ -809,6 +835,7 @@ export default [
     'Coperchio e fuoco basso per 45 minuti.',
     'Controlla con una forchetta: deve entrare senza resistenza. Se serve, altri minuti (al massimo 1 ora in tutto).',
     'Lascialo raffreddare nel suo liquido con il coperchio.',
+    'Taglialo a pezzi e servilo tiepido con olio, prezzemolo tritato e qualche goccia di limone.',
   ] },
   { c: 'Secondi', t: 'Bavetta marinata al miele e rosmarino', i: [
     '800 g bavetta (flank steak)',
@@ -822,6 +849,7 @@ export default [
     'Massaggia la bavetta e marina in frigo per 4 ore.',
     'Scola e cuoci su griglia o piastra rovente 3 minuti per lato: il miele caramella, attenzione a non bruciarlo.',
     'Riposa 5 minuti e taglia a fette sottili contro fibra.',
+    'Servi con sale in fiocchi, pepe e un rametto di rosmarino fresco.',
   ] },
   { c: 'Secondi', t: 'Filetto di orata con cipolla di Tropea', i: [
     '4 filetti di orata',
@@ -847,7 +875,7 @@ export default [
     'Riempi la pancia dei branzini con limone a fette, aglio ed erbe.',
     'Su un foglio di carta forno grande: pesce, pomodorini, olio e sale; chiudi bene il cartoccio.',
     'Forno a 190° per 30 minuti.',
-    'Apri il cartoccio a tavola.',
+    'Apri il cartoccio a tavola e finisci con prezzemolo fresco e un filo d’olio a crudo.',
   ] },
   { c: 'Secondi', t: 'Filetto di platessa', i: [
     '4 filetti di platessa',
@@ -872,7 +900,7 @@ export default [
     'Scalda lo zucchero a secco senza mescolare finché diventa un caramello ambrato.',
     'Fuori dal fuoco aggiungi la polpa di maracuja (attenzione agli schizzi) e il burro; rimetti sul fuoco 2 minuti finché è liscio.',
     'Arrostisci il merluzzo in padella dal lato della pelle per 4 minuti, poi 2 minuti dall’altro lato.',
-    'Nappa con la salsa e finisci con sale in fiocchi.',
+    'Nappa con la salsa e finisci con sale in fiocchi e qualche seme di maracuja.',
   ] },
   { c: 'Secondi', t: 'Pesce con salsa verde', i: [
     '4 filetti di branzino o altro pesce bianco',
@@ -885,7 +913,7 @@ export default [
   ], p: [
     'Frulla prezzemolo, capperi, alici, aglio e mollica strizzata, aggiungendo l’olio a filo.',
     'Cuoci il pesce dal lato della pelle per 3 minuti e 1 minuto dall’altro.',
-    'Servi con la salsa verde accanto.',
+    'Servi con la salsa verde accanto, uno spicchio di limone e qualche foglia di prezzemolo.',
   ] },
   { c: 'Secondi', t: 'Costata al sangue', i: [
     '1 costata alta 2 cm',
@@ -895,7 +923,7 @@ export default [
     'Tira fuori la carne dal frigo 1 ora prima.',
     'Padella in ghisa o griglia a fiamma altissima, un velo d’olio.',
     'Al sangue: 2 minuti per lato.',
-    'Riposa 3 minuti, poi sale grosso e pepe.',
+    'Riposa 3 minuti, poi taglia a fette e finisci con sale grosso, pepe e un filo d’olio a crudo.',
   ] },
   { c: 'Secondi', t: 'Segreto iberico con marmellata di ananas e pepe', i: [
     '600 g segreto iberico',
@@ -935,7 +963,7 @@ export default [
     'Trita finissimo lo scalogno.',
     'Prima mescola tutti i condimenti: senape, scalogno, qualche goccia di Tabasco, paprika, cognac, olio e sale.',
     'Poi aggiungi la carne battuta al coltello e mescola.',
-    'Impiatta con il coppapasta e servi subito.',
+    'Impiatta con il coppapasta e servi subito con pane tostato.',
   ] },
   { c: 'Secondi', t: 'Tartare al limone e pepe verde', i: [
     '400 g filetto di manzo',
@@ -945,7 +973,8 @@ export default [
   ], p: [
     'Batti la carne al coltello.',
     'Condisci con succo di limone, pepe verde macinato al momento, olio e sale.',
-    'Impiatta subito: il limone “cuoce” la carne se aspetti.',
+    'Impiatta subito con il coppapasta: il limone “cuoce” la carne se aspetti.',
+    'Finisci con scorza di limone grattugiata e qualche grano di pepe verde intero.',
   ] },
   { c: 'Secondi', t: 'Carne salà con salsa verde e crostino', i: [
     '200 g carne salà a fette sottili',
@@ -991,9 +1020,9 @@ export default [
   ], p: [
     'Porta a bollore acqua e aceto, immergi il polpo e cuoci a fuoco basso per 40 minuti.',
     'Lascialo raffreddare nell’acqua di cottura.',
-    'Griglia i peperoni, spellali e tagliali a falde.',
+    'Intanto griglia i peperoni, spellali e tagliali a falde.',
     'Taglia il porro a rondelle sottili e saltalo 3 minuti in padella.',
-    'Servi il polpo a pezzi con peperoni, porro e olio.',
+    'Servi il polpo a pezzi con peperoni, porro, olio a crudo e prezzemolo.',
   ] },
 
   // ---------- Pizza ----------
@@ -1013,11 +1042,12 @@ export default [
     '4 panini da hamburger',
     'Sale, pepe',
   ], p: [
-    'Tira fuori la carne dal frigo 30 minuti prima e sala solo all’ultimo.',
-    'Piastra o griglia ben calda.',
+    'Tira fuori la carne dal frigo 30 minuti prima e prepara le farciture (vedi Hamburger: farciture).',
+    'Piastra o griglia ben calda; sala la carne solo adesso.',
     'Cottura 12 minuti in tutto, senza paura: gira ogni 4 minuti.',
+    'Nell’ultimo minuto metti il formaggio sulla carne e copri, così fonde.',
     'Tosta il panino sul lato tagliato per 1 minuto.',
-    'Componi con le farciture scelte (vedi Hamburger: farciture).',
+    'Componi dal basso: salsa sulla base, insalata, carne con il formaggio, croccante (bacon o cipolla), pomodoro, salsa sul cappello.',
   ] },
   { c: 'Hamburger', t: 'Hamburger: farciture', i: [
     'Bacon',
@@ -1069,12 +1099,14 @@ export default [
     '6 fichi maturi',
     '1 bacca vaniglia',
   ], p: [
+    'Accendi il forno a 160° e scalda l’acqua per il bagnomaria.',
     'Caramello: zucchero con un goccio d’acqua fino a color ambra, poi versalo negli stampini.',
     'Appoggia sul caramello fettine di fico.',
     'Scalda il latte con la vaniglia; frulla 2 fichi nel latte e filtra.',
     'Mescola uova, tuorli e zucchero senza montare, unisci il latte e versa negli stampini.',
     'Cuoci a bagnomaria in forno a 160° per 40 minuti.',
-    'Raffredda e tieni in frigo almeno 3 ore prima di sformare.',
+    'Raffredda e tieni in frigo almeno 3 ore.',
+    'Sforma passando un coltello lungo il bordo e decora con fichi freschi a spicchi.',
   ] },
   { c: 'Dolci', t: 'Gelato alla vaniglia con caramello al rosmarino', i: [
     '500 g gelato alla vaniglia',
@@ -1088,6 +1120,7 @@ export default [
     'Fai un caramello a secco con lo zucchero, senza mescolare, fino a color ambra.',
     'Fuori dal fuoco aggiungi il burro e poi la panna calda, mescolando; 2 minuti sul fuoco e un pizzico di sale.',
     'Lascia intiepidire e versalo sul gelato.',
+    'Finisci con un ago di rosmarino fresco e un pizzico di sale in fiocchi.',
   ] },
   { c: 'Dolci', t: 'Yogurt freddo e crema al pistacchio', i: [
     '500 g yogurt greco',
@@ -1113,11 +1146,13 @@ export default [
     '150 ml olio extravergine delicato',
     '1 limone',
   ], p: [
-    'Lega il girello con lo spago e mettilo in pentola con verdure, alloro, chiodi di garofano e vino; copri d’acqua a filo e porta a bollore.',
+    'Il giorno prima: lega il girello con lo spago e mettilo in pentola con verdure, alloro, chiodi di garofano e vino; copri d’acqua a filo e porta a bollore.',
     'Cuoci a fuoco dolce 50 minuti, poi lascia raffreddare la carne nel suo brodo.',
+    'Rassoda 3 uova in acqua bollente per 9 minuti, raffreddale e tieni solo i tuorli.',
     'Frulla tonno, tuorli sodi, acciughe, metà dei capperi, succo di mezzo limone e un mestolino di brodo; aggiungi l’olio a filo finché la salsa è liscia e vellutata.',
     'Affetta la carne fredda sottilissima, stendila nel piatto e coprila di salsa.',
-    'Riposo in frigo almeno 2 ore; servi con i capperi rimasti.',
+    'Riposo in frigo almeno 2 ore.',
+    'Servi con i capperi rimasti e qualche fettina sottile di limone.',
   ] },
   { c: 'Primi', t: 'Risotto alla milanese', i: [
     '320 g riso Carnaroli',
@@ -1131,10 +1166,10 @@ export default [
   ], p: [
     'Se usi i pistilli, mettili in infusione in un mestolino di brodo caldo almeno 1 ora prima.',
     'Fai sudare lo scalogno tritato fine con il midollo e una noce di burro.',
-    'Tosta il riso a secco 3 minuti, finché è traslucido; sfuma col vino.',
+    'Aggiungi il riso e tostalo 3 minuti, finché è traslucido; sfuma col vino.',
     'Cuoci aggiungendo il brodo un mestolo alla volta per 16 minuti; a metà cottura unisci lo zafferano.',
     'Fuori dal fuoco manteca con burro freddo e Grana, copri e lascia riposare 2 minuti.',
-    'Servi all’onda, ben steso nel piatto piano.',
+    'Servi all’onda, ben steso nel piatto piano, con qualche pistillo di zafferano sopra.',
   ] },
   { c: 'Secondi', t: 'Ossobuco alla milanese con gremolada', i: [
     '4 ossibuchi di vitello alti 4 cm',
@@ -1158,11 +1193,13 @@ export default [
     '60 g Pecorino Romano grattugiato',
     'pepe nero in grani',
   ], p: [
+    'Metti a bollire l’acqua della pasta, poco salata: il pecorino è sapido.',
     'Taglia il guanciale a listarelle spesse e fallo rosolare in padella senza olio a fuoco medio 8 minuti, finché è croccante fuori e morbido dentro.',
     'Sbatti tuorli, uovo, pecorino e molto pepe macinato al momento.',
-    'Cuoci la pasta in acqua poco salata (il pecorino è sapido).',
+    'Cuoci la pasta.',
     'Scola la pasta al dente nella padella del guanciale, a fuoco spento, con un mestolino d’acqua di cottura.',
     'Aggiungi le uova e manteca velocemente: la crema si forma col calore della pasta (circa 65 °C), senza diventare frittata.',
+    'Impiatta e finisci con pecorino grattugiato, una macinata di pepe e qualche pezzo di guanciale croccante tenuto da parte.',
   ] },
   { c: 'Primi', t: 'Spaghetti alle vongole', i: [
     '320 g spaghetti o vermicelli',
@@ -1174,9 +1211,10 @@ export default [
     'olio extravergine',
   ], p: [
     'Spurga le vongole in acqua fredda e sale grosso per 2 ore, cambiando l’acqua a metà; poi sciacquale.',
-    'In una padella larga scalda olio, aglio in camicia e gambi di prezzemolo; aggiungi le vongole, sfuma col vino e copri.',
+    'Metti a bollire l’acqua della pasta e butta la pasta.',
+    'Intanto in una padella larga scalda olio, aglio in camicia e gambi di prezzemolo; aggiungi le vongole, sfuma col vino e copri.',
     'Appena si aprono (circa 3 minuti) toglile, sgusciane metà e filtra il fondo di cottura.',
-    'Cuoci la pasta, scolala molto al dente e finiscila nella padella con il fondo filtrato.',
+    'Scola la pasta molto al dente e finiscila nella padella con il fondo filtrato.',
     'Manteca a fuoco vivo finché il sugo si lega, poi unisci vongole, prezzemolo tritato e un filo d’olio crudo.',
   ] },
   { c: 'Secondi', t: 'Cotoletta alla milanese', i: [
@@ -1201,11 +1239,12 @@ export default [
     '120 g Parmigiano Reggiano grattugiato',
     'olio di semi di arachide per friggere',
   ], p: [
-    'Taglia le melanzane a fette di 5 mm, salale e lasciale in piedi in uno scolapasta 1 ora; poi asciugale bene.',
-    'Friggi le fette in olio a 170 °C finché dorate e scolale su carta.',
-    'Cuoci la passata con aglio e un filo d’olio 20 minuti; spegni e aggiungi il basilico.',
+    'Taglia le melanzane a fette di 5 mm, salale e lasciale in piedi in uno scolapasta 1 ora.',
+    'Intanto cuoci la passata con aglio e un filo d’olio 20 minuti; spegni e aggiungi metà del basilico.',
+    'Asciuga bene le melanzane, friggile in olio a 170 °C finché dorate e scolale su carta.',
     'Componi a strati in una teglia: sugo, melanzane, fiordilatte a cubetti, Parmigiano, basilico. Finisci con sugo e Parmigiano.',
     'Inforna a 180 °C per 40 minuti; lascia riposare almeno 30 minuti prima di tagliare.',
+    'Servi a quadrotti con una foglia di basilico fresco sopra.',
   ] },
   { c: 'Dolci', t: 'Tiramisù', i: [
     '4 uova freschissime',
@@ -1215,6 +1254,7 @@ export default [
     '300 ml caffè espresso freddo, poco zuccherato',
     'cacao amaro in polvere',
   ], p: [
+    'Prepara il caffè e lascialo raffreddare.',
     'Monta i tuorli con lo zucchero finché sono chiari e spumosi, poi incorpora il mascarpone.',
     'Monta a neve gli albumi e uniscili alla crema dal basso verso l’alto.',
     'Inzuppa velocemente i savoiardi nel caffè: un attimo per lato, devono restare compatti al centro.',
@@ -1233,7 +1273,8 @@ export default [
     'Scalda panna, zucchero e semi di vaniglia fino a sfiorare il bollore, poi spegni.',
     'Strizza la gelatina e scioglila nella panna calda mescolando.',
     'Versa negli stampini e lascia rassodare in frigo almeno 4 ore.',
-    'Salsa: cuoci i frutti rossi con lo zucchero 5 minuti e passali al colino. Sforma e servi con la salsa.',
+    'Salsa: cuoci metà dei frutti rossi con lo zucchero 5 minuti, passali al colino e lasciala raffreddare.',
+    'Sforma la panna cotta, nappa con la salsa e decora con i frutti rossi freschi rimasti.',
   ] },
 
   // ---------- Sottovuoto (roner) ----------
@@ -1258,7 +1299,8 @@ export default [
     'Sala il salmone e lascialo riposare in frigo 30 minuti: la carne resta più compatta.',
     'Mettilo sottovuoto con olio, scorza di limone e aneto.',
     'Cuoci nel roner a 45 °C per 30 minuti.',
-    'Togli la pelle e servi: deve sfaldarsi in lamelle lucide. Per una pelle croccante, cuocila a parte in padella fra due fogli di carta forno.',
+    'Togli la pelle: deve sfaldarsi in lamelle lucide. Per una pelle croccante, cuocila a parte in padella fra due fogli di carta forno.',
+    'Servi con aneto fresco, scorza di limone grattugiata, sale in fiocchi e un filo d’olio.',
   ] },
   { c: 'Sottovuoto', t: 'Filetto di manzo a 54 °C', i: [
     '4 medaglioni di filetto alti 4 cm',
@@ -1284,7 +1326,8 @@ export default [
     'Cuoci nel roner a 57 °C per 2 ore.',
     'Asciugali e mettili dal lato della pelle in padella fredda; accendi a fuoco medio e cuoci 6 minuti finché il grasso si scioglie e la pelle è croccante.',
     'Girali 30 secondi, poi falli riposare.',
-    'Nella stessa padella, tolto il grasso in eccesso, sfuma con Grand Marnier, succo d’arancia e miele e riduci a salsa. Affetta e servi.',
+    'Nella stessa padella, tolto il grasso in eccesso, sfuma con Grand Marnier, succo d’arancia e miele e riduci a salsa.',
+    'Affetta, nappa con la salsa e finisci con scorza d’arancia grattugiata e pepe.',
   ] },
   { c: 'Sottovuoto', t: 'Polpo a 77 °C', i: [
     '1 polpo da 1,2 kg, abbattuto o congelato',
@@ -1309,5 +1352,6 @@ export default [
     'Pela le carote lasciando un po’ di ciuffo; mettile sottovuoto in un solo strato con burro, miele, timo e sale.',
     'Cuoci nel roner a 85 °C per 1 ora.',
     'Versa carote e liquido in padella e fai ridurre a fuoco vivo 3 minuti, finché sono lucide e glassate.',
+    'Servi con timo fresco e un pizzico di sale in fiocchi.',
   ] },
 ];
