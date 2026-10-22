@@ -49,4 +49,11 @@ export default {
   'Piccione rosa con salsa al vino': 'Il piccione da carne si trova quasi solo dal macellaio o dal pollivendolo, su ordinazione qualche giorno prima.\nSi mangia rosa, come l’anatra.',
   'Filetto alla Rossini': 'Il foie gras fresco si ordina in gastronomia o dal macellaio, qualche giorno prima. Tienilo in frigo fino all’ultimo: in padella si scioglie in pochi secondi.',
   'Tagliolini al tartufo': 'Il tartufo bianco c’è da ottobre a dicembre, il nero pregiato da dicembre a marzo, lo scorzone d’estate. Conservalo in frigo avvolto in carta assorbente, da cambiare ogni giorno, e usalo entro 5 giorni.',
+
+  // cucine regionali
+  'Baccalà mantecato': "In Veneto “baccalà” è lo stoccafisso: merluzzo essiccato all’aria, non salato. Già ammollato si trova in pescheria e ti risparmi i due giorni di ammollo.",
+  'Bistecca alla fiorentina': "Chiedi al macellaio una bistecca di scottona o chianina con l’osso a T, alta 4-5 cm e frollata almeno 15 giorni. Si mangia al sangue: il cuore resta crudo.",
+  'Coda alla vaccinara': "La coda si ordina dal macellaio, già tagliata a rocchi.",
+  'Sarde in saor': "Le sarde qui sono fritte, quindi cotte del tutto: l’abbattimento non serve.",
+  'Abbacchio a scottadito': "L’abbacchio è l’agnello da latte: chiedi costolette di abbacchio romano IGP.",
 };
