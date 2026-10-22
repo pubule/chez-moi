@@ -19,10 +19,16 @@ async function api(metodo, percorso, corpo) {
   if (!r.ok) throw new Error(dati.error || `errore ${r.status}`);
   return dati;
 }
-const tutti = s => api('GET', s);
+// elenchi già scaricati: cambiare scheda non aspetta la rete. Si svuota dopo ogni modifica e a ogni ritorno nell'app.
+const memoria = new Map();
+const tutti = s => {
+  if (!memoria.has(s)) memoria.set(s, api('GET', s).catch(e => { memoria.delete(s); throw e; }));
+  return memoria.get(s);
+};
 const uno = async (s, id) => (await tutti(s)).find(x => x.id === id);
-const salva = (s, v) => api('PUT', `${s}/${v.id}`, v);
-const elimina = (s, id) => api('DELETE', `${s}/${id}`);
+const scrivi = async (s, metodo, id, v) => { const r = await api(metodo, `${s}/${id}`, v); memoria.delete(s); return r; };
+const salva = (s, v) => scrivi(s, 'PUT', v.id, v);
+const elimina = (s, id) => scrivi(s, 'DELETE', id);
 
 function leggiImpostazioni() {
   try { return { attrezzi: ['roner', 'biberon'], salti: {}, ...JSON.parse(localStorage.getItem('chez-moi') || '{}') }; }
@@ -106,6 +112,7 @@ async function disegna() {
   catch (err) { html = `<p class="errore" role="alert">Errore: ${esc(err.message)}</p><button class="secondario" data-az="riprova">Riprova</button>`; }
   if (mio !== giro) return; // nel frattempo è stata aperta un'altra schermata
   $('#vista').innerHTML = html;
+  $('#vista').removeAttribute('aria-busy');
   window.scrollTo(0, 0);
 }
 
@@ -485,7 +492,7 @@ document.addEventListener('input', e => {
   });
 });
 
-// le foto compaiono con una dissolvenza quando sono arrivate (load non risale: serve la cattura)
+// foto arrivata: si ferma il riflesso del segnaposto (load non risale: serve la cattura)
 document.addEventListener('load', e => { if (e.target.tagName === 'IMG') e.target.classList.add('arrivata'); }, true);
 
 document.addEventListener('submit', async e => {
@@ -537,6 +544,8 @@ async function chiediAlloChef(form) {
 }
 
 // ---------- avvio ----------
+
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') memoria.clear(); });
 
 if ('serviceWorker' in navigator) {
   // iOS tiene viva la pagina tra un cambio d'app e l'altro: a ogni ritorno cerca un deploy nuovo (come radar-eventi)
