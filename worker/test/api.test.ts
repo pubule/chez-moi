@@ -96,6 +96,17 @@ describe('ricette e foto', () => {
     expect((await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x', etichette: 'keto' }))).status).toBe(400);
   });
 
+  it('salva i valori per porzione, vuoti se mancano, e rifiuta quelli non interi', async () => {
+    const valori = { porzioni: 4, kcal: 633, proteine: 27, carboidrati: 66, grassi: 29 };
+    const r = await (await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'Carbonara', ...valori }))).json<any>();
+    expect(r).toMatchObject(valori);
+    const vuota = await (await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x', kcal: '' }))).json<any>();
+    expect(vuota).toMatchObject({ porzioni: null, kcal: null, proteine: null });
+    for (const cattivo of [{ kcal: 1.5 }, { grassi: -1 }, { porzioni: 0 }, { proteine: '27' }]) {
+      expect((await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x', ...cattivo }))).status).toBe(400);
+    }
+  });
+
   it('il credito della foto sparisce insieme alla foto', async () => {
     const { foto } = await (await call('/api/foto', { method: 'POST', body: JPEG })).json<{ foto: string }>();
     const k = id();

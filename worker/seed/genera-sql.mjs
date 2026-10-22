@@ -5,6 +5,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import ricette from './ricette.mjs';
+import macro from './macro.mjs';
 
 const foto = JSON.parse(readFileSync(new URL('./foto.json', import.meta.url), 'utf8'));
 const q = s => `'${s.replace(/'/g, "''")}'`;
@@ -15,6 +16,9 @@ for (const r of ricette) {
   console.log(`insert into ricette (id, titolo, categoria, etichette, ingredienti, procedimento) values (${q(id(r.t))}, ${q(r.t)}, ${q(r.c)}, ${q(e)}, ${q(r.i.join('\n'))}, ${q(r.p.join('\n'))}) on conflict(id) do nothing;`);
   // etichette aggiunte dopo il primo caricamento: solo dove Fabio non ne ha messe
   if (e) console.log(`update ricette set etichette = ${q(e)} where id = ${q(id(r.t))} and etichette = '';`);
+  const m = macro[r.t];
+  // valori per porzione solo dove mancano: non sovrascrive quelli corretti a mano
+  if (m) console.log(`update ricette set porzioni = ${m[0]}, kcal = ${m[1]}, proteine = ${m[2]}, carboidrati = ${m[3]}, grassi = ${m[4]} where id = ${q(id(r.t))} and kcal is null;`);
   const f = foto[r.t];
   if (f) console.log(`update ricette set foto = ${q(f.foto)}, foto_credito = ${q(f.credito)} where id = ${q(id(r.t))} and foto is null;`);
 }

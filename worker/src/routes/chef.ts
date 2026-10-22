@@ -8,7 +8,7 @@ export const LIMITE_GIORNO = 20;
 const SCHEMA = {
   type: 'object',
   additionalProperties: false,
-  required: ['titolo', 'descrizione', 'tempo', 'ingredienti', 'passaggi', 'impiattamento'],
+  required: ['titolo', 'descrizione', 'tempo', 'ingredienti', 'passaggi', 'impiattamento', 'porzioni', 'kcal', 'proteine', 'carboidrati', 'grassi'],
   properties: {
     titolo: { type: 'string' },
     descrizione: { type: 'string' },
@@ -16,6 +16,11 @@ const SCHEMA = {
     ingredienti: { type: 'array', items: { type: 'string' } },
     passaggi: { type: 'array', items: { type: 'string' } },
     impiattamento: { type: 'string' },
+    porzioni: { type: 'integer' },
+    kcal: { type: 'integer' },
+    proteine: { type: 'integer' },
+    carboidrati: { type: 'integer' },
+    grassi: { type: 'integer' },
   },
 };
 
@@ -23,10 +28,14 @@ const SISTEMA =
   'Sei uno chef di alta cucina. Aiuti un cuoco amatoriale esperto, che ha fatto corsi professionali, a ritrovare la passione per la cucina. ' +
   'Proponi una sola ricetta gourmet ma realizzabile in una cucina di casa, che metta in pratica una tecnica interessante. ' +
   'Usa gli attrezzi disponibili quando hanno senso. Per le cotture sottovuoto indica temperature e tempi sicuri dal punto di vista alimentare. ' +
-  'Dosi in grammi. Scrivi in italiano.';
+  'Dosi in grammi. Indica per quante porzioni sono le dosi e stima kcal e grammi di proteine, carboidrati e grassi per porzione. ' +
+  'Metti la guarnizione come ultimo passaggio. Scrivi in italiano.';
 
 export type Richiesta = { ingredienti: string; richiesta: string; attrezzi: string[] };
-export type Ricetta = { titolo: string; descrizione: string; tempo: string; ingredienti: string[]; passaggi: string[]; impiattamento: string };
+export type Ricetta = {
+  titolo: string; descrizione: string; tempo: string; ingredienti: string[]; passaggi: string[]; impiattamento: string;
+  porzioni: number; kcal: number; proteine: number; carboidrati: number; grassi: number;
+};
 
 export class Rifiuto extends Error {}
 

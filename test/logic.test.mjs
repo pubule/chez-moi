@@ -111,3 +111,25 @@ test('etichette: solo quelle note', async () => {
   assert.deepEqual(etichetteDi({ etichette: '' }), []);
   assert.deepEqual(etichetteDi({}), []);
 });
+
+test('valori per porzione del seed: ogni titolo esiste e le kcal tornano con i macro', async () => {
+  const { default: ricette } = await import('../worker/seed/ricette.mjs');
+  const { default: macro } = await import('../worker/seed/macro.mjs');
+  const cocktail = new Set(ricette.filter(r => r.c === 'Cocktail').map(r => r.t));
+  const titoli = new Set(ricette.map(r => r.t));
+  for (const [t, [porzioni, kcal, p, c, g]] of Object.entries(macro)) {
+    assert.ok(titoli.has(t), t);
+    assert.ok(porzioni >= 1 && kcal > 0, t);
+    // nei cocktail le kcal vengono quasi tutte dall'alcol, che non è un macro
+    if (!cocktail.has(t)) assert.ok(Math.abs(p * 4 + c * 4 + g * 9 - kcal) / kcal < 0.15, t);
+  }
+});
+
+test('macro: quote sulle calorie e ricette senza valori', async () => {
+  const { macroDi } = await import('../public/logic.js');
+  const m = macroDi({ kcal: 633, porzioni: 4, proteine: 27, carboidrati: 66, grassi: 29 });
+  assert.deepEqual(m.quote, [17, 42, 41]);
+  assert.equal(macroDi({ kcal: null }), null);
+  assert.deepEqual(macroDi({ kcal: 160, proteine: 0, carboidrati: 0, grassi: 0 }).quote, [0, 0, 0]);
+});
+

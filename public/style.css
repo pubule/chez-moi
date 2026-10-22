@@ -1,6 +1,8 @@
 /* Direzione D, solo scura: il piatto in primo piano, accento rame come le pentole.
    Contrasti (testo normale): testo #f5f5f5 su #121212 17:1; secondario #a8a8a8 su #1e1e1e 7:1;
-   rame #d08a5a su #121212 6.7:1 e su #1e1e1e 5.9:1; #121212 su rame 6.7:1; pericolo #ff6961 su #1e1e1e 5.9:1. */
+   rame #d08a5a su #121212 6.7:1 e su #1e1e1e 5.9:1; #121212 su rame 6.7:1; pericolo #ff6961 su #1e1e1e 5.9:1.
+   Macro, colori della cucina con luminosità diverse: proteine terracotta #d4735e 5.1:1, carbo grano #e3c27f 9.8:1,
+   grassi olio #a8b866 7.7:1 su #1e1e1e; ogni valore ha anche il nome scritto. */
 :root {
   --sfondo: #121212;
   --carta: #1e1e1e;
@@ -12,6 +14,9 @@
   --su-accento: #121212;
   --accento-tenue: #2a211b;
   --pericolo: #ff6961;
+  --proteine: #d4735e;
+  --carbo: #e3c27f;
+  --grassi: #a8b866;
   --barra: rgb(36 36 36 / .82);
   color-scheme: dark;
 }
@@ -227,6 +232,26 @@ input:not([type=checkbox]), textarea, select {
 .scheda b { font-size: .95rem; font-weight: 600; line-height: 1.25; }
 .scheda .meta { font-size: .8rem; }
 .scheda[hidden] { display: none; }
+
+/* macro per porzione: cifre colorate con il nome sotto e barra divisa per calorie */
+.p { color: var(--proteine); } .c { color: var(--carbo); } .g { color: var(--grassi); }
+i.p { background: var(--proteine); } i.c { background: var(--carbo); } i.g { background: var(--grassi); }
+.cifre { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.cifre span { display: flex; flex-direction: column; font-size: .9rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.cifre small, .valori small { font-size: .65rem; font-weight: 500; color: var(--secondario); }
+.barra { display: flex; gap: 2px; height: 4px; border-radius: 2px; overflow: hidden; margin-top: 2px; }
+.barra i { display: block; }
+.valori .titolo-riga { align-items: baseline; margin-bottom: 12px; }
+.valori .kcal { font-size: 1.3rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.colonne { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.colonne > div { display: flex; flex-direction: column; gap: 6px; }
+.colonne b { font-size: 1.3rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.traccia { display: block; height: 6px; border-radius: 3px; background: var(--separatore); overflow: hidden; }
+.traccia i { display: block; height: 100%; border-radius: 3px; }
+.valori .nota { margin: 12px 0 0; }
+.numeri { display: grid; grid-template-columns: repeat(auto-fill, minmax(6.5em, 1fr)); gap: 0 10px; margin: 12px 0; }
+.numeri legend { font-weight: 600; margin-bottom: 4px; }
+.numeri label { margin: 4px 0; font-weight: 400; font-size: .85rem; color: var(--secondario); }
 :focus-visible { outline: 3px solid var(--accento); outline-offset: 2px; }
 fieldset { border: 0; padding: 0; margin: 0; }
 

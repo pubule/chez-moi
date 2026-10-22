@@ -1,5 +1,5 @@
 import { SFIDE, ATTREZZI } from './sfide.js';
-import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, passaggi, minuti, perCategoria, sfideAnno, CATEGORIE, ETICHETTE, etichetteDi } from './logic.js';
+import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, passaggi, minuti, perCategoria, sfideAnno, CATEGORIE, ETICHETTE, etichetteDi, macroDi } from './logic.js';
 
 // ---------- dati (API del Worker, dietro Cloudflare Access) ----------
 
@@ -57,6 +57,10 @@ const ICONE = {
   play: '<path d="M8 5v14l11-7z" fill="currentColor"/>',
   piu: '<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
 };
+// i tre macro: chiave, nome corto, classe del colore
+const MACRO = [['p', 'proteine'], ['c', 'carbo'], ['g', 'grassi']];
+const barraMacro = m => `<span class="barra" aria-hidden="true">${MACRO.map(([k], i) => `<i class="${k}" style="flex: ${m.quote[i]}"></i>`).join('')}</span>`;
+
 const icona = n => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${ICONE[n]}</svg>`;
 
 // firma della direzione D: un quadrante come quello del roner
@@ -215,7 +219,8 @@ const VISTE = {
       ${gruppi.length ? `
         <input type="search" id="cerca" placeholder="Cerca…" aria-label="Cerca ricetta">
         <div class="filtri">${Object.entries(ETICHETTE).map(([k, nome]) => `<button class="chip" data-az="ricette-etichetta" data-id="${k}" aria-pressed="${etichetteScelte.has(k)}">${nome}</button>`).join('')}</div>
-        <div class="filtri">${[['', 'Tutte'], ...gruppi.map(([c]) => [c, c])].map(([c, nome]) => `<button class="chip" data-az="ricette-filtro" data-id="${esc(c)}" aria-pressed="${c === filtro}">${esc(nome)}</button>`).join('')}</div>`
+        <div class="filtri">${[['', 'Tutte'], ...gruppi.map(([c]) => [c, c])].map(([c, nome]) => `<button class="chip" data-az="ricette-filtro" data-id="${esc(c)}" aria-pressed="${c === filtro}">${esc(nome)}</button>`).join('')}</div>
+        <p class="nota">Kcal e macro per porzione, stimati.</p>`
       : '<p class="nota">Nessuna ricetta. Scrivine una o fattela proporre dallo Chef.</p>'}
       ${gruppi.map(([c, xs]) => `
         <section class="categoria" data-categoria="${esc(c)}">
@@ -224,7 +229,7 @@ const VISTE = {
             const n = passaggi(x.procedimento).length;
             return `<button class="scheda" data-az="ricetta-apri" data-id="${x.id}" data-etichette="${etichetteDi(x).join(',')}">
               ${x.foto ? `<img src="${fotoUrl(x.foto, true)}" alt="" loading="lazy">` : '<span class="senza-foto" aria-hidden="true"></span>'}
-              <b>${esc(x.titolo)}</b><span class="meta">${[n && `${n} passaggi`, ...etichetteDi(x).map(e => ETICHETTE[e])].filter(Boolean).join(' · ')}</span>
+              <b>${esc(x.titolo)}</b>${schedaMacro(x, n)}
             </button>`;
           }).join('')}</div>
         </section>`).join('')}`;
@@ -282,6 +287,30 @@ const VISTE = {
   },
 };
 
+// scheda della griglia: kcal, i tre macro in cifre e la barra; senza valori, passaggi ed etichette
+function schedaMacro(x, n) {
+  const eti = etichetteDi(x).map(e => ETICHETTE[e]);
+  const m = macroDi(x);
+  if (!m) return `<span class="meta">${[n && `${n} passaggi`, ...eti].filter(Boolean).join(' · ')}</span>`;
+  return `<span class="meta">${[`${m.kcal} kcal`, ...eti].join(' · ')}</span>
+    <span class="cifre">${MACRO.map(([k, nome]) => `<span class="${k}">${m[k]} g<small>${nome}</small></span>`).join('')}</span>
+    ${barraMacro(m)}`;
+}
+
+// riquadro della ricetta: kcal grandi, grammi e quota sulle calorie di ogni macro
+function riquadroMacro(r) {
+  const m = macroDi(r);
+  if (!m) return '';
+  return `
+    <section class="riquadro valori" aria-label="Valori per porzione">
+      <div class="titolo-riga"><b>Per porzione${m.porzioni ? ` <span class="meta">· 1 di ${m.porzioni}</span>` : ''}</b><span class="kcal">${m.kcal} <small>kcal</small></span></div>
+      <div class="colonne">${MACRO.map(([k, nome], i) => `
+        <div><b class="${k}">${m[k]}<small> g</small></b><span class="traccia"><i class="${k}" style="width: ${m.quote[i]}%"></i></span><span class="meta">${nome[0].toUpperCase() + nome.slice(1)} · ${m.quote[i]}%</span></div>`).join('')}
+      </div>
+      <p class="nota">Stima dagli ingredienti; la percentuale è sulle calorie.</p>
+    </section>`;
+}
+
 function dettaglioRicetta(r) {
   if (!r) { ricettaAperta = null; return VISTE.ricette(); }
   const yt = youtubeId(r.video);
@@ -294,6 +323,7 @@ function dettaglioRicetta(r) {
     ${r.foto_credito ? `<p class="credito">Foto: ${esc(r.foto_credito)}</p>` : ''}
     <h1>${esc(r.titolo)}</h1>
     <p class="meta">${[r.categoria, ...etichetteDi(r).map(e => ETICHETTE[e]), ing.length && `${ing.length} ingredienti`, pas.length && `${pas.length} passaggi`].filter(Boolean).map(esc).join(' · ')}</p>
+    ${riquadroMacro(r)}
     ${yt ? `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${yt}" title="Video" allowfullscreen loading="lazy"></iframe></div>` : ''}
     ${ing.length ? `
       <div class="titolo-riga"><h2>Mise en place</h2><span class="meta" id="pronti" role="status">${pronti} su ${ing.length} pronti</span></div>
@@ -433,6 +463,9 @@ function moduloRicetta(r = {}) {
     <fieldset class="gruppo interruttori"><legend>Etichette</legend>
       ${Object.entries(ETICHETTE).map(([k, nome]) => `<label><span>${nome}</span><input type="checkbox" switch name="etichette" value="${k}" ${etichetteDi(r).includes(k) ? 'checked' : ''}></label>`).join('')}
     </fieldset>
+    <fieldset class="numeri"><legend>Per porzione (stima)</legend>
+      ${[['porzioni', 'Porzioni'], ['kcal', 'Kcal'], ['proteine', 'Proteine g'], ['carboidrati', 'Carbo g'], ['grassi', 'Grassi g']].map(([k, nome]) => `<label>${nome}<input name="${k}" type="number" inputmode="numeric" min="${k === 'porzioni' ? 1 : 0}" step="1" value="${r[k] ?? ''}"></label>`).join('')}
+    </fieldset>
     <label>Ingredienti (uno per riga, es. «320 g riso Carnaroli»)<textarea name="ingredienti" rows="6">${esc(r.ingredienti)}</textarea></label>
     <label>Procedimento (un passaggio per riga: «18 minuti» diventa un timer)<textarea name="procedimento" rows="8">${esc(r.procedimento)}</textarea></label>
     <label>Link video YouTube<input name="video" type="url" value="${esc(r.video)}" placeholder="https://youtu.be/…"></label>
@@ -445,6 +478,7 @@ function moduloRicetta(r = {}) {
       titolo: f.titolo.value.trim(),
       categoria: f.categoria.value.trim(),
       etichette: [...f.querySelectorAll('[name=etichette]:checked')].map(c => c.value).join(','),
+      ...Object.fromEntries(['porzioni', 'kcal', 'proteine', 'carboidrati', 'grassi'].map(k => [k, f[k].value === '' ? null : +f[k].value])),
       ingredienti: f.ingredienti.value.trim(),
       procedimento: f.procedimento.value.trim(),
       video: f.video.value.trim(),
@@ -595,6 +629,11 @@ async function salvaProposta(p, titolo, categoria) {
     video: '',
     foto,
     foto_credito: foto ? CREDITO_AI : '',
+    porzioni: p.porzioni ?? null,
+    kcal: p.kcal ?? null,
+    proteine: p.proteine ?? null,
+    carboidrati: p.carboidrati ?? null,
+    grassi: p.grassi ?? null,
   });
   vista = 'ricette';
   ricettaAperta = id;
@@ -617,7 +656,7 @@ async function chiediAlloChef(form) {
       <article class="riquadro">
         <h2>${esc(p.titolo)}</h2>
         <p>${esc(p.descrizione)}</p>
-        <p class="meta">${esc(p.tempo)}</p>
+        <p class="meta">${[p.tempo, p.kcal && `${p.kcal} kcal a porzione`].filter(Boolean).map(esc).join(' · ')}</p>
         <h3>Ingredienti</h3><ul>${p.ingredienti.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
         <h3>Procedimento</h3><ol>${p.passaggi.map(i => `<li>${esc(i)}</li>`).join('')}</ol>
         <h3>Impiattamento</h3><p>${esc(p.impiattamento)}</p>

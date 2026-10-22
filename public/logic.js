@@ -51,6 +51,14 @@ const righe = t => String(t || '').split('\n').map(r => r.trim()).filter(Boolean
 export const ETICHETTE = { fit: 'Fit', vegetariana: 'Vegetariana' };
 export const etichetteDi = r => String(r?.etichette || '').split(',').filter(e => e in ETICHETTE);
 
+// valori per porzione; quote = parte delle calorie dei tre macro (4, 4 e 9 kcal/g), per la barra
+export function macroDi(r) {
+  if (r?.kcal == null) return null;
+  const [p, c, g] = [r.proteine ?? 0, r.carboidrati ?? 0, r.grassi ?? 0];
+  const tot = p * 4 + c * 4 + g * 9 || 1;
+  return { kcal: r.kcal, porzioni: r.porzioni, p, c, g, quote: [p * 4 / tot, c * 4 / tot, g * 9 / tot].map(x => Math.round(x * 100)) };
+}
+
 export const CATEGORIE = ['Cocktail', 'Colazione', 'Antipasti', 'Primi', 'Secondi', 'Sottovuoto', 'Pizza', 'Hamburger', 'Dolci'];
 
 // [[categoria, ricette]] nell'ordine di un menu; le categorie nuove in ordine alfabetico, "Altre" in fondo

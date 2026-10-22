@@ -49,7 +49,11 @@ export const validaRicetta: Valida = (b) => {
   const scelte = (b.etichette ?? '').split(',').map((e: string) => e.trim()).filter(Boolean);
   if (scelte.some((e: string) => !ETICHETTE.includes(e))) return 'Etichette non valide.';
   const etichette = ETICHETTE.filter((e) => scelte.includes(e)).join(',');
-  return { titolo, categoria, etichette, ingredienti, procedimento, video, foto, foto_credito: foto ? foto_credito : '' };
+  // valori per porzione: interi o vuoti
+  const numero = (v: unknown, max: number) => (v == null || v === '' ? null : Number.isInteger(v) && (v as number) >= 0 && (v as number) <= max ? (v as number) : undefined);
+  const macro = { porzioni: numero(b.porzioni, 50), kcal: numero(b.kcal, 10000), proteine: numero(b.proteine, 1000), carboidrati: numero(b.carboidrati, 1000), grassi: numero(b.grassi, 1000) };
+  if (Object.values(macro).includes(undefined) || macro.porzioni === 0) return 'Valori per porzione non validi.';
+  return { titolo, categoria, etichette, ...(macro as Record<string, number | null>), ingredienti, procedimento, video, foto, foto_credito: foto ? foto_credito : '' };
 };
 
 export function raccolta(tabella: 'diario' | 'ricette', valida: Valida, ordine: string) {
