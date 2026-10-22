@@ -1,5 +1,5 @@
 // Alzare VERSION a ogni modifica dei file qui sotto: forza la reinstallazione con i file nuovi.
-const VERSION = 'v16';
+const VERSION = 'v17';
 const CACHE = `chez-moi-${VERSION}`;
 const SHELL = ['/', '/index.html', '/style.css', '/app.js', '/logic.js', '/sfide.js', '/manifest.webmanifest',
   '/icon.svg', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png'];
