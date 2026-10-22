@@ -39,7 +39,10 @@ h1 { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.1
 h2 { font-size: 1.2rem; font-weight: 700; margin: 24px 0 10px; }
 h3 { font-size: 1rem; font-weight: 600; margin: 16px 0 4px; }
 a { color: var(--accento); }
-img { display: block; width: 100%; border-radius: 16px; }
+img { display: block; width: 100%; border-radius: 16px; background: var(--carta); }
+/* finché la foto non arriva resta il riquadro color carta, poi compare (app.js aggiunge .arrivata) */
+main img:not(.arrivata) { opacity: 0; }
+@media (prefers-reduced-motion: no-preference) { main img { transition: opacity .2s ease-out; } }
 .ico { width: 1.2em; height: 1.2em; flex: none; }
 
 .riquadro { display: block; background: var(--carta); border-radius: 20px; padding: 14px 16px; margin: 14px 0; }
@@ -194,13 +197,21 @@ input:not([type=checkbox]), textarea, select {
   border-radius: 10px;
 }
 #cerca { margin: 12px 0 0; }
+
+/* ricettario: filtri per categoria e griglia di foto su due colonne */
+.filtri { display: flex; gap: 8px; margin: 12px -16px 0; padding: 0 16px 4px; overflow-x: auto; scrollbar-width: none; }
+.filtri::-webkit-scrollbar { display: none; }
+.chip { flex: none; min-height: 36px; margin: 0; padding: 0 14px; border-radius: 18px; background: var(--carta); color: var(--testo); font-weight: 500; }
+.chip[aria-pressed=true] { background: var(--accento); color: var(--su-accento); font-weight: 600; }
+.griglia { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 18px 14px; }
+.scheda { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 4px; margin: 0; padding: 0; background: none; color: var(--testo); font-weight: 400; text-align: left; }
+.scheda img, .senza-foto { aspect-ratio: 1; object-fit: cover; margin-bottom: 4px; }
+.senza-foto { display: block; border-radius: 16px; background: var(--carta); }
+.scheda b { font-size: .95rem; font-weight: 600; line-height: 1.25; }
+.scheda .meta { font-size: .8rem; }
+.scheda[hidden] { display: none; }
 :focus-visible { outline: 3px solid var(--accento); outline-offset: 2px; }
 fieldset { border: 0; padding: 0; margin: 0; }
-
-.lista { list-style: none; margin: 0; padding: 0; background: var(--carta); border-radius: 16px; overflow: hidden; }
-.lista li + li { border-top: .5px solid var(--separatore); }
-.lista button { width: 100%; justify-content: space-between; margin: 0; border-radius: 0; background: none; color: var(--testo); font-weight: 400; text-align: left; }
-.lista button::after { content: '›'; color: var(--secondario); font-size: 1.4rem; }
 
 .video { position: relative; aspect-ratio: 16 / 9; margin: 12px 0; }
 .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 16px; }

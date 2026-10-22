@@ -60,6 +60,21 @@ describe('ricette e foto', () => {
     expect(await env.FOTO.get(b)).toBeNull();
   });
 
+  it('serve la miniatura con ?mini, la foto intera se manca, e le cancella insieme', async () => {
+    const { foto } = await (await call('/api/foto', { method: 'POST', body: JPEG })).json<{ foto: string }>();
+    const MINI = new Uint8Array([0xff, 0xd8, 0xff, 0xe1]);
+    expect(new Uint8Array(await (await call(`/api/${foto}?mini`)).arrayBuffer())).toEqual(JPEG);
+    expect((await call(`/api/${foto}/mini`, { method: 'POST', body: MINI })).status).toBe(200);
+    expect(new Uint8Array(await (await call(`/api/${foto}?mini`)).arrayBuffer())).toEqual(MINI);
+    expect((await call(`/api/foto/${id()}/mini`, { method: 'POST', body: MINI })).status).toBe(404);
+    expect((await call(`/api/${foto}/mini`, { method: 'POST', body: '<svg>' })).status).toBe(400);
+
+    const k = id();
+    await call(`/api/ricette/${k}`, json('PUT', { titolo: 'x', foto }));
+    await call(`/api/ricette/${k}`, { method: 'DELETE' });
+    expect(await env.FOTO.get(foto.replace('foto/', 'mini/'))).toBeNull();
+  });
+
   it('salva la categoria, vuota se manca', async () => {
     const k = id();
     await call(`/api/ricette/${k}`, json('PUT', { titolo: 'Gazpacho', categoria: 'Antipasti' }));

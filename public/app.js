@@ -43,7 +43,8 @@ const stelle = n => '★'.repeat(n) + '☆'.repeat(5 - n);
 const nomeMese = ym => new Date(ym + '-15').toLocaleDateString('it-IT', { month: 'long', year: ym.slice(0, 4) === oggi().slice(0, 4) ? undefined : 'numeric' });
 const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
-const fotoUrl = chiave => `/api/${chiave}`;
+// mini: la miniatura da ~640 px per griglie e muro
+const fotoUrl = (chiave, mini) => `/api/${chiave}${mini ? '?mini' : ''}`;
 
 const ICONE = {
   indietro: '<path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
@@ -59,10 +60,10 @@ const quadrante = (t, etichetta) => `
     <b>${t}°</b><span>${esc(etichetta)}</span>
   </div>`;
 
-// riduce le foto del telefono (5–10 MB) a ~300 KB
-async function riduci(file) {
+// riduce le foto del telefono (5–10 MB) a ~150 KB, la miniatura a ~40 KB
+async function riduci(file, lato = 1200) {
   const img = await createImageBitmap(file);
-  const k = Math.min(1, 1600 / Math.max(img.width, img.height));
+  const k = Math.min(1, lato / Math.max(img.width, img.height));
   const c = document.createElement('canvas');
   c.width = Math.round(img.width * k);
   c.height = Math.round(img.height * k);
@@ -72,13 +73,17 @@ async function riduci(file) {
 
 async function fotoDaForm(form, vecchia) {
   const f = form.foto.files[0];
-  return f ? (await api('POST', 'foto', await riduci(f))).foto : vecchia ?? null;
+  if (!f) return vecchia ?? null;
+  const { foto } = await api('POST', 'foto', await riduci(f));
+  await api('POST', `${foto}/mini`, await riduci(f, 640)).catch(() => {}); // senza miniatura si vede la foto intera
+  return foto;
 }
 
 // ---------- navigazione ----------
 
 let vista = 'sfida';
 let ricettaAperta = null;
+let filtro = ''; // categoria scelta nel ricettario, '' = tutte
 let cucina = null; // { id, passo } in modalità cucina
 // spunte della mise en place: valgono finché l'app resta aperta
 const spunte = new Set();
@@ -170,21 +175,31 @@ const VISTE = {
         <h2 class="sezione">${esc(nomeMese(ym))}</h2>
         <div class="muro">${xs.map(d => `
           <button class="tessera" data-az="diario-modifica" data-id="${d.id}" aria-label="${esc(d.piatto)}, ${d.voto} su 5">
-            ${d.foto ? `<img src="${fotoUrl(d.foto)}" alt="" loading="lazy">` : ''}
+            ${d.foto ? `<img src="${fotoUrl(d.foto, true)}" alt="" loading="lazy">` : ''}
             <span>${esc(d.piatto)}</span>
           </button>`).join('')}</div>`).join('')}`;
   },
 
   async ricette() {
     if (ricettaAperta) return dettaglioRicetta(await uno('ricette', ricettaAperta));
-    const r = await tutti('ricette');
+    const gruppi = perCategoria(await tutti('ricette'));
+    if (!gruppi.some(([c]) => c === filtro)) filtro = '';
     return `
       <div class="titolo-riga"><h1>Ricette</h1><button class="tondo" data-az="ricetta-nuova" aria-label="Nuova ricetta">${icona('piu')}</button></div>
-      ${r.length ? '<input type="search" id="cerca" placeholder="Cerca…" aria-label="Cerca ricetta">' : '<p class="nota">Nessuna ricetta. Scrivine una o fattela proporre dallo Chef.</p>'}
-      ${perCategoria(r).map(([c, xs]) => `
-        <section class="categoria">
+      ${gruppi.length ? `
+        <input type="search" id="cerca" placeholder="Cerca…" aria-label="Cerca ricetta">
+        <div class="filtri">${[['', 'Tutte'], ...gruppi.map(([c]) => [c, c])].map(([c, nome]) => `<button class="chip" data-az="ricette-filtro" data-id="${esc(c)}" aria-pressed="${c === filtro}">${esc(nome)}</button>`).join('')}</div>`
+      : '<p class="nota">Nessuna ricetta. Scrivine una o fattela proporre dallo Chef.</p>'}
+      ${gruppi.map(([c, xs]) => `
+        <section class="categoria" data-categoria="${esc(c)}"${filtro && c !== filtro ? ' hidden' : ''}>
           <h2 class="sezione">${esc(c)}</h2>
-          <ul class="lista">${xs.map(x => `<li><button data-az="ricetta-apri" data-id="${x.id}">${esc(x.titolo)}</button></li>`).join('')}</ul>
+          <div class="griglia">${xs.map(x => {
+            const n = passaggi(x.procedimento).length;
+            return `<button class="scheda" data-az="ricetta-apri" data-id="${x.id}">
+              ${x.foto ? `<img src="${fotoUrl(x.foto, true)}" alt="" loading="lazy">` : '<span class="senza-foto" aria-hidden="true"></span>'}
+              <b>${esc(x.titolo)}</b>${n ? `<span class="meta">${n} passaggi</span>` : ''}
+            </button>`;
+          }).join('')}</div>
         </section>`).join('')}`;
   },
 
@@ -441,6 +456,12 @@ const AZIONI = {
     disegna();
   },
   'chef-altra': () => $('#chef-form').requestSubmit(),
+  'ricette-filtro': c => {
+    filtro = c;
+    $('#cerca').value = '';
+    document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === c));
+    document.querySelectorAll('.categoria').forEach(s => { s.hidden = !!c && s.dataset.categoria !== c; s.querySelectorAll('.scheda').forEach(x => { x.hidden = false; }); });
+  },
 };
 
 document.addEventListener('click', e => {
@@ -456,12 +477,16 @@ document.addEventListener('change', e => {
 document.addEventListener('input', e => {
   if (e.target.id !== 'cerca') return;
   const q = e.target.value.toLowerCase();
+  // la ricerca guarda in tutte le categorie, il filtro torna quando il campo si svuota
   document.querySelectorAll('.categoria').forEach(s => {
-    const li = [...s.querySelectorAll('li')];
-    li.forEach(x => { x.hidden = !x.textContent.toLowerCase().includes(q); });
-    s.hidden = li.every(x => x.hidden);
+    const schede = [...s.querySelectorAll('.scheda')];
+    schede.forEach(x => { x.hidden = !x.querySelector('b').textContent.toLowerCase().includes(q); });
+    s.hidden = schede.every(x => x.hidden) || (!q && filtro && s.dataset.categoria !== filtro);
   });
 });
+
+// le foto compaiono con una dissolvenza quando sono arrivate (load non risale: serve la cattura)
+document.addEventListener('load', e => { if (e.target.tagName === 'IMG') e.target.classList.add('arrivata'); }, true);
 
 document.addEventListener('submit', async e => {
   if (e.target.id === 'imp-form') {
