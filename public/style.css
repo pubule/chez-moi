@@ -18,6 +18,8 @@
 
 /* segue la dimensione del testo scelta in Impostazioni > Schermo su iPhone */
 html { font: -apple-system-body; }
+/* niente zoom col doppio tocco (iOS ritarda i tap per aspettarlo); il pizzico per ingrandire resta */
+html { touch-action: manipulation; }
 @supports not (font: -apple-system-body) { html { font-size: 17px; } }
 
 * { box-sizing: border-box; }
