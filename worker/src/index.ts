@@ -11,6 +11,7 @@ export type Env = {
   ACCESS_AUD: string;
   ALLOWED_EMAIL: string;
   ANTHROPIC_API_KEY?: string;
+  AI: Ai;
   DEV_EMAIL?: string;
 };
 

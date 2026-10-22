@@ -13,6 +13,7 @@
   "r2_buckets": [
     { "binding": "FOTO", "bucket_name": "chez-moi-foto" }
   ],
+  "ai": { "binding": "AI" },
   "vars": {
     "ACCESS_TEAM": "smartcores",
     "ACCESS_AUD": "38c4ee6c6c6adaa2fb2caa6d9aabc303ac1a822efee25f8fdb8f09b1b5f75778"

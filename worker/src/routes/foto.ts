@@ -36,6 +36,39 @@ fotoRoutes.post('/', async (c) => {
   return (await salvaImmagine(c, chiave)) ?? c.json({ foto: chiave });
 });
 
+// Foto generata con Workers AI. La quota gratuita (10.000 neuroni al giorno, ~95 a foto) è dell'account
+// e la usano anche radar-eventi e calice: da qui il tetto, che lascia loro margine.
+export const LIMITE_FOTO_AI = 25;
+const STILE = 'Professional editorial food photography for a fine dining cookbook, dark moody background of slate and walnut, ' +
+  'soft natural side light, 50mm lens, shallow depth of field, appetizing, photorealistic, no text, no people';
+
+fotoRoutes.post('/genera', async (c) => {
+  const b = await c.req.json().catch(() => null);
+  const descrizione = typeof b?.descrizione === 'string' ? b.descrizione.trim() : '';
+  if (!descrizione || descrizione.length > 600) return c.json({ error: 'Descrizione del piatto non valida.' }, 400);
+
+  const giorno = `foto:${new Date().toISOString().slice(0, 10)}`;
+  const uso = await c.env.DB.prepare('insert into ai_usage (giorno, n) values (?, 1) on conflict(giorno) do update set n = n + 1 returning n')
+    .bind(giorno).first<{ n: number }>();
+  if (uso!.n > LIMITE_FOTO_AI) return c.json({ error: `Oggi hai già generato ${LIMITE_FOTO_AI} foto: riprova domani.` }, 429);
+
+  let immagine: string;
+  try {
+    ({ image: immagine } = (await c.env.AI.run('@cf/black-forest-labs/flux-1-schnell', { prompt: `${descrizione}. ${STILE}`, steps: 4 })) as { image: string });
+  } catch (err) {
+    // 4006: quota gratuita dell'account finita; sul piano Free Cloudflare rifiuta invece di addebitare
+    if (String(err).includes('4006')) return c.json({ error: 'La quota AI gratuita di Cloudflare per oggi è finita: riprova dopo le 2 di notte.' }, 429);
+    console.error('foto ai', String(err));
+    return c.json({ error: 'La foto non è stata generata. Riprova tra poco.' }, 502);
+  }
+  const byte = Uint8Array.from(atob(immagine), (x) => x.charCodeAt(0));
+  const tipo = tipoImmagine(byte);
+  if (!tipo) return c.json({ error: 'La foto generata non è valida. Riprova.' }, 502);
+  const chiave = `foto/${crypto.randomUUID()}`;
+  await c.env.FOTO.put(chiave, byte, { httpMetadata: { contentType: tipo } });
+  return c.json({ foto: chiave });
+});
+
 // la miniatura arriva dopo la foto e solo per una foto che esiste
 fotoRoutes.post('/:id/mini', async (c) => {
   const chiave = `foto/${c.req.param('id')}`;

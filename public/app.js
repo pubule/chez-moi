@@ -77,6 +77,11 @@ async function riduci(file, lato = 1200) {
   return new Promise(ok => c.toBlob(ok, 'image/jpeg', 0.82));
 }
 
+// foto generata con Workers AI sul server (tetto giornaliero lì); la descrizione è titolo + ingredienti principali
+const CREDITO_AI = 'immagine generata con AI (FLUX, Workers AI)';
+const generaFoto = (titolo, ingr) =>
+  api('POST', 'foto/genera', { descrizione: `${titolo}. ${ingredienti(ingr).slice(0, 8).map(x => x.nome).join(', ')}`.slice(0, 600) }).then(r => r.foto);
+
 async function fotoDaForm(form, vecchia) {
   const f = form.foto.files[0];
   if (!f) return vecchia ?? null;
@@ -132,7 +137,9 @@ const VISTE = {
     const diario = await tutti('diario');
     const fatte = diario.filter(d => d.sfida).length;
     const giaFatta = diario.some(d => d.sfida === s.titolo && d.settimana === w);
-    const foto = diario.find(d => d.sfida === s.titolo && d.foto)?.foto;
+    // la tua foto della sfida, altrimenti quella di esempio
+    const foto = diario.find(d => d.sfida === s.titolo && d.foto)?.foto ?? s.foto;
+    const ricettaSfida = (await tutti('ricette')).find(r => r.titolo === s.titolo);
     return `
       <section class="hero${foto ? ' con-foto' : ''}"${foto ? ` style="background-image: linear-gradient(rgb(18 18 18 / .05), rgb(18 18 18 / .9)), url('${fotoUrl(foto)}')"` : ''}>
         <div>
@@ -148,6 +155,8 @@ const VISTE = {
       </fieldset>
       <p><a class="link" href="https://www.youtube.com/results?search_query=${encodeURIComponent(s.cerca)}" target="_blank" rel="noopener">${icona('play')} Guarda come si fa</a></p>
       ${giaFatta ? '<p class="fatta">✓ Fatta questa settimana</p>' : '<button class="primario" data-az="sfida-fatta">L’ho fatta: aggiungi al diario</button>'}
+      ${ricettaSfida ? `<button class="secondario" data-az="ricetta-apri" data-id="${ricettaSfida.id}">Apri la ricetta</button>` : '<button class="secondario" data-az="sfida-ricetta">Aggiungi alle mie ricette</button>'}
+      <p class="nota" id="sfida-stato" role="status"></p>
       <button class="secondario" data-az="sfida-cambia">Cambia sfida</button>
       <p class="nota">Sfide completate in tutto: <strong>${fatte}</strong></p>`;
   },
@@ -287,8 +296,10 @@ function dettaglioRicetta(r) {
     <button class="secondario" data-az="ricetta-cucinata" data-id="${r.id}">L’ho cucinata: aggiungi al diario</button>
     <div class="azioni-riga">
       <button class="testuale" data-az="ricetta-modifica" data-id="${r.id}">Modifica</button>
+      <button class="testuale" data-az="ricetta-foto-ai" data-id="${r.id}">${r.foto ? 'Nuova foto AI' : 'Genera foto AI'}</button>
       <button class="testuale pericolo" data-az="ricetta-elimina" data-id="${r.id}">Elimina</button>
-    </div>`;
+    </div>
+    <p class="nota" id="foto-ai-stato" role="status"></p>`;
 }
 
 // ---------- modalità cucina: timer e schermo acceso ----------
@@ -429,7 +440,7 @@ const AZIONI = {
   'diario-modifica': async id => moduloDiario(await uno('diario', id)),
   'diario-elimina': async id => { if (confirm('Eliminare questo piatto dal diario?')) { await elimina('diario', id); $('#modulo').close(); disegna(); } },
   'ricetta-nuova': () => moduloRicetta(),
-  'ricetta-apri': id => { ricettaAperta = id; disegna(); },
+  'ricetta-apri': id => { vista = 'ricette'; ricettaAperta = id; disegna(); },
   'ricetta-indietro': () => { ricettaAperta = null; disegna(); },
   'ricetta-modifica': async id => moduloRicetta(await uno('ricette', id)),
   'ricetta-elimina': async id => { if (confirm('Eliminare questa ricetta?')) { await elimina('ricette', id); ricettaAperta = null; disegna(); } },
@@ -446,21 +457,35 @@ const AZIONI = {
   'cucina-finito': async () => { esciDaCucina(); await disegna(); AZIONI['ricetta-cucinata'](cucina.id); },
   timer: (min, b) => avviaTimer(+min, b),
   riprova: () => disegna(),
-  'chef-salva': async () => {
-    const r = ultimaProposta;
-    const id = nuovoId();
-    await salva('ricette', {
-      id,
-      titolo: r.titolo,
-      categoria: 'Dallo Chef',
-      ingredienti: r.ingredienti.join('\n'),
-      procedimento: [...r.passaggi, `Impiattamento: ${r.impiattamento}`].join('\n'),
-      video: '',
-      foto: null,
-    });
-    vista = 'ricette';
-    ricettaAperta = id;
-    disegna();
+  'chef-salva': async (_, b) => {
+    b.disabled = true;
+    b.textContent = 'Salvo e genero la foto…';
+    await salvaProposta(ultimaProposta, ultimaProposta.titolo, 'Dallo Chef').catch(err => { b.textContent = `Errore: ${err.message}`; b.disabled = false; });
+  },
+  'sfida-ricetta': async (_, b) => {
+    const s = sfidaCorrente();
+    b.disabled = true;
+    $('#sfida-stato').textContent = 'Lo chef scrive la ricetta della sfida, poi genero la foto: meno di un minuto.';
+    try {
+      const p = await api('POST', 'chef', { ingredienti: s.mise.join(', '), richiesta: `Ricetta completa per la sfida "${s.titolo}": ${s.testo}`.slice(0, 500), attrezzi: s.attrezzi.map(a => ATTREZZI[a]) });
+      await salvaProposta(p, s.titolo, 'Sfide');
+    } catch (err) {
+      $('#sfida-stato').textContent = `Errore: ${err.message}`;
+      b.disabled = false;
+    }
+  },
+  'ricetta-foto-ai': async (id, b) => {
+    const r = await uno('ricette', id);
+    if (r.foto && r.foto_credito !== CREDITO_AI && !confirm('Sostituire la foto attuale con una generata?')) return;
+    b.disabled = true;
+    $('#foto-ai-stato').textContent = 'Genero la foto: circa 10 secondi.';
+    try {
+      await salva('ricette', { ...r, foto: await generaFoto(r.titolo, r.ingredienti), foto_credito: CREDITO_AI });
+      disegna();
+    } catch (err) {
+      $('#foto-ai-stato').textContent = `Errore: ${err.message}`;
+      b.disabled = false;
+    }
   },
   'chef-altra': () => $('#chef-form').requestSubmit(),
   'ricette-filtro': c => {
@@ -512,6 +537,26 @@ document.addEventListener('submit', async e => {
 // ---------- Chef AI ----------
 
 let ultimaProposta = null;
+
+// salva una proposta dello Chef nel ricettario con una foto AI; senza foto se la generazione fallisce (es. quota finita)
+async function salvaProposta(p, titolo, categoria) {
+  const ingr = p.ingredienti.join('\n');
+  const foto = await generaFoto(titolo, ingr).catch(() => null);
+  const id = nuovoId();
+  await salva('ricette', {
+    id,
+    titolo,
+    categoria,
+    ingredienti: ingr,
+    procedimento: [...p.passaggi, `Impiattamento: ${p.impiattamento}`].join('\n'),
+    video: '',
+    foto,
+    foto_credito: foto ? CREDITO_AI : '',
+  });
+  vista = 'ricette';
+  ricettaAperta = id;
+  disegna();
+}
 
 async function chiediAlloChef(form) {
   const esito = $('#chef-esito');

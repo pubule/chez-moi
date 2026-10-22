@@ -2,6 +2,7 @@ import { env } from 'cloudflare:test';
 import { describe, expect, it } from 'vitest';
 import { app } from '../src/index';
 import { creaRicetta, LIMITE_GIORNO, Rifiuto } from '../src/routes/chef';
+import { LIMITE_FOTO_AI } from '../src/routes/foto';
 
 const call = (path: string, init: RequestInit = {}, over: Record<string, unknown> = {}) => app.request(path, init, { ...env, ...over });
 const json = (method: string, body: unknown): RequestInit => ({ method, headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
@@ -102,6 +103,39 @@ describe('ricette e foto', () => {
 
   it('non serve file fuori da foto/', async () => {
     expect((await call('/api/foto/..%2Fbackups')).status).toBe(404);
+  });
+});
+
+describe('foto con AI', () => {
+  const genera = (corpo: unknown, AI: unknown) => call('/api/foto/genera', json('POST', corpo), { AI });
+  const aiOk = (byte: Uint8Array) => ({ run: async () => ({ image: btoa(String.fromCharCode(...byte)) }) });
+
+  it('salva in R2 la foto generata', async () => {
+    let chiesto: any;
+    const AI = { run: async (m: string, p: any) => { chiesto = { m, p }; return { image: btoa(String.fromCharCode(...JPEG)) }; } };
+    const r = await genera({ descrizione: 'Risotto alla milanese' }, AI);
+    const { foto } = await r.json<{ foto: string }>();
+    expect(foto).toMatch(/^foto\//);
+    expect(chiesto.m).toBe('@cf/black-forest-labs/flux-1-schnell');
+    expect(chiesto.p.prompt).toContain('Risotto alla milanese');
+    expect(new Uint8Array(await (await env.FOTO.get(foto))!.arrayBuffer())).toEqual(JPEG);
+  });
+
+  it('rifiuta descrizioni vuote e immagini non valide', async () => {
+    expect((await genera({ descrizione: ' ' }, aiOk(JPEG))).status).toBe(400);
+    expect((await genera({ descrizione: 'x'.repeat(601) }, aiOk(JPEG))).status).toBe(400);
+    expect((await genera({ descrizione: 'x' }, aiOk(new TextEncoder().encode('<svg>')))).status).toBe(502);
+  });
+
+  it('quota di Cloudflare finita: 429 con un messaggio chiaro', async () => {
+    const AI = { run: async () => { throw new Error('AiError: 4006: you have used up your daily free allocation'); } };
+    expect((await genera({ descrizione: 'x' }, AI)).status).toBe(429);
+  });
+
+  it('si ferma oltre il tetto giornaliero', async () => {
+    const giorno = `foto:${new Date().toISOString().slice(0, 10)}`;
+    await env.DB.prepare('insert or replace into ai_usage (giorno, n) values (?, ?)').bind(giorno, LIMITE_FOTO_AI).run();
+    expect((await genera({ descrizione: 'x' }, aiOk(JPEG))).status).toBe(429);
   });
 });
 
