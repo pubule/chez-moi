@@ -59,7 +59,7 @@ export function macroDi(r) {
   return { kcal: r.kcal, porzioni: r.porzioni, p, c, g, quote: [p * 4 / tot, c * 4 / tot, g * 9 / tot].map(x => Math.round(x * 100)) };
 }
 
-export const CATEGORIE = ['Cocktail', 'Colazione', 'Antipasti', 'Primi', 'Secondi', 'Sottovuoto', 'Pizza', 'Hamburger', 'Dolci'];
+export const CATEGORIE = ['Cocktail', 'Colazione', 'Antipasti', 'Primi', 'Secondi', 'Sottovuoto', 'Pizza', 'Hamburger', 'Salse', 'Dolci'];
 
 // [[categoria, ricette]] nell'ordine di un menu; le categorie nuove in ordine alfabetico, "Altre" in fondo
 export function perCategoria(ricette) {

@@ -19,6 +19,8 @@ for (const r of ricette) {
   const m = macro[r.t];
   // valori per porzione solo dove mancano: non sovrascrive quelli corretti a mano
   if (m) console.log(`update ricette set porzioni = ${m[0]}, kcal = ${m[1]}, proteine = ${m[2]}, carboidrati = ${m[3]}, grassi = ${m[4]} where id = ${q(id(r.t))} and kcal is null;`);
+  // categoria spostata dopo il primo caricamento
+  if (r.t === 'Salsa per fritto con maionese e capperi') console.log(`update ricette set categoria = 'Salse' where id = ${q(id(r.t))} and categoria = 'Antipasti';`);
   const f = foto[r.t];
   if (f) console.log(`update ricette set foto = ${q(f.foto)}, foto_credito = ${q(f.credito)} where id = ${q(id(r.t))} and foto is null;`);
 }
