@@ -106,7 +106,7 @@ let vista = 'sfida';
 let ricettaAperta = null;
 let filtro = ''; // categoria scelta nel ricettario, '' = tutte
 const etichetteScelte = new Set(); // fit, vegetariana: si sommano alla categoria
-let cucina = null; // { id, passo } in modalità cucina
+let cucina = null; // { id, passo } in modalità cucina; { sfida: true, passo } per la sfida della settimana
 // spunte della mise en place: valgono finché l'app resta aperta
 const spunte = new Set();
 
@@ -121,7 +121,7 @@ document.querySelector('nav').addEventListener('click', e => {
 let giro = 0;
 async function disegna() {
   const mio = ++giro;
-  document.querySelectorAll('nav [data-vista]').forEach(b => b.setAttribute('aria-current', b.dataset.vista === (vista === 'cucina' ? 'ricette' : vista)));
+  document.querySelectorAll('nav [data-vista]').forEach(b => b.setAttribute('aria-current', b.dataset.vista === (vista === 'cucina' ? (cucina.sfida ? 'sfida' : 'ricette') : vista)));
   document.body.classList.toggle('in-cucina', vista === 'cucina');
   let html;
   try { html = await VISTE[vista](); }
@@ -169,7 +169,8 @@ const VISTE = {
         ${s.mise.map((m, i) => `<label><input type="checkbox" data-spunta="${w}:${i}" ${spunte.has(`${w}:${i}`) ? 'checked' : ''}><span>${esc(m)}</span></label>`).join('')}
       </fieldset>
       <p><a class="link" href="https://www.youtube.com/results?search_query=${encodeURIComponent(s.cerca)}" target="_blank" rel="noopener">${icona('play')} Guarda come si fa</a></p>
-      ${giaFatta ? '<p class="fatta">✓ Fatta questa settimana</p>' : '<button class="primario" data-az="sfida-fatta">L’ho fatta: aggiungi al diario</button>'}
+      <button class="primario" data-az="cucina-sfida">${icona('play')} Modalità cucina</button>
+      ${giaFatta ? '<p class="fatta">✓ Fatta questa settimana</p>' : '<button class="secondario" data-az="sfida-fatta">L’ho fatta: aggiungi al diario</button>'}
       ${ricettaSfida ? `<button class="secondario" data-az="ricetta-apri" data-id="${ricettaSfida.id}">Apri la ricetta</button>` : '<button class="secondario" data-az="sfida-ricetta">Aggiungi alle mie ricette</button>'}
       <p class="nota" id="sfida-stato" role="status"></p>
       <button class="secondario" data-az="sfida-cambia">Cambia sfida</button>
@@ -237,9 +238,9 @@ const VISTE = {
   },
 
   async cucina() {
-    const r = await uno('ricette', cucina.id);
+    const r = cucina.sfida ? { titolo: sfidaCorrente().titolo, procedimento: sfidaCorrente().passi.join('\n') } : await uno('ricette', cucina.id);
     const pas = passaggi(r?.procedimento);
-    if (!pas.length) { vista = 'ricette'; return VISTE.ricette(); }
+    if (!pas.length) { vista = cucina.sfida ? 'sfida' : 'ricette'; return VISTE[vista](); }
     const i = Math.min(cucina.passo, pas.length - 1);
     const min = minuti(pas[i]);
     return `
@@ -396,6 +397,7 @@ function avviaTimer(min, bottone) {
 function esciDaCucina() {
   fermaTimer();
   rilascia();
+  if (cucina.sfida) { vista = 'sfida'; return; }
   vista = 'ricette';
   ricettaAperta = cucina.id;
 }
@@ -521,7 +523,8 @@ const AZIONI = {
   'cucina-apri': async id => { cucina = { id, passo: 0 }; vista = 'cucina'; await disegna(); tieniAcceso(); },
   'cucina-passo': d => { fermaTimer(); cucina.passo = Math.max(0, cucina.passo + +d); disegna(); },
   'cucina-fine': () => { esciDaCucina(); disegna(); },
-  'cucina-finito': async () => { esciDaCucina(); await disegna(); AZIONI['ricetta-cucinata'](cucina.id); },
+  'cucina-finito': async () => { esciDaCucina(); await disegna(); cucina.sfida ? AZIONI['sfida-fatta']() : AZIONI['ricetta-cucinata'](cucina.id); },
+  'cucina-sfida': async () => { cucina = { sfida: true, passo: 0 }; vista = 'cucina'; await disegna(); tieniAcceso(); },
   timer: (min, b) => avviaTimer(+min, b),
   riprova: () => disegna(),
   'chef-salva': async (_, b) => {

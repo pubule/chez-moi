@@ -140,3 +140,14 @@ test('note del seed: ogni titolo esiste', async () => {
   for (const [t, n] of Object.entries(note)) assert.ok(titoli.has(t) && n.length <= 2000, t);
 });
 
+test('ogni sfida ha i passaggi per la modalità cucina, con timer sensati', async () => {
+  const { SFIDE } = await import('../public/sfide.js');
+  for (const s of SFIDE) {
+    assert.ok(s.passi?.length >= 4, s.titolo);
+    for (const p of s.passi) {
+      const m = minuti(p);
+      assert.ok(m === null || (m > 0 && m <= 300), `${s.titolo}: ${p}`);
+    }
+  }
+});
+
