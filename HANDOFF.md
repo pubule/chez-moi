@@ -37,6 +37,7 @@ Access, deploy a comando da Actions.
 - Etichette `fit` e `vegetariana` (colonna `etichette`, separate da virgola, valori ammessi in `ETICHETTE` di `raccolte.ts` e `logic.js`): filtri a interruttore nel ricettario, che si sommano alla categoria; nel seed il campo `e`.
 - Kcal e macro per porzione (colonne `porzioni`, `kcal`, `proteine`, `carboidrati`, `grassi`; mockup F3 e F4): stime dell'autore per il seed in `worker/seed/macro.mjs`, dallo Chef con la ricetta, correggibili nel modulo. Colori dei macro terracotta, grano, olio (contrasti in `style.css`). La barra divide le calorie dei tre macro; nei cocktail le kcal includono l'alcol.
 - Cocktail con dosi IBA (iba-world.com); categoria `Sottovuoto` per le ricette col roner.
+- Categoria `Salse` (liquide e secche: chimichurri, fondo bruno, bisque, maionese, dukkah, furikake…); la "Salsa per fritto" è passata da Antipasti a Salse.
 - Ricettario a griglia (direzione E2 dei mockup) con filtri per categoria. Ogni foto ha una miniatura da 640 px in R2 sotto `mini/<uuid>` (stesso uuid), servita con `?mini` per griglia e muro del Diario; senza miniatura si vede la foto intera. Il client la genera al caricamento. Foto in D1 no: R2 è gratis fino a 10 GB e con calice siamo sotto i 60 MB.
 - Icone della Home ancora verdi della prima palette: da rifare in rame se serve.
 
