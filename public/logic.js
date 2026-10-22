@@ -47,6 +47,10 @@ export function minuti(passo) {
 
 const righe = t => String(t || '').split('\n').map(r => r.trim()).filter(Boolean);
 
+// etichette dei filtri: chiave salvata nel database e nome mostrato
+export const ETICHETTE = { fit: 'Fit', vegetariana: 'Vegetariana' };
+export const etichetteDi = r => String(r?.etichette || '').split(',').filter(e => e in ETICHETTE);
+
 export const CATEGORIE = ['Cocktail', 'Colazione', 'Antipasti', 'Primi', 'Secondi', 'Sottovuoto', 'Pizza', 'Hamburger', 'Dolci'];
 
 // [[categoria, ricette]] nell'ordine di un menu; le categorie nuove in ordine alfabetico, "Altre" in fondo

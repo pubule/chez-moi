@@ -1,5 +1,5 @@
 import { SFIDE, ATTREZZI } from './sfide.js';
-import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, passaggi, minuti, perCategoria, sfideAnno, CATEGORIE } from './logic.js';
+import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, passaggi, minuti, perCategoria, sfideAnno, CATEGORIE, ETICHETTE, etichetteDi } from './logic.js';
 
 // ---------- dati (API del Worker, dietro Cloudflare Access) ----------
 
@@ -100,6 +100,7 @@ async function fotoDaForm(form, vecchia) {
 let vista = 'sfida';
 let ricettaAperta = null;
 let filtro = ''; // categoria scelta nel ricettario, '' = tutte
+const etichetteScelte = new Set(); // fit, vegetariana: si sommano alla categoria
 let cucina = null; // { id, passo } in modalità cucina
 // spunte della mise en place: valgono finché l'app resta aperta
 const spunte = new Set();
@@ -123,6 +124,7 @@ async function disegna() {
   if (mio !== giro) return; // nel frattempo è stata aperta un'altra schermata
   $('#vista').innerHTML = html;
   $('#vista').removeAttribute('aria-busy');
+  if ($('#cerca')) applicaFiltri();
   // la foto della sfida è uno sfondo, senza evento di errore: se non arriva torna il riquadro basso
   const hero = $('.hero.con-foto');
   if (hero) { const prova = new Image(); prova.onerror = () => { hero.classList.remove('con-foto'); hero.style.backgroundImage = ''; }; prova.src = hero.dataset.foto; }
@@ -212,16 +214,17 @@ const VISTE = {
       <div class="titolo-riga"><h1>Ricette</h1><button class="tondo" data-az="ricetta-nuova" aria-label="Nuova ricetta">${icona('piu')}</button></div>
       ${gruppi.length ? `
         <input type="search" id="cerca" placeholder="Cerca…" aria-label="Cerca ricetta">
+        <div class="filtri">${Object.entries(ETICHETTE).map(([k, nome]) => `<button class="chip" data-az="ricette-etichetta" data-id="${k}" aria-pressed="${etichetteScelte.has(k)}">${nome}</button>`).join('')}</div>
         <div class="filtri">${[['', 'Tutte'], ...gruppi.map(([c]) => [c, c])].map(([c, nome]) => `<button class="chip" data-az="ricette-filtro" data-id="${esc(c)}" aria-pressed="${c === filtro}">${esc(nome)}</button>`).join('')}</div>`
       : '<p class="nota">Nessuna ricetta. Scrivine una o fattela proporre dallo Chef.</p>'}
       ${gruppi.map(([c, xs]) => `
-        <section class="categoria" data-categoria="${esc(c)}"${filtro && c !== filtro ? ' hidden' : ''}>
+        <section class="categoria" data-categoria="${esc(c)}">
           <h2 class="sezione">${esc(c)}</h2>
           <div class="griglia">${xs.map(x => {
             const n = passaggi(x.procedimento).length;
-            return `<button class="scheda" data-az="ricetta-apri" data-id="${x.id}">
+            return `<button class="scheda" data-az="ricetta-apri" data-id="${x.id}" data-etichette="${etichetteDi(x).join(',')}">
               ${x.foto ? `<img src="${fotoUrl(x.foto, true)}" alt="" loading="lazy">` : '<span class="senza-foto" aria-hidden="true"></span>'}
-              <b>${esc(x.titolo)}</b>${n ? `<span class="meta">${n} passaggi</span>` : ''}
+              <b>${esc(x.titolo)}</b><span class="meta">${[n && `${n} passaggi`, ...etichetteDi(x).map(e => ETICHETTE[e])].filter(Boolean).join(' · ')}</span>
             </button>`;
           }).join('')}</div>
         </section>`).join('')}`;
@@ -290,7 +293,7 @@ function dettaglioRicetta(r) {
     ${r.foto ? `<img class="foto-testa" src="${fotoUrl(r.foto)}" alt="">` : ''}
     ${r.foto_credito ? `<p class="credito">Foto: ${esc(r.foto_credito)}</p>` : ''}
     <h1>${esc(r.titolo)}</h1>
-    <p class="meta">${[r.categoria, ing.length && `${ing.length} ingredienti`, pas.length && `${pas.length} passaggi`].filter(Boolean).map(esc).join(' · ')}</p>
+    <p class="meta">${[r.categoria, ...etichetteDi(r).map(e => ETICHETTE[e]), ing.length && `${ing.length} ingredienti`, pas.length && `${pas.length} passaggi`].filter(Boolean).map(esc).join(' · ')}</p>
     ${yt ? `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${yt}" title="Video" allowfullscreen loading="lazy"></iframe></div>` : ''}
     ${ing.length ? `
       <div class="titolo-riga"><h2>Mise en place</h2><span class="meta" id="pronti" role="status">${pronti} su ${ing.length} pronti</span></div>
@@ -427,6 +430,9 @@ function moduloRicetta(r = {}) {
   apriModulo(r.id ? 'Modifica ricetta' : 'Nuova ricetta', `
     <label>Titolo<input name="titolo" required value="${esc(r.titolo)}"></label>
     <label>Categoria<input name="categoria" list="categorie" value="${esc(r.categoria)}"><datalist id="categorie">${CATEGORIE.map(c => `<option value="${c}">`).join('')}</datalist></label>
+    <fieldset class="gruppo interruttori"><legend>Etichette</legend>
+      ${Object.entries(ETICHETTE).map(([k, nome]) => `<label><span>${nome}</span><input type="checkbox" switch name="etichette" value="${k}" ${etichetteDi(r).includes(k) ? 'checked' : ''}></label>`).join('')}
+    </fieldset>
     <label>Ingredienti (uno per riga, es. «320 g riso Carnaroli»)<textarea name="ingredienti" rows="6">${esc(r.ingredienti)}</textarea></label>
     <label>Procedimento (un passaggio per riga: «18 minuti» diventa un timer)<textarea name="procedimento" rows="8">${esc(r.procedimento)}</textarea></label>
     <label>Link video YouTube<input name="video" type="url" value="${esc(r.video)}" placeholder="https://youtu.be/…"></label>
@@ -438,6 +444,7 @@ function moduloRicetta(r = {}) {
       id,
       titolo: f.titolo.value.trim(),
       categoria: f.categoria.value.trim(),
+      etichette: [...f.querySelectorAll('[name=etichette]:checked')].map(c => c.value).join(','),
       ingredienti: f.ingredienti.value.trim(),
       procedimento: f.procedimento.value.trim(),
       video: f.video.value.trim(),
@@ -513,8 +520,13 @@ const AZIONI = {
   'ricette-filtro': c => {
     filtro = c;
     $('#cerca').value = '';
-    document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === c));
-    document.querySelectorAll('.categoria').forEach(s => { s.hidden = !!c && s.dataset.categoria !== c; s.querySelectorAll('.scheda').forEach(x => { x.hidden = false; }); });
+    document.querySelectorAll('[data-az=ricette-filtro]').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === c));
+    applicaFiltri();
+  },
+  'ricette-etichetta': (k, b) => {
+    etichetteScelte.has(k) ? etichetteScelte.delete(k) : etichetteScelte.add(k);
+    b.setAttribute('aria-pressed', etichetteScelte.has(k));
+    applicaFiltri();
   },
 };
 
@@ -540,16 +552,20 @@ document.addEventListener('change', e => {
   }
 });
 
-document.addEventListener('input', e => {
-  if (e.target.id !== 'cerca') return;
-  const q = e.target.value.toLowerCase();
-  // la ricerca guarda in tutte le categorie, il filtro torna quando il campo si svuota
+// la ricerca guarda in tutte le categorie (il filtro torna quando il campo si svuota); le etichette valgono sempre
+function applicaFiltri() {
+  const q = $('#cerca')?.value.toLowerCase() ?? '';
   document.querySelectorAll('.categoria').forEach(s => {
     const schede = [...s.querySelectorAll('.scheda')];
-    schede.forEach(x => { x.hidden = !x.querySelector('b').textContent.toLowerCase().includes(q); });
+    schede.forEach(x => {
+      const sue = x.dataset.etichette.split(',');
+      x.hidden = !x.querySelector('b').textContent.toLowerCase().includes(q) || [...etichetteScelte].some(e => !sue.includes(e));
+    });
     s.hidden = schede.every(x => x.hidden) || (!q && filtro && s.dataset.categoria !== filtro);
   });
-});
+}
+
+document.addEventListener('input', e => { if (e.target.id === 'cerca') applicaFiltri(); });
 
 // foto arrivata: si ferma il riflesso del segnaposto (load non risale: serve la cattura)
 document.addEventListener('load', e => { if (e.target.tagName === 'IMG') e.target.classList.add('arrivata'); }, true);

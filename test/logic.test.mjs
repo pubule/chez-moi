@@ -103,3 +103,11 @@ test('ogni foto del seed corrisponde a una ricetta e ha un credito', async () =>
     assert.ok(f.credito, t);
   }
 });
+
+test('etichette: solo quelle note', async () => {
+  const { etichetteDi } = await import('../public/logic.js');
+  assert.deepEqual(etichetteDi({ etichette: 'fit,vegetariana' }), ['fit', 'vegetariana']);
+  assert.deepEqual(etichetteDi({ etichette: 'keto,fit' }), ['fit']);
+  assert.deepEqual(etichetteDi({ etichette: '' }), []);
+  assert.deepEqual(etichetteDi({}), []);
+});

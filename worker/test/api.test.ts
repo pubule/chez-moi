@@ -87,6 +87,15 @@ describe('ricette e foto', () => {
     expect((await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x', categoria: 'x'.repeat(61) }))).status).toBe(400);
   });
 
+  it('salva le etichette note in ordine fisso e rifiuta le altre', async () => {
+    const k = id();
+    const r = await (await call(`/api/ricette/${k}`, json('PUT', { titolo: 'Hummus', etichette: 'vegetariana, fit' }))).json<any>();
+    expect(r.etichette).toBe('fit,vegetariana');
+    const senza = await (await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x' }))).json<any>();
+    expect(senza.etichette).toBe('');
+    expect((await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x', etichette: 'keto' }))).status).toBe(400);
+  });
+
   it('il credito della foto sparisce insieme alla foto', async () => {
     const { foto } = await (await call('/api/foto', { method: 'POST', body: JPEG })).json<{ foto: string }>();
     const k = id();

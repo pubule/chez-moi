@@ -5,6 +5,8 @@ import { cancellaFoto, isChiaveFoto } from './foto';
 // Diario e ricette: stessa forma (lista, salva con sovrascrittura completa, elimina).
 // Il client manda sempre il modulo intero, quindi PUT sovrascrive tutti i campi.
 
+export const ETICHETTE = ['fit', 'vegetariana'];
+
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
 type Riga = Record<string, string | number | null>;
@@ -42,7 +44,12 @@ export const validaRicetta: Valida = (b) => {
   if (video == null || (video && !/^https:\/\//.test(video))) return 'Il link del video deve iniziare con https://';
   const foto = fotoValida(b.foto);
   if (foto === undefined) return 'Foto non valida.';
-  return { titolo, categoria, ingredienti, procedimento, video, foto, foto_credito: foto ? foto_credito : '' };
+  // solo etichette note, senza doppioni, in ordine fisso: "vegetariana,fit" diventa "fit,vegetariana"
+  if (b.etichette != null && typeof b.etichette !== 'string') return 'Etichette non valide.';
+  const scelte = (b.etichette ?? '').split(',').map((e: string) => e.trim()).filter(Boolean);
+  if (scelte.some((e: string) => !ETICHETTE.includes(e))) return 'Etichette non valide.';
+  const etichette = ETICHETTE.filter((e) => scelte.includes(e)).join(',');
+  return { titolo, categoria, etichette, ingredienti, procedimento, video, foto, foto_credito: foto ? foto_credito : '' };
 };
 
 export function raccolta(tabella: 'diario' | 'ricette', valida: Valida, ordine: string) {

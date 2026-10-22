@@ -1,5 +1,6 @@
 // Ricette di Fabio, dettagliate. Dosi per 4 persone dove non indicato.
-// i = un ingrediente per riga; p = un passaggio per riga ("N minuti" diventa un timer).
+// i = un ingrediente per riga; p = un passaggio per riga ("N minuti" diventa un timer);
+// e = etichette per i filtri: 'fit' (leggera e proteica), 'vegetariana' (niente carne né pesce).
 export default [
   // ---------- Cocktail ----------
   { c: 'Cocktail', t: 'Gin tonic', i: [
@@ -307,7 +308,7 @@ export default [
   ] },
 
   // ---------- Colazione ----------
-  { c: 'Colazione', t: 'Pancake proteico', i: [
+  { c: 'Colazione', t: 'Pancake proteico', e: ['fit', 'vegetariana'], i: [
     '250 ml albume',
     '60 g proteine in polvere',
     '30 g farina (o farina d’avena)',
@@ -324,7 +325,7 @@ export default [
   ] },
 
   // ---------- Antipasti ----------
-  { c: 'Antipasti', t: 'Gazpacho', i: [
+  { c: 'Antipasti', t: 'Gazpacho', e: ['fit', 'vegetariana'], i: [
     '1 kg pomodori maturi',
     '1 peperone rosso',
     '1 cetriolo',
@@ -343,7 +344,7 @@ export default [
     'Riposa in frigo almeno 2 ore.',
     'Servi freddissimo con crostini e prezzemolo tritato.',
   ] },
-  { c: 'Antipasti', t: 'Tartare di pane e gazpacho', i: [
+  { c: 'Antipasti', t: 'Tartare di pane e gazpacho', e: ['vegetariana'], i: [
     '4 fette pane casereccio raffermo',
     '300 ml gazpacho denso',
     '1 cetriolo',
@@ -394,7 +395,7 @@ export default [
     'Fai un letto di insalata, appoggia la bufala a pezzi e finisci con la salsiccia calda.',
     'Guarnisci con olio a crudo, pepe e qualche foglia di basilico.',
   ] },
-  { c: 'Antipasti', t: 'Crostini con pomodorini, cipolla e aceto', i: [
+  { c: 'Antipasti', t: 'Crostini con pomodorini, cipolla e aceto', e: ['vegetariana'], i: [
     '8 fette pane',
     '250 g pomodorini',
     '½ cipolla rossa',
@@ -409,7 +410,7 @@ export default [
     'Bagna i crostini nel liquido della marinata e coprili con pomodorini e cipolla.',
     'Finisci con origano o basilico.',
   ] },
-  { c: 'Antipasti', t: 'Crostini con gorgonzola e radicchio', i: [
+  { c: 'Antipasti', t: 'Crostini con gorgonzola e radicchio', e: ['vegetariana'], i: [
     '8 fette pane',
     '150 g gorgonzola dolce',
     '1 cespo radicchio di Treviso',
@@ -443,7 +444,7 @@ export default [
     'Su ogni bruschettina: stracciatella, una fetta di crudo, pomodori secchi.',
     'Finisci con basilico e olio a crudo.',
   ] },
-  { c: 'Antipasti', t: 'Bruschetta pesto, zucchine, carote e cipolla rossa', i: [
+  { c: 'Antipasti', t: 'Bruschetta pesto, zucchine, carote e cipolla rossa', e: ['vegetariana'], i: [
     '8 fette pane',
     '4 cucchiai pesto',
     '1 zucchina',
@@ -456,7 +457,7 @@ export default [
     'Tosta il pane e spalmalo di pesto.',
     'Copri con le verdure, un filo d’olio e qualche foglia di basilico.',
   ] },
-  { c: 'Antipasti', t: 'Focaccia zucchine, stracchino, pomodori secchi e capperi', i: [
+  { c: 'Antipasti', t: 'Focaccia zucchine, stracchino, pomodori secchi e capperi', e: ['vegetariana'], i: [
     '1 focaccia bassa',
     '200 g stracchino',
     '1 zucchina',
@@ -470,7 +471,7 @@ export default [
     'Scalda in forno a 200° per 5 minuti.',
     'Taglia a quadrotti e finisci con olio a crudo e origano.',
   ] },
-  { c: 'Antipasti', t: 'Salsa per fritto con maionese e capperi', i: [
+  { c: 'Antipasti', t: 'Salsa per fritto con maionese e capperi', e: ['vegetariana'], i: [
     '150 g maionese',
     '1 cucchiaio capperi dissalati',
     '1 cetriolino sott’aceto',
@@ -482,7 +483,7 @@ export default [
     'Riposa in frigo 30 minuti.',
     'Servi con il fritto, prezzemolo tritato sopra e spicchi di limone.',
   ] },
-  { c: 'Antipasti', t: 'Insalata di mare con sedano, pepe rosa e aneto', i: [
+  { c: 'Antipasti', t: 'Insalata di mare con sedano, pepe rosa e aneto', e: ['fit'], i: [
     '300 g calamari',
     '300 g gamberi',
     '500 g cozze',
@@ -498,7 +499,7 @@ export default [
     'Condisci con olio, limone, sale, pepe rosa leggermente schiacciato e aneto.',
     'Riposa in frigo 30 minuti e servi fresca.',
   ] },
-  { c: 'Antipasti', t: 'Salmone, aneto e pepe rosa', i: [
+  { c: 'Antipasti', t: 'Salmone, aneto e pepe rosa', e: ['fit'], i: [
     '300 g salmone abbattuto (o affumicato)',
     'Aneto fresco',
     '1 cucchiaino pepe rosa',
@@ -509,7 +510,7 @@ export default [
     'Condisci con olio, scorza e qualche goccia di limone.',
     'Finisci con aneto, pepe rosa schiacciato e sale in fiocchi.',
   ] },
-  { c: 'Antipasti', t: 'Vellutata di zucca, amaretti e fondente', i: [
+  { c: 'Antipasti', t: 'Vellutata di zucca, amaretti e fondente', e: ['vegetariana'], i: [
     '800 g zucca mantovana pulita',
     '1 patata',
     '1 scalogno',
@@ -540,7 +541,7 @@ export default [
     'Impiatta con il coppapasta e completa con le due salse a punti o a cucchiaiate.',
     'Guarnisci con dadini di cetriolo e un filo d’olio a crudo.',
   ] },
-  { c: 'Antipasti', t: 'Tartare di salmone su finocchio a bassa temperatura', i: [
+  { c: 'Antipasti', t: 'Tartare di salmone su finocchio a bassa temperatura', e: ['fit'], i: [
     '300 g salmone abbattuto',
     '2 finocchi',
     '1 arancia',
@@ -554,7 +555,7 @@ export default [
     'Fai un letto di finocchio, sopra la tartare con il coppapasta.',
     'Finisci con aneto, scorza d’arancia grattugiata e un filo d’olio.',
   ] },
-  { c: 'Antipasti', t: 'Tartare di gambero su tartare di mango', i: [
+  { c: 'Antipasti', t: 'Tartare di gambero su tartare di mango', e: ['fit'], i: [
     '400 g gamberi rossi crudi abbattuti',
     '1 mango maturo',
     '1 spicchio aglio',
@@ -631,7 +632,7 @@ export default [
     'Riposa 5 minuti e taglia a fette sottili contro fibra.',
     'Su crostini tostati, finisci con sale in fiocchi.',
   ] },
-  { c: 'Antipasti', t: 'Guacamole', i: [
+  { c: 'Antipasti', t: 'Guacamole', e: ['vegetariana'], i: [
     '2 avocado maturi',
     '1 pomodoro',
     '½ cipolla',
@@ -663,7 +664,7 @@ export default [
     'Intanto scotta le 4 capesante intere in padella rovente, 1 minuto per lato.',
     'Impiatta, capesante scottate sopra, la scorza di lime rimasta e qualche goccia di succo.',
   ] },
-  { c: 'Primi', t: 'Risotto zucca e tartufo', i: [
+  { c: 'Primi', t: 'Risotto zucca e tartufo', e: ['vegetariana'], i: [
     '320 g riso Carnaroli',
     '400 g zucca',
     '1 scalogno',
@@ -678,7 +679,7 @@ export default [
     'Manteca fuori dal fuoco con burro e Parmigiano.',
     'Trita il tartufo e mescolane metà nel risotto; il resto sopra, al momento.',
   ] },
-  { c: 'Primi', t: 'Risotto funghi misti, mascarpone ed erba cipollina', i: [
+  { c: 'Primi', t: 'Risotto funghi misti, mascarpone ed erba cipollina', e: ['vegetariana'], i: [
     '320 g riso Carnaroli',
     '400 g funghi misti',
     '1 spicchio aglio',
@@ -694,7 +695,7 @@ export default [
     'Manteca fuori dal fuoco con mascarpone e Parmigiano.',
     'Finisci con i funghi tenuti da parte ed erba cipollina tagliata fine.',
   ] },
-  { c: 'Primi', t: 'Cacio e pepe con pepe rosa e pepe nero', i: [
+  { c: 'Primi', t: 'Cacio e pepe con pepe rosa e pepe nero', e: ['vegetariana'], i: [
     '320 g spaghettoni o tonnarelli',
     '200 g Pecorino Romano grattugiato fine',
     '2 cucchiaini pepe nero in grani',
@@ -743,7 +744,7 @@ export default [
     'Brodo un mestolo alla volta per 17 minuti.',
     'Manteca con burro e Parmigiano e servi con lo speck croccante sopra.',
   ] },
-  { c: 'Primi', t: 'Insalata di polpo con peperoni e pomodoro', i: [
+  { c: 'Primi', t: 'Insalata di polpo con peperoni e pomodoro', e: ['fit'], i: [
     '1 kg polpo',
     '1 peperone rosso',
     '1 peperone giallo',
@@ -757,7 +758,7 @@ export default [
     'Condisci con olio, aceto e sale e riposa 30 minuti.',
     'Finisci con prezzemolo tritato e un filo d’olio a crudo.',
   ] },
-  { c: 'Primi', t: 'Risotto crema di zucca, rosmarino e pecorino', i: [
+  { c: 'Primi', t: 'Risotto crema di zucca, rosmarino e pecorino', e: ['vegetariana'], i: [
     '320 g riso Carnaroli',
     '400 g zucca',
     '1 rametto rosmarino',
@@ -772,7 +773,7 @@ export default [
     'Negli ultimi minuti unisci la crema di zucca.',
     'Manteca con burro e servi con scaglie di pecorino e olio al rosmarino.',
   ] },
-  { c: 'Primi', t: 'Pasta, crema di Monte Veronese e asparagi', i: [
+  { c: 'Primi', t: 'Pasta, crema di Monte Veronese e asparagi', e: ['vegetariana'], i: [
     '320 g pasta corta',
     '1 mazzo asparagi',
     '150 g Monte Veronese',
@@ -814,7 +815,7 @@ export default [
     'Aggiungi burro e rosmarino e irrora per 1 minuto.',
     'Riposa 5 minuti, poi appoggia il lardo sul filetto caldo e finisci con sale grosso e pepe.',
   ] },
-  { c: 'Secondi', t: 'Peperoni al forno spellati', i: [
+  { c: 'Secondi', t: 'Peperoni al forno spellati', e: ['fit', 'vegetariana'], i: [
     '4 peperoni carnosi',
     'Olio extravergine, sale',
     'Aglio, basilico',
@@ -824,7 +825,7 @@ export default [
     'Da freddi togli la pelle e i semi.',
     'Condisci a falde con olio, sale, aglio e basilico.',
   ] },
-  { c: 'Secondi', t: 'Polpo senz’acqua', i: [
+  { c: 'Secondi', t: 'Polpo senz’acqua', e: ['fit'], i: [
     '1 kg polpo',
     '1 carota',
     '1 costa sedano',
@@ -851,7 +852,7 @@ export default [
     'Riposa 5 minuti e taglia a fette sottili contro fibra.',
     'Servi con sale in fiocchi, pepe e un rametto di rosmarino fresco.',
   ] },
-  { c: 'Secondi', t: 'Filetto di orata con cipolla di Tropea', i: [
+  { c: 'Secondi', t: 'Filetto di orata con cipolla di Tropea', e: ['fit'], i: [
     '4 filetti di orata',
     '2 cipolle di Tropea',
     '1 cucchiaio aceto di vino rosso',
@@ -864,7 +865,7 @@ export default [
     'Gira e 1 minuto dall’altro lato.',
     'Servi il filetto sulla cipolla, con timo.',
   ] },
-  { c: 'Secondi', t: 'Branzino al cartoccio', i: [
+  { c: 'Secondi', t: 'Branzino al cartoccio', e: ['fit'], i: [
     '2 branzini da 500 g eviscerati',
     '1 limone',
     '2 spicchi aglio',
@@ -902,7 +903,7 @@ export default [
     'Arrostisci il merluzzo in padella dal lato della pelle per 4 minuti, poi 2 minuti dall’altro lato.',
     'Nappa con la salsa e finisci con sale in fiocchi e qualche seme di maracuja.',
   ] },
-  { c: 'Secondi', t: 'Pesce con salsa verde', i: [
+  { c: 'Secondi', t: 'Pesce con salsa verde', e: ['fit'], i: [
     '4 filetti di branzino o altro pesce bianco',
     '1 mazzo prezzemolo',
     '1 cucchiaio capperi',
@@ -965,7 +966,7 @@ export default [
     'Poi aggiungi la carne battuta al coltello e mescola.',
     'Impiatta con il coppapasta e servi subito con pane tostato.',
   ] },
-  { c: 'Secondi', t: 'Tartare al limone e pepe verde', i: [
+  { c: 'Secondi', t: 'Tartare al limone e pepe verde', e: ['fit'], i: [
     '400 g filetto di manzo',
     '1 limone',
     '1 cucchiaino pepe verde in grani',
@@ -986,7 +987,7 @@ export default [
     'Allunga la salsa verde con un filo d’olio.',
     'Disponi la carne salà a rosone, gocce di salsa verde sopra e il crostino accanto.',
   ] },
-  { c: 'Secondi', t: 'Carpaccio di manzo, rucola, grana e datteri', i: [
+  { c: 'Secondi', t: 'Carpaccio di manzo, rucola, grana e datteri', e: ['fit'], i: [
     '300 g carpaccio di manzo',
     'Rucola',
     '50 g Grana a scaglie',
@@ -1011,7 +1012,7 @@ export default [
     'Scotta i tentacoli di polpo in padella rovente 2 minuti per lato.',
     'Fai un letto di maionese, appoggia il polpo e finisci con i capperi.',
   ] },
-  { c: 'Secondi', t: 'Polpo in acqua e aceto con peperoni e porro', i: [
+  { c: 'Secondi', t: 'Polpo in acqua e aceto con peperoni e porro', e: ['fit'], i: [
     '1 kg polpo',
     '100 ml aceto di vino bianco',
     '2 peperoni',
@@ -1075,7 +1076,7 @@ export default [
   ] },
 
   // ---------- Dolci ----------
-  { c: 'Dolci', t: 'Melanzane al cioccolato e nocciole', i: [
+  { c: 'Dolci', t: 'Melanzane al cioccolato e nocciole', e: ['vegetariana'], i: [
     '2 melanzane lunghe',
     '200 g cioccolato fondente',
     '100 ml panna',
@@ -1090,7 +1091,7 @@ export default [
     'Componi a strati: melanzana, cioccolato, nocciole tritate. Finisci con cioccolato e nocciole.',
     'Riposa in frigo almeno 2 ore.',
   ] },
-  { c: 'Dolci', t: 'Crème caramel ai fichi', i: [
+  { c: 'Dolci', t: 'Crème caramel ai fichi', e: ['vegetariana'], i: [
     '500 ml latte',
     '2 uova',
     '4 tuorli',
@@ -1108,7 +1109,7 @@ export default [
     'Raffredda e tieni in frigo almeno 3 ore.',
     'Sforma passando un coltello lungo il bordo e decora con fichi freschi a spicchi.',
   ] },
-  { c: 'Dolci', t: 'Gelato alla vaniglia con caramello al rosmarino', i: [
+  { c: 'Dolci', t: 'Gelato alla vaniglia con caramello al rosmarino', e: ['vegetariana'], i: [
     '500 g gelato alla vaniglia',
     '150 g zucchero',
     '150 ml panna',
@@ -1122,7 +1123,7 @@ export default [
     'Lascia intiepidire e versalo sul gelato.',
     'Finisci con un ago di rosmarino fresco e un pizzico di sale in fiocchi.',
   ] },
-  { c: 'Dolci', t: 'Yogurt freddo e crema al pistacchio', i: [
+  { c: 'Dolci', t: 'Yogurt freddo e crema al pistacchio', e: ['fit', 'vegetariana'], i: [
     '500 g yogurt greco',
     '4 cucchiai crema di pistacchio',
     '30 g pistacchi tritati',
@@ -1230,7 +1231,7 @@ export default [
     'Scalda il burro chiarificato in una padella larga e cuoci a fuoco medio 5 minuti per lato, finché la panatura è dorata e il cuore rosato.',
     'Scola su carta, sala con sale grosso solo alla fine e servi con spicchi di limone.',
   ] },
-  { c: 'Secondi', t: 'Parmigiana di melanzane', i: [
+  { c: 'Secondi', t: 'Parmigiana di melanzane', e: ['vegetariana'], i: [
     '4 melanzane lunghe (circa 1,5 kg)',
     '700 ml passata di pomodoro',
     '1 spicchio d’aglio',
@@ -1246,7 +1247,7 @@ export default [
     'Inforna a 180 °C per 40 minuti; lascia riposare almeno 30 minuti prima di tagliare.',
     'Servi a quadrotti con una foglia di basilico fresco sopra.',
   ] },
-  { c: 'Dolci', t: 'Tiramisù', i: [
+  { c: 'Dolci', t: 'Tiramisù', e: ['vegetariana'], i: [
     '4 uova freschissime',
     '100 g zucchero',
     '500 g mascarpone',
@@ -1278,7 +1279,7 @@ export default [
   ] },
 
   // ---------- Sottovuoto (roner) ----------
-  { c: 'Sottovuoto', t: 'Uovo a 63 °C', i: [
+  { c: 'Sottovuoto', t: 'Uovo a 63 °C', e: ['fit', 'vegetariana'], i: [
     '4 uova freschissime',
     'sale in fiocchi',
     'pepe nero',
@@ -1289,7 +1290,7 @@ export default [
     'Rompi l’uovo in una ciotolina, togli l’albume più liquido col cucchiaio e adagia l’uovo sul piatto.',
     'Condisci con sale in fiocchi, pepe e un filo d’olio. Perfetto su crema di patate o di piselli.',
   ] },
-  { c: 'Sottovuoto', t: 'Salmone a 45 °C', i: [
+  { c: 'Sottovuoto', t: 'Salmone a 45 °C', e: ['fit'], i: [
     '4 tranci di salmone abbattuto con la pelle, 150 g l’uno',
     'scorza di 1 limone',
     'aneto fresco',
@@ -1302,7 +1303,7 @@ export default [
     'Togli la pelle: deve sfaldarsi in lamelle lucide. Per una pelle croccante, cuocila a parte in padella fra due fogli di carta forno.',
     'Servi con aneto fresco, scorza di limone grattugiata, sale in fiocchi e un filo d’olio.',
   ] },
-  { c: 'Sottovuoto', t: 'Filetto di manzo a 54 °C', i: [
+  { c: 'Sottovuoto', t: 'Filetto di manzo a 54 °C', e: ['fit'], i: [
     '4 medaglioni di filetto alti 4 cm',
     '2 rametti di timo',
     '2 spicchi d’aglio in camicia',
@@ -1329,7 +1330,7 @@ export default [
     'Nella stessa padella, tolto il grasso in eccesso, sfuma con Grand Marnier, succo d’arancia e miele e riduci a salsa.',
     'Affetta, nappa con la salsa e finisci con scorza d’arancia grattugiata e pepe.',
   ] },
-  { c: 'Sottovuoto', t: 'Polpo a 77 °C', i: [
+  { c: 'Sottovuoto', t: 'Polpo a 77 °C', e: ['fit'], i: [
     '1 polpo da 1,2 kg, abbattuto o congelato',
     '1 foglia di alloro',
     '2 cucchiai di olio extravergine',
@@ -1342,7 +1343,7 @@ export default [
     'Raffredda la busta in acqua e ghiaccio se non lo usi subito.',
     'Asciuga i tentacoli e scottali sulla griglia rovente 2 minuti per lato; servi su patate schiacciate con olio e paprica affumicata.',
   ] },
-  { c: 'Sottovuoto', t: 'Carote glassate a 85 °C', i: [
+  { c: 'Sottovuoto', t: 'Carote glassate a 85 °C', e: ['vegetariana'], i: [
     '500 g carote piccole con il ciuffo',
     '30 g burro',
     '1 cucchiaio di miele',
@@ -1353,5 +1354,170 @@ export default [
     'Cuoci nel roner a 85 °C per 1 ora.',
     'Versa carote e liquido in padella e fai ridurre a fuoco vivo 3 minuti, finché sono lucide e glassate.',
     'Servi con timo fresco e un pizzico di sale in fiocchi.',
+  ] },
+
+  // ---------- Fit e vegetariane ----------
+  { c: 'Colazione', t: 'Porridge proteico ai frutti di bosco', e: ['fit', 'vegetariana'], i: [
+    '80 g fiocchi d’avena',
+    '250 ml latte (o bevanda di soia)',
+    '25 g proteine in polvere alla vaniglia',
+    '1 pizzico di sale',
+    '100 g frutti di bosco',
+    '1 cucchiaio di semi di chia',
+    '1 cucchiaino di miele',
+  ], p: [
+    'Porta a bollore il latte con l’avena e il sale, poi cuoci a fuoco basso 5 minuti mescolando.',
+    'Spegni, aspetta 1 minuto e incorpora le proteine: se le metti a fuoco acceso fanno grumi.',
+    'Versa nella ciotola.',
+    'Guarnisci con frutti di bosco, semi di chia e un filo di miele.',
+  ] },
+  { c: 'Colazione', t: 'Chia pudding al mango', e: ['fit', 'vegetariana'], i: [
+    '40 g semi di chia',
+    '250 ml latte di cocco da bere (o yogurt allungato con latte)',
+    '1 cucchiaino di sciroppo d’acero',
+    '1 mango maturo',
+    '1 lime',
+    'Cocco rapé e menta per guarnire',
+  ], p: [
+    'La sera prima: mescola chia, latte di cocco e sciroppo d’acero.',
+    'Dopo 10 minuti mescola di nuovo, così i semi non fanno grumi, e lascia in frigo per la notte.',
+    'Frulla metà del mango con qualche goccia di lime; taglia l’altra metà a cubetti.',
+    'Alterna nel bicchiere pudding e purea di mango.',
+    'Guarnisci con i cubetti di mango, cocco rapé, scorza di lime e una foglia di menta.',
+  ] },
+  { c: 'Antipasti', t: 'Hummus di ceci con verdure croccanti', e: ['fit', 'vegetariana'], i: [
+    '400 g ceci cotti (240 g sgocciolati)',
+    '60 g tahina',
+    '1 limone',
+    '1 spicchio d’aglio',
+    '1 cucchiaino di cumino',
+    '60 ml acqua ghiacciata',
+    'Olio extravergine, sale',
+    'Paprica affumicata',
+    'Carote, sedano, finocchio e cetriolo per servire',
+  ], p: [
+    'Tieni da parte qualche cece intero per la guarnizione.',
+    'Frulla i ceci con tahina, succo di limone, aglio, cumino e sale per 2 minuti.',
+    'Aggiungi l’acqua ghiacciata a filo continuando a frullare: l’hummus diventa chiaro e cremoso.',
+    'Taglia le verdure a bastoncini e tienile in acqua e ghiaccio, così restano croccanti.',
+    'Stendi l’hummus nel piatto con il dorso del cucchiaio facendo un incavo al centro.',
+    'Guarnisci con olio a crudo nell’incavo, paprica affumicata, i ceci interi e servi con le verdure.',
+  ] },
+  { c: 'Antipasti', t: 'Burrata, pesche e basilico', e: ['vegetariana'], i: [
+    '2 burrate da 200 g',
+    '3 pesche gialle mature',
+    '1 mazzetto di basilico',
+    '30 g mandorle a lamelle',
+    '1 limone',
+    'Olio extravergine, sale in fiocchi, pepe',
+  ], p: [
+    'Tira fuori le burrate dal frigo 30 minuti prima: fredde perdono sapore.',
+    'Tosta le mandorle in padella a secco per 2 minuti.',
+    'Taglia le pesche a spicchi e condiscile con olio, qualche goccia di limone e sale.',
+    'Disponi le pesche nel piatto e apri la burrata al centro.',
+    'Guarnisci con basilico spezzato a mano, mandorle tostate, scorza di limone, olio a crudo e pepe.',
+  ] },
+  { c: 'Primi', t: 'Zuppa di lenticchie rosse al cumino', e: ['fit', 'vegetariana'], i: [
+    '250 g lenticchie rosse decorticate',
+    '1 cipolla',
+    '1 carota',
+    '1 spicchio d’aglio',
+    '1 cucchiaino di cumino',
+    '1 cucchiaino di paprica dolce',
+    '1 l brodo vegetale',
+    '1 limone',
+    'Yogurt greco, coriandolo o prezzemolo per servire',
+    'Olio extravergine, sale',
+  ], p: [
+    'Sciacqua le lenticchie finché l’acqua è limpida.',
+    'Fai appassire cipolla e carota tritate con un filo d’olio per 5 minuti, poi aggiungi aglio, cumino e paprica per 30 secondi.',
+    'Unisci lenticchie e brodo e cuoci 20 minuti, finché si sfaldano.',
+    'Frulla in parte o del tutto e regola di sale e succo di limone.',
+    'Servi con un cucchiaio di yogurt greco, un filo d’olio, un pizzico di paprica e coriandolo tritato.',
+  ] },
+  { c: 'Primi', t: 'Insalata di farro, ceci e verdure grigliate', e: ['fit', 'vegetariana'], i: [
+    '250 g farro perlato',
+    '240 g ceci cotti',
+    '1 zucchina',
+    '1 melanzana',
+    '1 peperone rosso',
+    '100 g feta',
+    '1 limone',
+    'Menta e basilico',
+    'Olio extravergine, sale, pepe',
+  ], p: [
+    'Cuoci il farro in acqua salata per 20 minuti, scolalo e allargalo su un vassoio a raffreddare.',
+    'Intanto taglia zucchina e melanzana a fette e il peperone a falde; grigliale su piastra rovente 3 minuti per lato.',
+    'Taglia le verdure grigliate a pezzi e condiscile con olio, sale e menta.',
+    'Unisci farro, ceci e verdure; condisci con olio, succo e scorza di limone.',
+    'Guarnisci con feta sbriciolata, foglie di basilico e menta, pepe macinato.',
+  ] },
+  { c: 'Primi', t: 'Gnocchi di patate al burro e salvia', e: ['vegetariana'], i: [
+    '1 kg patate farinose a pasta gialla',
+    '250 g farina 00',
+    '1 tuorlo',
+    '1 pizzico di sale e noce moscata',
+    '80 g burro',
+    '12 foglie di salvia',
+    '60 g Parmigiano grattugiato',
+  ], p: [
+    'Lessa le patate intere con la buccia partendo da acqua fredda, 40 minuti, finché la forchetta entra senza resistenza.',
+    'Pelale ancora calde e schiacciale subito sulla spianatoia; lasciale intiepidire 5 minuti.',
+    'Aggiungi farina, tuorlo, sale e noce moscata e impasta il minimo indispensabile: più lavori, più diventano gommosi.',
+    'Forma dei cordoni di 2 cm, taglia gli gnocchi e passali sui rebbi di una forchetta.',
+    'Metti a bollire abbondante acqua salata e intanto sciogli il burro con la salvia finché è nocciola.',
+    'Cuoci gli gnocchi e scolali appena vengono a galla, circa 2 minuti, direttamente nel burro.',
+    'Salta 30 secondi e servi con Parmigiano grattugiato e le foglie di salvia croccanti sopra.',
+  ] },
+  { c: 'Secondi', t: 'Frittata al forno di zucchine e menta', e: ['fit', 'vegetariana'], i: [
+    '6 uova',
+    '150 ml albume',
+    '3 zucchine',
+    '1 cipollotto',
+    '40 g Parmigiano grattugiato',
+    '1 mazzetto di menta',
+    'Olio extravergine, sale, pepe',
+  ], p: [
+    'Accendi il forno a 180° ventilato.',
+    'Taglia le zucchine a rondelle sottili e saltale con il cipollotto e un filo d’olio per 6 minuti.',
+    'Sbatti uova, albume, Parmigiano, sale, pepe e metà della menta tritata.',
+    'Unisci le zucchine, versa in una teglia rivestita di carta forno e inforna per 20 minuti.',
+    'Lascia riposare 5 minuti, taglia a quadrotti.',
+    'Guarnisci con menta fresca, qualche rondella di zucchina cruda e un filo d’olio.',
+  ] },
+  { c: 'Secondi', t: 'Poke bowl di salmone', e: ['fit'], i: [
+    '200 g riso per sushi',
+    '400 g salmone abbattuto',
+    '3 cucchiai salsa di soia',
+    '1 cucchiaio olio di sesamo',
+    '1 avocado',
+    '1 cetriolo',
+    '1 mango piccolo',
+    '100 g edamame sgusciati',
+    '1 cipollotto',
+    'Semi di sesamo, alga nori, zenzero marinato',
+  ], p: [
+    'Sciacqua il riso finché l’acqua è limpida, cuocilo per 12 minuti e lascialo raffreddare.',
+    'Taglia il salmone a cubetti e marinalo in frigo con soia e olio di sesamo per 15 minuti.',
+    'Intanto taglia avocado, cetriolo e mango a cubetti, il cipollotto a rondelle; scotta gli edamame 3 minuti in acqua bollente.',
+    'Metti il riso alla base della ciotola e disponi sopra salmone e verdure a spicchi separati.',
+    'Guarnisci con semi di sesamo, cipollotto, striscioline di alga nori e zenzero marinato.',
+  ] },
+  { c: 'Sottovuoto', t: 'Petto di pollo a 63 °C con salsa allo yogurt', e: ['fit'], i: [
+    '2 petti di pollo',
+    '1 limone',
+    '2 rametti di timo',
+    '200 g yogurt greco',
+    '½ cetriolo',
+    '1 spicchio d’aglio',
+    'Menta, aneto',
+    'Olio extravergine, sale, pepe',
+  ], p: [
+    'Sala i petti, mettili sottovuoto con timo, scorza di limone e un filo d’olio.',
+    'Cuoci nel roner a 63 °C per 90 minuti: succoso e sicuro.',
+    'Intanto grattugia il cetriolo, strizzalo e mescolalo con yogurt, aglio grattugiato, menta, aneto, sale e olio.',
+    'Asciuga il pollo e scottalo in padella rovente 1 minuto per lato.',
+    'Taglia a fette e servi con la salsa allo yogurt.',
+    'Guarnisci con aneto fresco, scorza di limone e pepe.',
   ] },
 ];

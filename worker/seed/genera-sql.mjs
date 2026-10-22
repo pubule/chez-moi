@@ -11,7 +11,10 @@ const q = s => `'${s.replace(/'/g, "''")}'`;
 const id = t => createHash('sha1').update(t).digest('hex').slice(0, 32).replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, '$1-$2-$3-$4-$5');
 
 for (const r of ricette) {
-  console.log(`insert into ricette (id, titolo, categoria, ingredienti, procedimento) values (${q(id(r.t))}, ${q(r.t)}, ${q(r.c)}, ${q(r.i.join('\n'))}, ${q(r.p.join('\n'))}) on conflict(id) do nothing;`);
+  const e = (r.e ?? []).join(',');
+  console.log(`insert into ricette (id, titolo, categoria, etichette, ingredienti, procedimento) values (${q(id(r.t))}, ${q(r.t)}, ${q(r.c)}, ${q(e)}, ${q(r.i.join('\n'))}, ${q(r.p.join('\n'))}) on conflict(id) do nothing;`);
+  // etichette aggiunte dopo il primo caricamento: solo dove Fabio non ne ha messe
+  if (e) console.log(`update ricette set etichette = ${q(e)} where id = ${q(id(r.t))} and etichette = '';`);
   const f = foto[r.t];
   if (f) console.log(`update ricette set foto = ${q(f.foto)}, foto_credito = ${q(f.credito)} where id = ${q(id(r.t))} and foto is null;`);
 }
