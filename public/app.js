@@ -56,6 +56,7 @@ const ICONE = {
   indietro: '<path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   play: '<path d="M8 5v14l11-7z" fill="currentColor"/>',
   piu: '<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
+  avviso: '<path d="M12 3.5 2.5 20h19z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.2" r="1.2" fill="currentColor"/>',
 };
 // i tre macro: chiave, nome corto, classe del colore
 const MACRO = [['p', 'proteine'], ['c', 'carbo'], ['g', 'grassi']];
@@ -324,6 +325,7 @@ function dettaglioRicetta(r) {
     <h1>${esc(r.titolo)}</h1>
     <p class="meta">${[r.categoria, ...etichetteDi(r).map(e => ETICHETTE[e]), ing.length && `${ing.length} ingredienti`, pas.length && `${pas.length} passaggi`].filter(Boolean).map(esc).join(' · ')}</p>
     ${riquadroMacro(r)}
+    ${r.note ? `<section class="riquadro da-sapere" aria-labelledby="da-sapere"><h2 id="da-sapere">${icona('avviso')} Da sapere</h2>${passaggi(r.note).map(p => `<p>${esc(p)}</p>`).join('')}</section>` : ''}
     ${yt ? `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${yt}" title="Video" allowfullscreen loading="lazy"></iframe></div>` : ''}
     ${ing.length ? `
       <div class="titolo-riga"><h2>Mise en place</h2><span class="meta" id="pronti" role="status">${pronti} su ${ing.length} pronti</span></div>
@@ -468,6 +470,7 @@ function moduloRicetta(r = {}) {
     </fieldset>
     <label>Ingredienti (uno per riga, es. «320 g riso Carnaroli»)<textarea name="ingredienti" rows="6">${esc(r.ingredienti)}</textarea></label>
     <label>Procedimento (un passaggio per riga: «18 minuti» diventa un timer)<textarea name="procedimento" rows="8">${esc(r.procedimento)}</textarea></label>
+    <label>Da sapere (sicurezza, dove trovare gli ingredienti)<textarea name="note" rows="3">${esc(r.note)}</textarea></label>
     <label>Link video YouTube<input name="video" type="url" value="${esc(r.video)}" placeholder="https://youtu.be/…"></label>
     ${campoFoto(r.foto)}`,
   async f => {
@@ -481,6 +484,7 @@ function moduloRicetta(r = {}) {
       ...Object.fromEntries(['porzioni', 'kcal', 'proteine', 'carboidrati', 'grassi'].map(k => [k, f[k].value === '' ? null : +f[k].value])),
       ingredienti: f.ingredienti.value.trim(),
       procedimento: f.procedimento.value.trim(),
+      note: f.note.value.trim(),
       video: f.video.value.trim(),
       foto: await fotoDaForm(f, r.foto),
       foto_credito: f.foto.files[0] ? '' : r.foto_credito, // una foto propria non ha bisogno di credito

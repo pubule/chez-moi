@@ -39,6 +39,7 @@ Access, deploy a comando da Actions.
 - Cocktail con dosi IBA (iba-world.com); categoria `Sottovuoto` per le ricette col roner.
 - Categoria `Salse` (liquide e secche: chimichurri, fondo bruno, bisque, maionese, dukkah, furikake…); la "Salsa per fritto" è passata da Antipasti a Salse.
 - Audit gourmet (ottobre 2026): 66 ricette in più, categorie `Contorni` e `Basi`, ricette per sifone, cannello, biberon e mandolina, pasta fresca, cocktail classici, colazioni.
+- Colonna `note` ("Da sapere") sulle ricette: sicurezza alimentare (pesce abbattuto, carne e uova crude) e ingredienti da ordinare; testi del seed in `worker/seed/note.mjs`, scritti solo dove la nota è vuota.
 - Ricettario a griglia (direzione E2 dei mockup) con filtri per categoria. Ogni foto ha una miniatura da 640 px in R2 sotto `mini/<uuid>` (stesso uuid), servita con `?mini` per griglia e muro del Diario; senza miniatura si vede la foto intera. Il client la genera al caricamento. Foto in D1 no: R2 è gratis fino a 10 GB e con calice siamo sotto i 60 MB.
 - Icone della Home ancora verdi della prima palette: da rifare in rame se serve.
 

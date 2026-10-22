@@ -107,6 +107,13 @@ describe('ricette e foto', () => {
     }
   });
 
+  it('salva le note "Da sapere", vuote se mancano', async () => {
+    const r = await (await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'Tartare', note: 'Carne cruda.' }))).json<any>();
+    expect(r.note).toBe('Carne cruda.');
+    expect((await (await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x' }))).json<any>()).note).toBe('');
+    expect((await call(`/api/ricette/${id()}`, json('PUT', { titolo: 'x', note: 'a'.repeat(2001) }))).status).toBe(400);
+  });
+
   it('il credito della foto sparisce insieme alla foto', async () => {
     const { foto } = await (await call('/api/foto', { method: 'POST', body: JPEG })).json<{ foto: string }>();
     const k = id();

@@ -39,7 +39,8 @@ export const validaRicetta: Valida = (b) => {
   const procedimento = testo(b.procedimento ?? '', 20000);
   const categoria = testo(b.categoria ?? '', 60);
   const foto_credito = testo(b.foto_credito ?? '', 300);
-  if (ingredienti == null || procedimento == null || categoria == null || foto_credito == null) return 'Testo troppo lungo.';
+  const note = testo(b.note ?? '', 2000);
+  if (ingredienti == null || procedimento == null || categoria == null || foto_credito == null || note == null) return 'Testo troppo lungo.';
   const video = testo(b.video ?? '', 500);
   if (video == null || (video && !/^https:\/\//.test(video))) return 'Il link del video deve iniziare con https://';
   const foto = fotoValida(b.foto);
@@ -53,7 +54,7 @@ export const validaRicetta: Valida = (b) => {
   const numero = (v: unknown, max: number) => (v == null || v === '' ? null : Number.isInteger(v) && (v as number) >= 0 && (v as number) <= max ? (v as number) : undefined);
   const macro = { porzioni: numero(b.porzioni, 50), kcal: numero(b.kcal, 10000), proteine: numero(b.proteine, 1000), carboidrati: numero(b.carboidrati, 1000), grassi: numero(b.grassi, 1000) };
   if (Object.values(macro).includes(undefined) || macro.porzioni === 0) return 'Valori per porzione non validi.';
-  return { titolo, categoria, etichette, ...(macro as Record<string, number | null>), ingredienti, procedimento, video, foto, foto_credito: foto ? foto_credito : '' };
+  return { titolo, categoria, etichette, ...(macro as Record<string, number | null>), ingredienti, procedimento, note, video, foto, foto_credito: foto ? foto_credito : '' };
 };
 
 export function raccolta(tabella: 'diario' | 'ricette', valida: Valida, ordine: string) {

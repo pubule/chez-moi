@@ -58,6 +58,9 @@ main img:not(.arrivata), .ossa {
 .ossa { border-radius: 16px; }
 .ico { width: 1.2em; height: 1.2em; flex: none; }
 
+.da-sapere h2 { display: flex; align-items: center; gap: 6px; font-size: 1.05rem; margin: 0 0 6px; }
+.da-sapere h2 svg { color: var(--accento); flex: none; }
+.da-sapere p { margin: 6px 0 0; color: var(--secondario); }
 .riquadro { display: block; background: var(--carta); border-radius: 20px; padding: 14px 16px; margin: 14px 0; }
 .titolo-riga { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .titolo-riga h1, .titolo-riga h2 { margin-bottom: 0; }

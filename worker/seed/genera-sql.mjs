@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import ricette from './ricette.mjs';
 import macro from './macro.mjs';
+import note from './note.mjs';
 
 const foto = JSON.parse(readFileSync(new URL('./foto.json', import.meta.url), 'utf8'));
 const q = s => `'${s.replace(/'/g, "''")}'`;
@@ -21,6 +22,7 @@ for (const r of ricette) {
   if (m) console.log(`update ricette set porzioni = ${m[0]}, kcal = ${m[1]}, proteine = ${m[2]}, carboidrati = ${m[3]}, grassi = ${m[4]} where id = ${q(id(r.t))} and kcal is null;`);
   // categoria spostata dopo il primo caricamento
   if (r.t === 'Salsa per fritto con maionese e capperi') console.log(`update ricette set categoria = 'Salse' where id = ${q(id(r.t))} and categoria = 'Antipasti';`);
+  if (note[r.t]) console.log(`update ricette set note = ${q(note[r.t])} where id = ${q(id(r.t))} and note = '';`);
   const f = foto[r.t];
   if (f) console.log(`update ricette set foto = ${q(f.foto)}, foto_credito = ${q(f.credito)} where id = ${q(id(r.t))} and foto is null;`);
 }

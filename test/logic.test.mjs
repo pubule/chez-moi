@@ -133,3 +133,10 @@ test('macro: quote sulle calorie e ricette senza valori', async () => {
   assert.deepEqual(macroDi({ kcal: 160, proteine: 0, carboidrati: 0, grassi: 0 }).quote, [0, 0, 0]);
 });
 
+test('note del seed: ogni titolo esiste', async () => {
+  const { default: ricette } = await import('../worker/seed/ricette.mjs');
+  const { default: note } = await import('../worker/seed/note.mjs');
+  const titoli = new Set(ricette.map(r => r.t));
+  for (const [t, n] of Object.entries(note)) assert.ok(titoli.has(t) && n.length <= 2000, t);
+});
+
