@@ -493,5 +493,305 @@
   "foto": "foto/9cc83319-6c78-55e3-fb1f-31a6229b67fa",
   "credito": "immagine creata con l’AI",
   "prompt": "Glossy honey glazed baby carrots with tops, butter and thyme"
+ },
+ "Porridge proteico ai frutti di bosco": {
+  "foto": "foto/14ff83b9-08fa-454e-ac4b-05f6a2a89591",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of creamy oat porridge topped with fresh mixed berries, chia seeds and a drizzle of honey"
+ },
+ "Chia pudding al mango": {
+  "foto": "foto/ed8b2cb6-7b52-2026-a6d0-cf7c120eab13",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A glass layered with white coconut chia pudding and bright mango purée, topped with mango cubes, shredded coconut, lime zest and a mint leaf"
+ },
+ "Hummus di ceci con verdure croccanti": {
+  "foto": "foto/3338cf05-2929-3aea-5679-cd3e4d48bee4",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Creamy hummus swirled on a plate with olive oil pooled in the center, smoked paprika and whole chickpeas, with crunchy carrot, celery and cucumber sticks"
+ },
+ "Burrata, pesche e basilico": {
+  "foto": "foto/6dfc7b75-3739-6260-a64f-a70fe66b2f01",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A burrata torn open in the center of a plate with yellow peach wedges, torn basil leaves, toasted sliced almonds, lemon zest and olive oil"
+ },
+ "Zuppa di lenticchie rosse al cumino": {
+  "foto": "foto/13d286c8-b3f9-2ccb-e6c2-6d65b72fc7bd",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Smooth orange red lentil soup in a bowl with a spoon of Greek yogurt, olive oil drizzle, paprika and chopped coriander"
+ },
+ "Insalata di farro, ceci e verdure grigliate": {
+  "foto": "foto/bd796736-c163-526e-594e-33c9077d5fe3",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Farro salad with chickpeas and grilled zucchini, eggplant and red pepper, crumbled feta, fresh basil and mint"
+ },
+ "Gnocchi di patate al burro e salvia": {
+  "foto": "foto/dc3d1ee0-f0b9-c3ca-3ef8-6c2e2a9b96c8",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Homemade potato gnocchi with fork ridges in brown butter with crispy sage leaves and grated parmesan"
+ },
+ "Frittata al forno di zucchine e menta": {
+  "foto": "foto/d5a08551-61ca-6596-5dc6-74bbc9dc17fc",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Squares of oven baked zucchini frittata, golden on top, garnished with fresh mint and thin raw zucchini rounds"
+ },
+ "Poke bowl di salmone": {
+  "foto": "foto/d5be6916-3250-46c4-8265-ba3e382183b4",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A poke bowl with sushi rice, cubes of marinated raw salmon, avocado, cucumber, mango, edamame, spring onion, sesame seeds and nori strips"
+ },
+ "Petto di pollo a 63 °C con salsa allo yogurt": {
+  "foto": "foto/be6c52aa-34d1-85ed-9524-fbbb991a48f2",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Sliced juicy sous vide chicken breast with a lightly seared surface, served with tzatziki style yogurt cucumber sauce, dill and lemon zest"
+ },
+ "Chimichurri": {
+  "foto": "foto/2f72400f-dc83-dc10-2b6e-82a86f141a1a",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small rustic bowl of bright green chimichurri sauce with chopped parsley, garlic, red chili flakes and olive oil, next to sliced grilled steak"
+ },
+ "Fondo bruno di vitello": {
+  "foto": "foto/63627512-52b6-e021-099e-3dffb4d125c7",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A glossy dark brown veal jus reduction in a small copper saucepan, a spoon coated with shiny sauce, roasted bones and thyme in the background"
+ },
+ "Bisque di crostacei": {
+  "foto": "foto/768f8c8e-8e86-7daa-f7a5-d008b7957a87",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of silky orange-red shellfish bisque with a swirl of cream, a seared prawn tail and tarragon leaves on top"
+ },
+ "Maionese": {
+  "foto": "foto/e7ac2aa0-eb58-1cc0-c4a4-d12dac84d951",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small glass jar of thick pale yellow homemade mayonnaise with a spoon, a lemon half and an egg beside it"
+ },
+ "Beurre blanc": {
+  "foto": "foto/8d4cff27-6a06-93b9-bb32-8a6118146828",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A fillet of white fish on a plate with glossy ivory beurre blanc butter sauce and finely cut chives"
+ },
+ "Pesto alla genovese": {
+  "foto": "foto/795a026b-0bed-335e-9842-191df1daf4e7",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A marble mortar filled with vivid green basil pesto, a wooden pestle, pine nuts, basil leaves and grated parmesan around"
+ },
+ "Salsa teriyaki": {
+  "foto": "foto/7fdd1ec5-ee24-33c5-2bd6-7d4b2e684462",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small bowl of glossy dark teriyaki sauce next to a lacquered salmon fillet sprinkled with sesame seeds and sliced spring onion"
+ },
+ "Dukkah": {
+  "foto": "foto/f3cca626-0e01-db76-8ebe-ee0fa31746a3",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small bowl of coarse dukkah spice blend of toasted hazelnuts, sesame and coriander seeds, with bread and a dish of olive oil"
+ },
+ "Pangrattato aromatico": {
+  "foto": "foto/68004dd2-e6bf-e963-2b5e-1da7e9dc56d0",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small pan of golden toasted breadcrumbs mixed with lemon zest, chopped parsley and chili flakes"
+ },
+ "Rub per barbecue": {
+  "foto": "foto/510f70ca-28b3-7e96-a02a-fd645f853c5a",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small bowl of red barbecue dry rub spice blend of paprika, brown sugar and pepper, a raw pork shoulder rubbed with spices beside it"
+ },
+ "Furikake": {
+  "foto": "foto/0b3489aa-c2cb-7f11-10d0-714ce06a15f1",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small ceramic dish of Japanese furikake with black and white sesame seeds and nori strips, sprinkled over a bowl of white rice"
+ },
+ "Polvere di olive nere": {
+  "foto": "foto/ca54dc56-f011-f48e-5481-eb07068f817a",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Dark black olive powder like sand scattered over a piece of white fish and a burrata, a few dried black olives beside it"
+ },
+ "Crème brûlée": {
+  "foto": "foto/51010b0a-1b10-22f1-79ff-9814fd4b9d26",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A crème brûlée in a white ramekin with a glassy amber caramelized sugar crust, cracked with a spoon, a few raspberries beside"
+ },
+ "Spuma di patate con uovo a 63 °C": {
+  "foto": "foto/8f954a78-c45a-f8b7-43c6-ccfb3b2f52f8",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A deep plate with airy white potato foam, a soft slow-cooked egg yolk glistening in the center, chopped hazelnuts and chives"
+ },
+ "Mousse al cioccolato al sifone": {
+  "foto": "foto/18052d90-d85e-6f3a-93b7-73cdef9c7cee",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A glass of light airy dark chocolate mousse topped with chocolate shavings, fresh raspberries and flaky salt"
+ },
+ "Gel di agrumi": {
+  "foto": "foto/312a16ea-e296-e0b3-a5de-14e5cd949640",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Glossy bright orange citrus gel dots piped on a slate plate next to slices of raw fish, a small squeeze bottle beside"
+ },
+ "Gel di aceto balsamico": {
+  "foto": "foto/60fcf3cc-fb4c-d559-2ff4-6fee2e26a186",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Shiny dark balsamic vinegar gel dots piped around a burrata and strawberries on a plate, a squeeze bottle nearby"
+ },
+ "Carpaccio di verdure croccanti": {
+  "foto": "foto/8d375a3b-b548-10df-aa8a-f55665bd79ea",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A rosette of paper-thin raw vegetable slices, fennel, zucchini, chioggia beetroot, purple carrot and radish, with sprouts and lemon zest"
+ },
+ "Chips di topinambur": {
+  "foto": "foto/fa4dbe3d-0fce-15ff-1466-62617d9fa264",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of golden crispy Jerusalem artichoke chips with fried rosemary needles and salt"
+ },
+ "Sgombro scottato al cannello": {
+  "foto": "foto/b1c6b20a-da9f-8ce2-4a93-ee25f15297b5",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Blowtorched mackerel fillet pieces with blistered charred skin and raw pink flesh on cucumber ribbons, sesame and spring onion"
+ },
+ "Pasta fresca all’uovo": {
+  "foto": "foto/2d8bc194-96de-151b-b972-e4681ac59c31",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Fresh yellow egg pasta sheets and tagliatelle nests dusted with semolina on a wooden board, a rolling pin and eggs"
+ },
+ "Plin al sugo d’arrosto": {
+  "foto": "foto/b8082b47-13e7-8b59-75b3-d859df481c54",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Tiny pinched agnolotti del plin glossy with dark roast gravy and grated parmesan on a white plate"
+ },
+ "Tortelli di zucca al burro nocciola": {
+  "foto": "foto/44d23a3b-e371-76cc-6bb7-c2dd1f2f7c57",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Pumpkin tortelli glistening with brown butter, crispy sage leaves, grated parmesan and crumbled amaretti"
+ },
+ "Ravioli di ricotta e limone": {
+  "foto": "foto/aa94bafa-5805-d094-6a8d-2182f6bca46c",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Ricotta ravioli in a light butter sauce with lemon zest, fresh mint leaves and black pepper"
+ },
+ "Tagliolini al tartufo": {
+  "foto": "foto/d53a83a1-7196-ca93-03b4-09d7bd5ef9bb",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A nest of thin buttery egg tagliolini with generous shavings of black truffle on top"
+ },
+ "Rigatoni alla gricia": {
+  "foto": "foto/b1d4a225-ad43-b45b-ee5d-24a656ca6fd2",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Rigatoni in a creamy pecorino and black pepper sauce topped with crispy guanciale strips"
+ },
+ "Bucatini all’amatriciana": {
+  "foto": "foto/59eb7dd5-aaae-d898-9071-f97ad5db7543",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Bucatini in rich tomato amatriciana sauce with crispy guanciale and grated pecorino"
+ },
+ "Ragù alla bolognese": {
+  "foto": "foto/d6a71f49-7476-b30b-c475-90f6dc973bdc",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A cast iron pot of slow cooked bolognese ragù with a wooden spoon, tagliatelle and parmesan beside"
+ },
+ "Lasagne alla bolognese": {
+  "foto": "foto/f36eb64c-1061-fd82-a95a-3f016974d86e",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A square portion of green spinach lasagne alla bolognese with visible layers of ragù and béchamel, crispy edges"
+ },
+ "Guancia di manzo brasata": {
+  "foto": "foto/2d3d64e1-aec4-5732-9b02-f2d385ef8bf5",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Braised beef cheek glossy with dark red wine reduction on a quenelle of smooth mashed potato, rosemary and flaky salt"
+ },
+ "Carré d’agnello in crosta di erbe": {
+  "foto": "foto/7f213cff-fa5d-d4db-6806-ba6eb426ab91",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A rack of lamb with green herb crust sliced into double chops showing pink centers, red wine sauce and rosemary"
+ },
+ "Tonno scottato al sesamo": {
+  "foto": "foto/f6438ba3-d6f2-8202-9cbf-353d78460fa6",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Seared sesame crusted tuna sliced to show a deep red raw center, with ponzu, spring onion and a dab of wasabi"
+ },
+ "Capesante scottate con purea di cavolfiore": {
+  "foto": "foto/70c16bd1-625c-7061-a8eb-3ed5cc19cc03",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Three golden seared scallops on smooth cauliflower purée with chopped hazelnuts and thin raw cauliflower shavings"
+ },
+ "Petto d’anatra all’arancia": {
+  "foto": "foto/ca846e99-6a77-2266-0277-47378f242005",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Sliced pink duck breast with crispy skin, glossy orange sauce, orange segments and julienned orange zest"
+ },
+ "Piccione rosa con salsa al vino": {
+  "foto": "foto/2fb9a44c-4c8e-65d2-7139-a7a57b6c896c",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Pink roasted pigeon breasts and a golden leg with dark wine sauce, fresh blackberries and flaky salt"
+ },
+ "Filetto alla Rossini": {
+  "foto": "foto/b3c01626-281b-bfcc-8f66-8b5b02c32fd7",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Tournedos Rossini: beef fillet on a toasted brioche crouton topped with seared foie gras, black truffle slices and Madeira sauce"
+ },
+ "Crudo di gamberi rossi": {
+  "foto": "foto/3ef688c7-01aa-ce8b-31ee-5c371c0bb691",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Raw red prawns opened flat on a chilled plate with olive oil, lime zest, pink peppercorns, wild fennel and citrus gel dots"
+ },
+ "Carpaccio di ricciola agli agrumi": {
+  "foto": "foto/825481b0-ba94-400e-04cd-69bd71dcc3b1",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Thin slices of raw amberjack carpaccio with orange and pink grapefruit segments, radish slices and chives"
+ },
+ "Ostriche con mignonette": {
+  "foto": "foto/7b5f0c45-fae9-3550-860e-5df57693d4ef",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Fresh opened oysters on crushed ice with a small bowl of shallot mignonette and lemon wedges"
+ },
+ "Tartare di tonno": {
+  "foto": "foto/3158811f-a6cd-ae42-92a5-c5a574b58a60",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A neat ring of diced red tuna tartare over avocado, topped with sesame seeds and chives"
+ },
+ "Uovo pochè con crema di parmigiano": {
+  "foto": "foto/6fb395f9-090d-62f6-9103-c1157e232518",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A poached egg in a shallow bowl of creamy parmesan sauce, topped with golden breadcrumbs, black pepper and truffle shavings"
+ },
+ "Flan di parmigiano": {
+  "foto": "foto/62b7ac3a-9103-6094-653c-c6a8c2b673a8",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "An unmolded golden parmesan flan on a plate with dots of balsamic gel and parmesan shavings"
+ },
+ "Fondant al cioccolato": {
+  "foto": "foto/6dd8c0cb-7db1-84b1-dbf7-b471b93a350f",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A chocolate lava cake cut open with molten center flowing, a scoop of vanilla ice cream, raspberries and powdered sugar"
+ },
+ "Millefoglie con crema chantilly": {
+  "foto": "foto/994f66e6-2ace-dcfc-3d37-9faba2a350f5",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A millefeuille with crisp caramelized puff pastry layers and piped chantilly cream, dusted with icing sugar, berries"
+ },
+ "Semifreddo al torrone": {
+  "foto": "foto/4334f55e-023d-da16-4999-0c959a63771c",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A slice of nougat semifreddo with chopped almond torrone and warm chocolate sauce drizzled"
+ },
+ "Zabaione al Marsala": {
+  "foto": "foto/7487d34a-04e9-4629-4552-47fc4da78495",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A coupe glass of warm fluffy golden zabaglione with ladyfinger biscuits and red berries"
+ },
+ "Sorbetto al limone e basilico": {
+  "foto": "foto/f9f06af9-3b36-d434-1451-c5d137fa9402",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Scoops of pale lemon basil sorbet in a chilled glass with a basil leaf and lemon zest"
+ },
+ "Crostata di frutta fresca": {
+  "foto": "foto/c1970ce9-03b5-d615-d0a9-fa7b82bd4568",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A shortcrust tart filled with pastry cream and glazed fresh fruit arranged in concentric circles"
+ },
+ "Pavlova ai frutti di bosco": {
+  "foto": "foto/bb65ee92-861a-a4d4-d415-d78f9cb13a09",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A pavlova meringue nest with whipped cream, mixed berries, passion fruit pulp and mint leaves"
+ },
+ "Pasta frolla": {
+  "foto": "foto/5a4fa8e6-bfed-054c-053d-bfd73b01f2ea",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A disc of golden shortcrust pastry dough and a blind-baked tart shell with baking beans, flour dusted"
  }
 }
