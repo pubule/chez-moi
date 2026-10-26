@@ -1,0 +1,38 @@
+name: Foto AI
+
+# Genera le foto mancanti del seed (worker/seed/genera-foto.mjs), le carica in R2, le collega in D1
+# e fa il commit di foto.json sul ramo da cui parte.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [claude/project-thread-e195h4]
+    paths: [.github/workflows/foto-ai.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  foto:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: 3f078eb974edf09669ceca41a0264a1f
+    defaults:
+      run:
+        working-directory: worker/seed
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: which convert || (sudo apt-get update && sudo apt-get install -y imagemagick)
+      - run: node genera-foto.mjs
+      # dalla radice, dove sta wrangler.jsonc con l'id del database
+      - run: if grep -q update worker/seed/foto.sql; then npx -y wrangler@4.149.0 d1 execute chez-moi-db --remote --file worker/seed/foto.sql; fi
+        working-directory: .
+      # anche se D1 fallisce: le foto sono già in R2 e rilanciando non vanno rigenerate
+      - name: Commit di foto.json
+        if: always()
+        run: |
+          git config user.name github-actions && git config user.email github-actions@users.noreply.github.com
+          git add foto.json && git commit -m "Foto AI per le ricette senza foto" && git push || echo "niente da salvare"
