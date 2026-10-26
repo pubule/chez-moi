@@ -793,5 +793,300 @@
   "foto": "foto/5a4fa8e6-bfed-054c-053d-bfd73b01f2ea",
   "credito": "immagine generata con AI (FLUX, Workers AI)",
   "prompt": "A disc of golden shortcrust pastry dough and a blind-baked tart shell with baking beans, flour dusted"
+ },
+ "Salsa olandese": {
+  "foto": "foto/f2b57b3b-51b6-bf74-4f2f-bf93dc367c89",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small copper saucepan and a sauceboat of glossy pale yellow hollandaise sauce, a whisk resting beside it, half a lemon"
+ },
+ "Salsa barbecue": {
+  "foto": "foto/57f2e795-4255-e941-7f16-8e9dac3fcc64",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A glass jar and a bowl of thick dark glossy barbecue sauce with a basting brush, smoked paprika sprinkled around"
+ },
+ "Romesco": {
+  "foto": "foto/610738c7-8d21-24f6-c43b-082451f8ab05",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A rustic terracotta bowl of orange-red romesco sauce with toasted almonds, roasted red peppers and grilled spring onions beside it"
+ },
+ "Crema pasticcera": {
+  "foto": "foto/3f966992-65a3-4654-99a1-a65d4b1bde14",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A glass bowl of silky thick yellow pastry cream with a vanilla pod and a spatula lifting a ribbon of cream"
+ },
+ "Fumetto di pesce": {
+  "foto": "foto/bfe75edf-722f-e79e-11e4-a2c98ec6b77d",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A pot of clear golden fish stock with fish bones, fennel, leek and parsley, a ladle pouring the strained broth"
+ },
+ "Brodo di pollo": {
+  "foto": "foto/0e367d02-a815-9cb9-1c44-e987999079c8",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A large pot of clear golden chicken broth with chicken pieces, carrots, celery and onion, a ladle of broth above it"
+ },
+ "Salsa al vino rosso": {
+  "foto": "foto/fa918b5e-86a6-96d9-cb69-10fca185eabf",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A sliced medium-rare beef tenderloin glazed with a shiny dark red wine reduction sauce, sauce in a small copper pan"
+ },
+ "Salsa bernese": {
+  "foto": "foto/48330576-84e2-64bd-b037-72d0da1132ff",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A grilled steak with a sauceboat of creamy béarnaise sauce flecked with chopped tarragon"
+ },
+ "Aioli": {
+  "foto": "foto/dce86b0a-b06f-e458-c6a8-aa83c8cbc5fe",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A white mortar with thick creamy garlic aioli, whole garlic cloves and a pestle, olive oil bottle in the background"
+ },
+ "Vinaigrette agli agrumi": {
+  "foto": "foto/f864539d-b9fc-1040-ea07-5cd0bad6024d",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small glass jar of emulsified citrus vinaigrette with orange and lemon halves and a whisk, drizzled over green salad leaves"
+ },
+ "Ponzu": {
+  "foto": "foto/a61c89bd-e683-c8aa-8dc7-6a1abbb781c0",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A small ceramic dish of dark amber ponzu sauce with yuzu and lemon halves, kombu seaweed and chopsticks"
+ },
+ "Burro nocciola": {
+  "foto": "foto/00d097bf-59a5-8282-0f60-ae7efb15f642",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A light-colored pan of foaming hazelnut brown butter with toasted milk solids and sage leaves"
+ },
+ "Purè alla Robuchon": {
+  "foto": "foto/3c73d531-3950-0688-ddda-4607eb263b8a",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A plate with a smooth silky swirl of buttery pommes purée Robuchon style, glossy and pale yellow"
+ },
+ "Patate fondant": {
+  "foto": "foto/736fb69e-b570-6a0f-e603-87c72d8a5bab",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Golden seared cylinder-shaped fondant potatoes glazed with butter, thyme sprigs and garlic in a pan"
+ },
+ "Carciofi alla romana": {
+  "foto": "foto/22eb1c74-2253-ea6e-f983-d4069fb7a4ad",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Whole Roman artichokes braised upside down with long stems, mint and garlic in a terracotta dish"
+ },
+ "Cipolline in agrodolce": {
+  "foto": "foto/a82fc28b-9827-ad14-5ba6-d7a08e0cd3e9",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Glossy caramelized small pearl onions in sweet and sour balsamic glaze in a ceramic bowl"
+ },
+ "Verdure glassate al burro": {
+  "foto": "foto/6113c020-d50f-7d43-a606-d46a25aaf0e4",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Glazed baby carrots, turnips and snap peas shining with butter in a pan, fresh herbs"
+ },
+ "Impasto napoletano a lunga lievitazione": {
+  "foto": "foto/0806e45d-69ee-5c19-d3b2-ae7bcc934c4f",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Smooth round Neapolitan pizza dough balls proofing in a wooden box, flour dusted, one stretched base beside"
+ },
+ "Pizza in teglia": {
+  "foto": "foto/d300f3a5-cd87-cc9c-fc73-2076a0b5c341",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Rectangular Roman pizza in teglia in a blue steel pan, airy crispy crust with tomato, mozzarella and basil, cut into squares"
+ },
+ "Manhattan": {
+  "foto": "foto/15a2c40f-6c58-05bf-df57-fee153c31735",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A Manhattan cocktail in a chilled coupe glass, deep amber, with a dark cocktail cherry on a pick"
+ },
+ "Martinez": {
+  "foto": "foto/9da7857a-d0e3-8f71-67db-4e83e252ac11",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A Martinez cocktail in a coupe glass, reddish amber, with an orange twist"
+ },
+ "Last Word": {
+  "foto": "foto/9505a9e8-b6db-cbe6-6ac5-5367555a2bfd",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A Last Word cocktail in a coupe glass, pale cloudy green, with a cocktail cherry"
+ },
+ "Aviation": {
+  "foto": "foto/efcbfd62-df6c-095c-87e2-d880611fe238",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "An Aviation cocktail in a coupe glass, pale lavender-blue color, with a cocktail cherry at the bottom"
+ },
+ "Clover Club": {
+  "foto": "foto/21288c49-5a44-0412-1db3-cd744deed2c2",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A Clover Club cocktail in a coupe glass, pink with a thick white foam head and three raspberries on a pick"
+ },
+ "Bloody Mary": {
+  "foto": "foto/87dadf81-e396-49a9-1154-10a9a3d7390a",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A Bloody Mary in a tall glass with ice, a celery stalk, lemon wedge and black pepper rim"
+ },
+ "Mai Tai": {
+  "foto": "foto/8c752d32-65d9-658f-ff89-bfea248d359a",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A Mai Tai cocktail in a double old fashioned glass with crushed ice, a fresh mint sprig and a lime shell"
+ },
+ "Uova alla Benedict": {
+  "foto": "foto/98bcd1da-9688-ae4a-021d-1e36e3c1b49b",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Eggs Benedict on toasted English muffins with ham, poached eggs and golden hollandaise sauce, chives"
+ },
+ "Avocado toast con uovo pochè": {
+  "foto": "foto/bec7a918-7350-aad2-b4bb-55708fbeb5ce",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Sourdough avocado toast topped with a poached egg cut open with runny yolk, chili flakes and seeds"
+ },
+ "French toast di brioche": {
+  "foto": "foto/e691ad89-2783-df0f-6e23-0c3b06d854a5",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Thick slices of golden brioche French toast with maple syrup, berries and powdered sugar"
+ },
+ "Shakshuka": {
+  "foto": "foto/cfd1e24f-a14e-90ac-b45f-35319ec47d5b",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Shakshuka in a cast iron pan, eggs poached in spiced tomato and pepper sauce, cumin, parsley and crumbled feta"
+ },
+ "Smash burger": {
+  "foto": "foto/df84874a-4c5b-3046-82da-8dea05031433",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A double smash burger with crispy lacy edges, melted American cheese, pickles and onions in a soft potato bun"
+ },
+ "Insalata greca": {
+  "foto": "foto/6301035f-dd47-f8d8-e421-3a49250a9235",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Greek salad with tomatoes, cucumber, red onion, green pepper, kalamata olives and a slab of feta with oregano"
+ },
+ "Feta al forno con pomodorini e origano": {
+  "foto": "foto/7768d347-f5db-d559-d636-a773a839cc44",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A block of feta baked in a small dish with burst cherry tomatoes, olive oil and dried oregano"
+ },
+ "Souvlaki di pollo con tzatziki": {
+  "foto": "foto/f1a88eff-ec63-df59-a57e-948ef1af42e3",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Grilled chicken souvlaki skewers with pita bread, tzatziki, tomatoes and red onion"
+ },
+ "Gamberi saganaki con feta": {
+  "foto": "foto/134f8146-6be7-c3ea-3947-1ad9be6d3e4d",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Shrimp saganaki in a small pan with tomato sauce, crumbled melting feta and parsley"
+ },
+ "Tzatziki": {
+  "foto": "foto/624ce440-9a7d-df79-80fe-0c1cf6f142f2",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of thick creamy tzatziki with grated cucumber, olive oil drizzle, dill and a cucumber slice"
+ },
+ "Bowl di quinoa, ceci e feta": {
+  "foto": "foto/92a8ccc2-3b0c-975d-b912-f65c1caf86a9",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of quinoa with roasted chickpeas, cucumber, cherry tomatoes, crumbled feta and herbs"
+ },
+ "Polpette di zucchine e feta al forno": {
+  "foto": "foto/2e6adf90-105a-24b4-ca71-e5372c916ebf",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Baked zucchini and feta fritters with a yogurt dip and fresh mint"
+ },
+ "Spanakopita": {
+  "foto": "foto/3b21a1c2-da2c-4ee0-f71a-62496e063046",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A golden flaky phyllo spinach and feta pie, one square slice cut out showing the green filling"
+ },
+ "Briam": {
+  "foto": "foto/ca1c6c3e-f398-d375-e54d-cbc4d1787e07",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Greek briam, roasted sliced potatoes, zucchini, eggplant, peppers and tomatoes in an oven dish with olive oil"
+ },
+ "Overnight oats allo yogurt greco": {
+  "foto": "foto/a818e933-791a-6d5d-7733-9c52762fb895",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A glass jar of overnight oats layered with Greek yogurt, chia, berries and honey"
+ },
+ "Bowl di yogurt greco, granola e frutti rossi": {
+  "foto": "foto/f15f8ce0-a903-7505-0a3f-d0bd7fba52df",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of thick Greek yogurt with crunchy granola, raspberries, strawberries and blueberries, honey drizzle"
+ },
+ "Pollo allo yogurt e spezie al forno": {
+  "foto": "foto/83c35797-0abd-1ffb-b39d-f878dac07143",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Roasted yogurt and spice marinated chicken thighs, charred golden edges, lemon wedges and coriander"
+ },
+ "Labneh con olio e za’atar": {
+  "foto": "foto/51d2d69e-7890-754b-405b-34649eba78e9",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A plate of creamy labneh swirled with olive oil and za'atar, warm pita bread beside it"
+ },
+ "Cheesecake proteica allo yogurt greco": {
+  "foto": "foto/90848b68-929f-ce85-d769-21d72a88461c",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A slice of baked Greek yogurt cheesecake with a berry coulis topping"
+ },
+ "Primo sale alla piastra con verdure grigliate": {
+  "foto": "foto/85bd4756-7b59-848f-ac03-57036dde7849",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Grilled slices of fresh primo sale cheese with grill marks next to grilled zucchini, eggplant and peppers"
+ },
+ "Involtini di zucchine con primo sale e menta": {
+  "foto": "foto/80477520-3054-b50e-8819-62714650b583",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Rolled grilled zucchini slices filled with fresh primo sale cheese and mint leaves"
+ },
+ "Insalata di orzo, primo sale e pomodorini": {
+  "foto": "foto/376b923f-baaf-e531-0ca2-f3e74797c1d9",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of pearl barley salad with diced fresh primo sale cheese, cherry tomatoes and basil"
+ },
+ "Frittata di albumi, spinaci e primo sale": {
+  "foto": "foto/c4a344ae-f235-6a79-4077-1af7c2a129c6",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A fluffy egg white frittata with spinach and diced primo sale cheese in a pan, one wedge cut"
+ },
+ "Bigoli in salsa": {
+  "foto": "foto/dfa49b9a-22b2-0fc6-7452-34374664abf7",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Thick Venetian bigoli pasta tossed in a brown onion and anchovy sauce with parsley"
+ },
+ "Risi e bisi": {
+  "foto": "foto/1f9f68ed-4739-d804-e24a-c2ced6f2f2ee",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Venetian risi e bisi, soupy creamy rice with fresh green peas and parsley in a shallow bowl"
+ },
+ "Sarde in saor": {
+  "foto": "foto/8806c826-fa8f-56e5-5638-a652dd05029b",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Venetian sarde in saor, fried sardines layered with sweet and sour onions, raisins and pine nuts"
+ },
+ "Fegato alla veneziana": {
+  "foto": "foto/fd1c73bc-1758-f48a-6b83-31886d84ea38",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Fegato alla veneziana, thin strips of calf liver with soft caramelized onions, with white polenta"
+ },
+ "Baccalà mantecato": {
+  "foto": "foto/d23bb3e6-0269-0b0c-349b-e6a0ac17dfc5",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Creamy whipped salt cod baccalà mantecato on grilled white polenta slices with parsley"
+ },
+ "Pasta e fagioli alla veneta": {
+  "foto": "foto/e970bcdc-5d9e-91b0-87b7-9a81e31b3d52",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of thick Venetian pasta e fagioli with borlotti beans, short pasta and a drizzle of olive oil"
+ },
+ "Polenta morbida": {
+  "foto": "foto/a4bafdc7-1bcf-88e7-6e52-610753cf7bd3",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of soft creamy yellow polenta with butter melting on top and grated cheese"
+ },
+ "Ribollita": {
+  "foto": "foto/768725a5-a75a-eb77-fb4c-93402c34240f",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A rustic bowl of thick Tuscan ribollita with black kale, cannellini beans and bread, olive oil drizzle"
+ },
+ "Pappa al pomodoro": {
+  "foto": "foto/c3e2329c-8bb3-32f0-08d0-7590e4dae626",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "A bowl of Tuscan pappa al pomodoro, thick tomato and bread soup with basil and olive oil"
+ },
+ "Panzanella": {
+  "foto": "foto/b20fc1c3-c06b-64fc-3b84-842bffbfeca1",
+  "credito": "immagine generata con AI (FLUX, Workers AI)",
+  "prompt": "Tuscan panzanella salad with soaked bread chunks, ripe tomatoes, cucumber, red onion and basil"
  }
 }
