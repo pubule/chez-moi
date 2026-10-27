@@ -1,7 +1,7 @@
 name: Foto AI
 
 # Genera le foto mancanti del seed (worker/seed/genera-foto.mjs), le carica in R2, le collega in D1
-# e fa il commit di foto.json sul ramo da cui parte.
+# e fa il commit di foto.json sul ramo da cui parte. Oltre la quota del giorno si ferma: rilanciarlo riprende.
 on:
   workflow_dispatch: {}
   push:
