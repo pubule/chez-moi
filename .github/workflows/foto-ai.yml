@@ -2,11 +2,9 @@ name: Foto AI
 
 # Genera le foto mancanti del seed (worker/seed/genera-foto.mjs), le carica in R2, le collega in D1
 # e fa il commit di foto.json sul ramo da cui parte. Oltre la quota del giorno si ferma: rilanciarlo riprende da dove era.
+# Solo a comando (Actions -> Foto AI -> Run workflow), come il deploy.
 on:
   workflow_dispatch: {}
-  push:
-    branches: [claude/project-thread-e195h4]
-    paths: [.github/workflows/foto-ai.yml]
 
 permissions:
   contents: write
