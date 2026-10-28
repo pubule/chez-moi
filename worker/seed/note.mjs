@@ -5,6 +5,7 @@ const CARNE = 'Carne cruda: compra il pezzo intero da un macellaio di fiducia, b
 const UOVO = 'Uovo crudo: usa uova freschissime, tieni in frigo e consuma entro 2 giorni. Sconsigliato in gravidanza, ai bambini e a chi ha difese basse.';
 const ALBUME = 'Albume crudo: usa uova freschissime oppure albume pastorizzato in brick, che monta uguale.';
 const TUORLO_MORBIDO = 'Tuorlo poco cotto: sconsigliato in gravidanza e ai bambini piccoli.';
+const CAMINO = 'Camino acceso: appoggialo su una base che non brucia, lontano da muri e tettoie, usa guanti lunghi e appoggia la griglia solo quando è ben stabile. Le braci restano roventi per ore.';
 const EMULSIONE_CALDA = 'Tuorli cotti poco: servila subito, non conservarla e non riscaldarla.';
 
 export default {
@@ -62,4 +63,9 @@ export default {
   'Merluzzo a 52 °C': `${PESCE}\nA 52 °C il merluzzo non è pastorizzato: per questo deve essere abbattuto.`,
   'Burger di salmone': 'Dentro il burger resta rosato: usa salmone abbattuto, come per il crudo.',
   'Costine di maiale a 74 °C': 'Per 12 ore il bagno deve restare coperto (pellicola o palline apposite), altrimenti l’acqua evapora e il roner si ferma.',
+  'Picanha al camino': CAMINO,
+  'Costata in reverse sear': CAMINO,
+  'Gamberoni al camino': CAMINO,
+  'Yakitori al camino': CAMINO,
+  'Melanzane bruciate al camino': CAMINO,
 };

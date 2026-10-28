@@ -265,4 +265,15 @@ export default {
   'Pollo arrosto al burro di erbe': [4, 680, 50, 1, 52],
   'Spaghettoni al pomodoro': [4, 515, 13, 68, 21],
   'Pasta alla Norma': [4, 665, 17, 72, 35],
+
+  'Picanha al camino': [4, 690, 54, 1, 52],
+  'Costata in reverse sear': [4, 600, 48, 0, 45],
+  'Pulled pork sul Weber a gas': [10, 830, 50, 52, 44],
+  'Pollo a libro sul Weber': [4, 560, 48, 2, 40],
+  'Salmone sulla tavola di cedro': [4, 445, 40, 9, 27],
+  'Gamberoni al camino': [4, 245, 28, 1, 14],
+  'Yakitori al camino': [4, 465, 37, 13, 29],
+  'Melanzane bruciate al camino': [4, 170, 4, 10, 13],
+  'Pannocchie alla brace con burro alla paprika': [4, 245, 5, 21, 16],
+  'Ananas grigliato al rum': [4, 230, 1, 40, 6],
 };
