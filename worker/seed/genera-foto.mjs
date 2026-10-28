@@ -1,5 +1,6 @@
 // Genera con Workers AI (FLUX, 4 passi) le foto dei prompt in foto-prompt.json che non sono ancora in foto.json,
 // le carica in R2 con la miniatura, aggiorna foto.json e scrive foto.sql per collegarle alle ricette senza foto.
+// Le chiavi 'sfida:<titolo>' sono le foto di esempio delle sfide: chiave già scritta in public/sfide.js, niente SQL.
 // uso (cwd worker/seed, token con Workers AI e R2): node genera-foto.mjs && npx wrangler@4 d1 execute chez-moi-db --remote --file foto.sql
 // Quota gratuita ~100 foto al giorno: oltre, Cloudflare rifiuta (4006) e lo script si ferma; rilanciarlo riprende da dove era.
 import { createHash } from 'node:crypto';
@@ -29,12 +30,13 @@ for (const [t, p] of Object.entries(prompt)) {
   // 4:3 al centro, come le altre foto del seed
   execFileSync('convert', ['ai.jpg', '-gravity', 'center', '-crop', '4:3', '+repage', '-resize', '1200x900>', '-strip', '-quality', '85', 'foto.jpg']);
   execFileSync('convert', ['foto.jpg', '-resize', '640x', '-quality', '80', 'mini.jpg']);
-  const k = `foto/${uuid('ai:' + t)}`;
+  const sfida = t.startsWith('sfida:');
+  const k = `foto/${uuid(sfida ? t : 'ai:' + t)}`;
   put(k, 'foto.jpg');
   put(k.replace(/^foto\//, 'mini/'), 'mini.jpg');
   foto[t] = { foto: k, credito: 'immagine generata con AI (FLUX, Workers AI)', prompt: p };
   writeFileSync('foto.json', JSON.stringify(foto, null, 1));
-  sql.push(`update ricette set foto = ${q(k)}, foto_credito = ${q(foto[t].credito)} where id = ${q(uuid(t))} and foto is null;`);
+  if (!sfida) sql.push(`update ricette set foto = ${q(k)}, foto_credito = ${q(foto[t].credito)} where id = ${q(uuid(t))} and foto is null;`);
   console.log('ok', t);
 }
 writeFileSync('foto.sql', sql.join('\n') + '\n');

@@ -1,11 +1,11 @@
 # Handoff — Chez moi
 
-Ultimo aggiornamento: 2026-10-27
+Ultimo aggiornamento: 2026-10-28
 
 ## Cos'è
 
 PWA per iPhone, per uso personale di Fabio, per ritrovare la passione per la cucina gourmet. Quattro schede:
-Sfida (una tecnica a settimana scelta tra 24 in `public/sfide.js`, filtrate per gli attrezzi spuntati in
+Sfida (una tecnica a settimana scelta tra 36 in `public/sfide.js`, filtrate per gli attrezzi spuntati in
 Opzioni), Diario (foto, voto, note), Ricette (con video YouTube incorporato), Chef (ricetta proposta da Claude).
 
 Stesso schema di radar-eventi e calice: Worker + Hono + D1 + R2, frontend vanilla in `public/`, Cloudflare
@@ -42,6 +42,8 @@ Access, deploy a comando da Actions.
 - Colonna `note` ("Da sapere") sulle ricette: sicurezza alimentare (pesce abbattuto, carne e uova crude) e ingredienti da ordinare; testi del seed in `worker/seed/note.mjs`, scritti solo dove la nota è vuota.
 - Sfide: ogni sfida ha `passi` in `public/sfide.js` per la modalità cucina (`cucina = { sfida: true, passo }`); alla fine apre il diario come «L’ho fatta».
 - Ricettario a griglia (direzione E2 dei mockup) con filtri per categoria. Ogni foto ha una miniatura da 640 px in R2 sotto `mini/<uuid>` (stesso uuid), servita con `?mini` per griglia e muro del Diario; senza miniatura si vede la foto intera. Il client la genera al caricamento. Foto in D1 no: R2 è gratis fino a 10 GB e con calice siamo sotto i 60 MB.
+- Ottobre 2026, seconda tornata: 12 sfide nuove (costine e merluzzo al roner, infusione rapida e pan di Spagna al sifone, aburi, meringa all’italiana, patate Anna, tempura, tuorlo marinato, brunoise, consommé, orata sfilettata) e 24 ricette nei buchi del ricettario. Le sfide che hanno una ricetta omonima nel seed mostrano «Apri la ricetta» invece di farla scrivere allo Chef. Il test vuole `temp` sotto i 100 °C (è il quadrante): meringa e tempura non hanno quadrante. Le foto di esempio delle sfide nuove si generano con lo stesso workflow Foto AI (chiavi `sfida:<titolo>` in `foto-prompt.json`).
+- Categoria `Barbecue` (10 ricette) per gli attrezzi di Fabio: Weber a gas (indiretta con un lato spento, affumicatura con trucioli in scatola o cartoccio sopra un bruciatore) e camino Vulkano usato come brace rovente con la griglia sopra (reverse sear: Weber a 120 °C, poi camino). Nota `CAMINO` di sicurezza in `note.mjs`.
 - Icone della Home ancora verdi della prima palette: da rifare in rame se serve.
 
 ## Checklist primo deploy
