@@ -56,4 +56,10 @@ export default {
   'Coda alla vaccinara': "La coda si ordina dal macellaio, già tagliata a rocchi.",
   'Sarde in saor': "Le sarde qui sono fritte, quindi cotte del tutto: l’abbattimento non serve.",
   'Abbacchio a scottadito': "L’abbacchio è l’agnello da latte: chiedi costolette di abbacchio romano IGP.",
+
+  // ottobre 2026
+  'Aburi di salmone': `${PESCE}\nIl cannello scalda solo la superficie: il cuore resta crudo.`,
+  'Merluzzo a 52 °C': `${PESCE}\nA 52 °C il merluzzo non è pastorizzato: per questo deve essere abbattuto.`,
+  'Burger di salmone': 'Dentro il burger resta rosato: usa salmone abbattuto, come per il crudo.',
+  'Costine di maiale a 74 °C': 'Per 12 ore il bagno deve restare coperto (pellicola o palline apposite), altrimenti l’acqua evapora e il roner si ferma.',
 };
