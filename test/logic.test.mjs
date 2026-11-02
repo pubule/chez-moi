@@ -1,7 +1,7 @@
 // node --test
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, passaggi, minuti, perCategoria, sfideAnno } from '../public/logic.js';
+import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, oz, passaggi, minuti, perCategoria, sfideAnno } from '../public/logic.js';
 import { SFIDE, ATTREZZI } from '../public/sfide.js';
 
 test('settimana ISO', () => {
@@ -44,6 +44,11 @@ test('ingredienti: dose e nome', () => {
     { dose: '', nome: 'Sale e pepe' },
   ]);
   assert.deepEqual(ingredienti(''), []);
+});
+
+test('oz: dosi da jigger a quarti', () => {
+  assert.deepEqual(['30 ml', '45 ml', '50 ml', '22,5 ml', '6 cl', '10 ml', '5 ml', '320 g', '1 cucchiaio'].map(oz),
+    ['1 oz', '1½ oz', '1¾ oz', '¾ oz', '2 oz', '¼ oz', '', '', '']);
 });
 
 test('passaggi: uno per riga, senza numerazione', () => {
@@ -96,7 +101,8 @@ test('ogni foto del seed corrisponde a una ricetta e ha un credito', async () =>
   const { default: ricette } = await import('../worker/seed/ricette.mjs');
   const { readFileSync } = await import('node:fs');
   const foto = JSON.parse(readFileSync(new URL('../worker/seed/foto.json', import.meta.url), 'utf8'));
-  const titoli = new Set(ricette.map(r => r.t));
+  // le chiavi 'sfida:<titolo>' sono le foto delle sfide (vedi genera-foto.mjs)
+  const titoli = new Set([...ricette.map(r => r.t), ...SFIDE.map(s => `sfida:${s.titolo}`)]);
   for (const [t, f] of Object.entries(foto)) {
     // 'sfida:<titolo>' = foto di esempio di una sfida (public/sfide.js), anche di sfide rinominate
     assert.ok(t.startsWith('sfida:') || titoli.has(t), t);
