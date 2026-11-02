@@ -98,7 +98,8 @@ test('ogni foto del seed corrisponde a una ricetta e ha un credito', async () =>
   const foto = JSON.parse(readFileSync(new URL('../worker/seed/foto.json', import.meta.url), 'utf8'));
   const titoli = new Set(ricette.map(r => r.t));
   for (const [t, f] of Object.entries(foto)) {
-    assert.ok(titoli.has(t), t);
+    // 'sfida:<titolo>' = foto di esempio di una sfida (public/sfide.js), anche di sfide rinominate
+    assert.ok(t.startsWith('sfida:') || titoli.has(t), t);
     assert.match(f.foto, /^foto\/[0-9a-f-]{36}$/);
     assert.ok(f.credito, t);
   }
