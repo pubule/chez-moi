@@ -1,5 +1,5 @@
 import { SFIDE, ATTREZZI } from './sfide.js';
-import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, passaggi, minuti, perCategoria, sfideAnno, CATEGORIE, ETICHETTE, etichetteDi, macroDi } from './logic.js';
+import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, oz, passaggi, minuti, perCategoria, sfideAnno, CATEGORIE, ETICHETTE, etichetteDi, macroDi } from './logic.js';
 
 // ---------- dati (API del Worker, dietro Cloudflare Access) ----------
 
@@ -331,7 +331,7 @@ function dettaglioRicetta(r) {
     ${ing.length ? `
       <div class="titolo-riga"><h2>Mise en place</h2><span class="meta" id="pronti" role="status">${pronti} su ${ing.length} pronti</span></div>
       <div class="mise">${ing.map((x, i) => `
-        <button class="ingrediente" data-az="ingrediente" data-id="${r.id}:${i}" aria-pressed="${spunte.has(`${r.id}:${i}`)}">${x.dose ? `<b>${esc(x.dose)}</b>` : ''}<span>${esc(x.nome)}</span></button>`).join('')}
+        <button class="ingrediente" data-az="ingrediente" data-id="${r.id}:${i}" aria-pressed="${spunte.has(`${r.id}:${i}`)}">${x.dose ? `<b>${esc(r.categoria === 'Cocktail' && oz(x.dose) ? `${x.dose} · ${oz(x.dose)}` : x.dose)}</b>` : ''}<span>${esc(x.nome)}</span></button>`).join('')}
       </div>` : ''}
     ${pas.length ? `
       <button class="primario" data-az="cucina-apri" data-id="${r.id}">${icona('play')} Modalità cucina</button>
