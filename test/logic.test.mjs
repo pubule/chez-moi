@@ -96,7 +96,8 @@ test('ogni foto del seed corrisponde a una ricetta e ha un credito', async () =>
   const { default: ricette } = await import('../worker/seed/ricette.mjs');
   const { readFileSync } = await import('node:fs');
   const foto = JSON.parse(readFileSync(new URL('../worker/seed/foto.json', import.meta.url), 'utf8'));
-  const titoli = new Set(ricette.map(r => r.t));
+  // le chiavi 'sfida:<titolo>' sono le foto delle sfide (vedi genera-foto.mjs)
+  const titoli = new Set([...ricette.map(r => r.t), ...SFIDE.map(s => `sfida:${s.titolo}`)]);
   for (const [t, f] of Object.entries(foto)) {
     assert.ok(titoli.has(t), t);
     assert.match(f.foto, /^foto\/[0-9a-f-]{36}$/);
