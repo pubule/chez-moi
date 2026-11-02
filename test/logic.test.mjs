@@ -1,7 +1,7 @@
 // node --test
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, passaggi, minuti, perCategoria, sfideAnno } from '../public/logic.js';
+import { settimana, sfidaDellaSettimana, youtubeId, ingredienti, oz, passaggi, minuti, perCategoria, sfideAnno } from '../public/logic.js';
 import { SFIDE, ATTREZZI } from '../public/sfide.js';
 
 test('settimana ISO', () => {
@@ -44,6 +44,11 @@ test('ingredienti: dose e nome', () => {
     { dose: '', nome: 'Sale e pepe' },
   ]);
   assert.deepEqual(ingredienti(''), []);
+});
+
+test('oz: dosi da jigger a quarti', () => {
+  assert.deepEqual(['30 ml', '45 ml', '50 ml', '22,5 ml', '6 cl', '10 ml', '5 ml', '320 g', '1 cucchiaio'].map(oz),
+    ['1 oz', '1½ oz', '1¾ oz', '¾ oz', '2 oz', '¼ oz', '', '', '']);
 });
 
 test('passaggi: uno per riga, senza numerazione', () => {

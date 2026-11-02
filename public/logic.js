@@ -33,6 +33,17 @@ export function ingredienti(testo) {
   });
 }
 
+// per il jigger: ml e cl in oz a quarti, con la convenzione da bar 1 oz = 30 ml; sotto ¼ oz niente
+export function oz(dose) {
+  const m = String(dose).match(/^(\d+(?:[.,]\d+)?)\s*(ml|cl)$/i);
+  if (!m) return '';
+  const ml = parseFloat(m[1].replace(',', '.')) * (/cl/i.test(m[2]) ? 10 : 1);
+  if (ml < 7.5) return '';
+  const q = Math.round(ml / 7.5);
+  const [intero, quarti] = [Math.floor(q / 4), q % 4];
+  return `${intero || ''}${['', '¼', '½', '¾'][quarti]} oz`;
+}
+
 export function passaggi(testo) {
   return righe(testo).map(r => r.replace(/^\d+[.)]\s*/, '')).filter(Boolean);
 }
