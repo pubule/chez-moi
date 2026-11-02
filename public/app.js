@@ -219,7 +219,7 @@ const VISTE = {
     return `
       <div class="titolo-riga"><h1>Ricette</h1><button class="tondo" data-az="ricetta-nuova" aria-label="Nuova ricetta">${icona('piu')}</button></div>
       ${gruppi.length ? `
-        <input type="search" id="cerca" placeholder="Cerca…" aria-label="Cerca ricetta">
+        <input type="search" id="cerca" placeholder="Cerca ricetta o ingrediente…" aria-label="Cerca ricetta o ingrediente">
         <div class="filtri">${Object.entries(ETICHETTE).map(([k, nome]) => `<button class="chip" data-az="ricette-etichetta" data-id="${k}" aria-pressed="${etichetteScelte.has(k)}">${nome}</button>`).join('')}</div>
         <div class="filtri">${[['', 'Tutte'], ...gruppi.map(([c]) => [c, c])].map(([c, nome]) => `<button class="chip" data-az="ricette-filtro" data-id="${esc(c)}" aria-pressed="${c === filtro}">${esc(nome)}</button>`).join('')}</div>
         <p class="nota">Kcal e macro per porzione, stimati.</p>`
@@ -229,7 +229,7 @@ const VISTE = {
           <h2 class="sezione">${esc(c)}</h2>
           <div class="griglia">${xs.map(x => {
             const n = passaggi(x.procedimento).length;
-            return `<button class="scheda" data-az="ricetta-apri" data-id="${x.id}" data-etichette="${etichetteDi(x).join(',')}">
+            return `<button class="scheda" data-az="ricetta-apri" data-id="${x.id}" data-etichette="${etichetteDi(x).join(',')}" data-ingredienti="${esc(ingredienti(x.ingredienti).map(i => i.nome).join('\n').toLowerCase())}">
               ${x.foto ? `<img src="${fotoUrl(x.foto, true)}" alt="" loading="lazy">` : '<span class="senza-foto" aria-hidden="true"></span>'}
               <b>${esc(x.titolo)}</b>${schedaMacro(x, n)}
             </button>`;
@@ -593,14 +593,15 @@ document.addEventListener('change', e => {
   }
 });
 
-// la ricerca guarda in tutte le categorie (il filtro torna quando il campo si svuota); le etichette valgono sempre
+// la ricerca guarda titolo e ingredienti in tutte le categorie (il filtro torna quando il campo si svuota); le etichette valgono sempre
 function applicaFiltri() {
   const q = $('#cerca')?.value.toLowerCase() ?? '';
   document.querySelectorAll('.categoria').forEach(s => {
     const schede = [...s.querySelectorAll('.scheda')];
     schede.forEach(x => {
       const sue = x.dataset.etichette.split(',');
-      x.hidden = !x.querySelector('b').textContent.toLowerCase().includes(q) || [...etichetteScelte].some(e => !sue.includes(e));
+      const trovata = x.querySelector('b').textContent.toLowerCase().includes(q) || x.dataset.ingredienti.includes(q);
+      x.hidden = !trovata || [...etichetteScelte].some(e => !sue.includes(e));
     });
     s.hidden = schede.every(x => x.hidden) || (!q && filtro && s.dataset.categoria !== filtro);
   });
