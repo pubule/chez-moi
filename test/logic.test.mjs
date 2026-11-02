@@ -104,7 +104,8 @@ test('ogni foto del seed corrisponde a una ricetta e ha un credito', async () =>
   // le chiavi 'sfida:<titolo>' sono le foto delle sfide (vedi genera-foto.mjs)
   const titoli = new Set([...ricette.map(r => r.t), ...SFIDE.map(s => `sfida:${s.titolo}`)]);
   for (const [t, f] of Object.entries(foto)) {
-    assert.ok(titoli.has(t), t);
+    // 'sfida:<titolo>' = foto di esempio di una sfida (public/sfide.js), anche di sfide rinominate
+    assert.ok(t.startsWith('sfida:') || titoli.has(t), t);
     assert.match(f.foto, /^foto\/[0-9a-f-]{36}$/);
     assert.ok(f.credito, t);
   }
